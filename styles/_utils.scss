@@ -1,0 +1,143 @@
+$spacing: (
+    "0": 0,
+    "1": 0.25rem,
+    "2": 0.5rem,
+    "3": 0.75rem,
+    "4": 1rem,
+    "5": 1.25rem,
+    "6": 1.5rem,
+    "7": 1.75rem,
+    "8": 2rem,
+    "auto": auto
+);
+
+@mixin generate($options) {
+    @each $key, $value in $options {
+        &-#{$key} {
+            @content ($value);
+        }
+    }
+}
+
+.p {
+    @include generate($spacing) using ($value) {
+        padding: $value;
+    }
+}
+.pt {
+    @include generate($spacing) using ($value) {
+        padding-top: $value;
+    }
+}
+.pb {
+    @include generate($spacing) using ($value) {
+        padding-bottom: $value;
+    }
+}
+.pl {
+    @include generate($spacing) using ($value) {
+        padding-left: $value;
+    }
+}
+.pr {
+    @include generate($spacing) using ($value) {
+        padding-right: $value;
+    }
+}
+.px {
+    @include generate($spacing) using ($value) {
+        padding-left: $value;
+        padding-right: $value;
+    }
+}
+.py {
+    @include generate($spacing) using ($value) {
+        padding-top: $value;
+        padding-bottom: $value;
+    }
+}
+// margin
+.m {
+    @include generate($spacing) using ($value) {
+        margin: $value !important;
+    }
+}
+.mt {
+    @include generate($spacing) using ($value) {
+        margin-top: $value !important;
+    }
+}
+.mb {
+    @include generate($spacing) using ($value) {
+        margin-bottom: $value !important;
+    }
+}
+.ml {
+    @include generate($spacing) using ($value) {
+        margin-left: $value !important;
+    }
+}
+.mr {
+    @include generate($spacing) using ($value) {
+        margin-right: $value !important;
+    }
+}
+.mx {
+    @include generate($spacing) using ($value) {
+        margin-right: $value !important;
+        margin-left: $value !important;
+    }
+}
+.my {
+    @include generate($spacing) using ($value) {
+        margin-top: $value !important;
+        margin-bottom: $value !important;
+    }
+}
+
+// utility
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.hidden-sm {
+    display: none;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}

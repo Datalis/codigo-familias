@@ -1,0 +1,12 @@
+$breakpoints: (
+    lg: 60em,
+    md: 45em,
+    sm: 33.75em
+);
+
+@mixin screen-down($size) {
+    $bp: map-get($breakpoints, $size);
+    @media only screen and (max-width: $bp) {
+        @content;
+    }
+};

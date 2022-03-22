@@ -1,0 +1,44 @@
+$salmon: #e4c5b7;
+$orange: #f4a678;
+$orange-light: #f2e7d9;
+$purple: #7e62b2;
+$purple-light: #c4b7dc;
+$green: #377e75;
+$green-dark: #125865;
+$white: #fafafa;
+$black: #212121;
+
+.bg-orange {
+    background-color: $orange;
+}
+.bg-orange-light {
+    background-color: $orange-light;
+}
+.bg-purple {
+    background-color: $purple;
+}
+.bg-purple-light {
+    background-color: $purple-light;
+}
+.bg-green {
+    background-color: $green;
+}
+.bg-green-dark {
+    background-color: $green-dark;
+}
+
+.text-orange {
+    color: $orange;
+}
+.text-purple {
+    color: $purple;
+}
+.text-green {
+    color: $green;
+}
+.text-light {
+    color: $white;
+}
+.text-black {
+    color: $black;
+}

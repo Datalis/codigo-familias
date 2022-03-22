@@ -1,0 +1,210 @@
+.button {
+    border: none;
+    outline: none;
+    padding: 0.8rem 1rem;
+    line-height: 1;
+    background-color: $orange;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+}
+
+.collapsible {
+    width: 100%;
+    margin-left: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    &__header {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin: 0 !important;
+        cursor: pointer;
+        &--title {
+            flex-grow: 1;
+            color: $green;
+            margin-left: 0 !important;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        &--icon {
+            width: 18px;
+            fill: $orange;
+        }
+    }
+}
+
+.slider {
+    padding: 1rem 0;
+    width: 90%;
+    margin: auto;
+    height: 500px;
+    position: relative;
+    .slider-controls {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        .slider-control {
+            z-index: 2;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0) !important;
+            @include screen-down(sm) {
+                width: 30px;
+            }
+        }
+        .slider-control.slider-control-prev {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+        .slider-control.slider-control-next {
+            position: absolute;
+            top: 140px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .slide {
+        background-color: $purple-light;
+        //box-shadow: 0 0 10px 1px rgba(#000, .1);
+        &.with-shadow {
+            box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+        }
+        border-radius: 25px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+        touch-action: none;
+        touch-action: none;
+        .article {
+            will-change: transform;
+            padding: 2.5rem 5rem;
+            @include screen-down(sm) {
+                padding: 1rem 2rem;
+            }
+            text-align: start;
+            .divider {
+                display: none;
+            }
+        }
+    }
+}
+
+.carousel-container {
+    .range {
+        margin-top: 5rem;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+    .carousel {
+        display: flex;
+        justify-content: center;
+        height: 600px;
+        @include screen-down(sm) {
+            height: 300px;
+        }
+        &__item {
+            width: 600px;
+            height: 600px;
+            display: flex;
+            position: absolute;
+            box-shadow: 2px 6px 14px 0px #00000066;
+            border-radius: 16px;
+            overflow: hidden;
+            @include screen-down(sm) {
+                width: 80%;
+                height: auto;
+                margin: auto;
+            }
+        }
+    }
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    h3 {
+        @include screen-down(sm) {
+            font-size: 16px;
+        }
+    }
+    h1 {
+        @include screen-down(sm) {
+            font-size: 24px;
+        }
+    }
+    p {
+        @include screen-down(sm) {
+            font-size: 12px;
+        }
+    }
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: $orange;
+        margin-top: 2em;
+        margin-bottom: 2rem;
+    }
+}
+
+input.form-control {
+    height: 38px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    font-style: italic;
+    color: $white;
+    background-color: $orange;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    box-shadow: inset 0 0 15px 1px rgb(0 0 0 / 10%);
+    &::placeholder {
+        color: rgba($white, 0.9);
+    }
+}
+
+.textarea-container {
+    position: relative;
+    display: flex;
+    textarea {
+        flex-grow: 1;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.8rem;
+        padding-bottom: 1.6rem;
+        border-radius: 15px;
+        outline: none;
+        border: none;
+        font-style: italic;
+        background-color: $orange;
+        color: $white;
+        overflow-y: hidden;
+        box-shadow: inset 0 0 15px 1px rgb(0 0 0 / 10%);
+        &::placeholder {
+            color: rgba($white, 0.9);
+        }
+    }
+    .send-icon {
+        cursor: pointer;
+        position: absolute;
+        bottom: 4px;
+        right: 12px;
+        width: 24px;
+        fill: $orange-light;
+    }
+}
