@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import headerBg from '../../public/images/header.png';
+import headerImg from '../../public/images/header.png';
+import headerImgLg from '../../public/images/header_large.png';
 
 import headerTitle from '../../public/images/header_title.png';
 import logo from '../../public/images/logo.png';
@@ -10,10 +11,13 @@ import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Article from '../_components/article';
 import ArticleList from './article-list';
+import useWindowSize from '../../hooks/useWindowSize';
 
 
 const Header = () => {
+    const size = useWindowSize();
     const [offset, setOffset] = useState();
+    const [headerBg, setHeaderBg] = useState(headerImg);
 
     const { scrollY } = useViewportScroll();
 
@@ -24,21 +28,19 @@ const Header = () => {
     });
 
     useEffect(() => {
+        if (size.width > 560) {
+            setHeaderBg(headerImgLg);
+        } else {
+            setHeaderBg(headerImg);
+        }
+    }, [size])
+
+    useEffect(() => {
         const el = ref.current;
         setOffset(el.offsetTop);
     }, [ref]);
 
     return (
-        /*<header className="header">
-            <div ref={ref} className="parallax">
-                <motion.div className="parallax__overlay" style={{ y }}>
-                    
-                </motion.div>
-                <div className="parallax__img">
-                    <Image src={headerBg} alt='' />
-                </div>
-            </div>
-        </header>*/
         <header className='header' ref={ref}>
             <div className="header__img">
                 <Image src={headerBg} alt='' />

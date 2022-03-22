@@ -12,7 +12,8 @@ import { motion, useAnimation, useTransform, useViewportScroll } from 'framer-mo
 const ArticleSlider = ({ articles = [] }) => {
 
     const swipeConfidenceThreshold = 10000;
-
+    
+    const containerRef = useRef();
     const size = useWindowSize();
     const { scrollY } = useViewportScroll();
     const offset = useTransform(scrollY, value => value * 0.2 * -1);

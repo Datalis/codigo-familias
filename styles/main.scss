@@ -40,23 +40,24 @@ body {
 
   &__img {
     position: absolute;
-    width: 1200px;
-    top: -350px;
-    right: -180px;
+    width: 80%;
+    max-width: 1200px;
+    top: 0;
+    right: 0;
     @include screen-down(lg) {
-      width: 860px;
-      top: -180px;
+      width: 700px;
+      top: 0px;
     }
 
     @include screen-down(md) {
-      width: 860px;
-      top: -180px;
+      width: 600px;
+      top: 0px;
     }
 
     @include screen-down(sm) {
-      width: 750px;
-      top: -42px;
-      right: -110px;
+      width: 100%;
+      top: 0;
+      right: 0;
     }
   }
 
@@ -77,6 +78,9 @@ body {
     }
     &__image {
       max-width: 400px;
+      @include screen-down(md) {
+        max-width: 75%;
+      }
       @include screen-down(sm) {
         margin: auto;
         max-width: 50%;
@@ -104,7 +108,7 @@ body {
   .search {
     margin-top: 6rem;
     &__input {
-      @include screen-down(sm) {
+      @include screen-down(md) {
         width: 80%;
       }
       width: 550px;
