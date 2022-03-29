@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import footerImg from '../../public/images/footer.png';
-import footerLogo from '../../public/images/logo_variant.png';
+import footerImg from '../public/images/footer.png';
+import footerLogo from '../public/images/logo_variant.png';
 
 const Footer = () => {
     return (

@@ -1,0 +1,67 @@
+.article {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    &::-webkit-scrollbar-thumb {
+        background: rgba($purple, .5) !important;
+    }
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        white-space: pre-wrap;
+        word-break: break-word;
+        @include screen-down(md) {
+            flex-direction: column;
+            .separator {
+                display: none;
+            }
+            .heading {
+                border-bottom: 1px solid currentColor;
+                padding-bottom: 0.2rem;
+                &:not(:first-child) {
+                    padding-top: 0.5rem;
+                }
+            }
+        }
+    }
+    &__toggle-more {
+        display: flex;
+        width: 100%;
+        .button {
+            border: none;
+            outline: none;
+            padding: 0.6rem 0.8rem;
+            line-height: 1;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            margin-left: auto;
+            border-radius: 24px;
+            background-color: $purple;
+            color: $orange-light;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.25s ease;
+            
+        }
+    }
+    &__footer {
+        margin-top: 2rem;
+    }
+    &__comments {
+        font-style: italic;
+    }
+    .text-truncate {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+}

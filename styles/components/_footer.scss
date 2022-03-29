@@ -1,0 +1,44 @@
+.footer {
+    background-color: $salmon;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    &__img {
+      position: absolute;
+      left: -200px;
+      top: -64px;
+      bottom: -20px;
+      height: 100%;
+      width: 75%;
+      max-width: 980px;
+      z-index: 0;
+      @include screen-down(sm) {
+        top: unset;
+        bottom: -180px;
+        left: -100px;
+        width: 140%;
+        height: unset;
+      }
+    }
+    &__content {
+      z-index: 1;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      .logo {
+        margin-top: 4rem;
+        width: 100px;
+      }
+      @include screen-down(sm) {
+        margin-top: 1rem;
+        margin-bottom: 25rem;
+        h4 {
+          font-size: 14px !important;
+        }
+        .logo {
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+  

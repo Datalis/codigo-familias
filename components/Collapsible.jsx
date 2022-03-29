@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-import ToggleIcon from '../../public/icons/angle-down.svg';
+import ToggleIcon from '../public/icons/angle-down.svg';
 
 const Collapsible = ({
     title,

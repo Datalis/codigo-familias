@@ -1,0 +1,130 @@
+.articles-slider {
+    margin-bottom: 4rem;
+    &__intro {
+        max-width: 60%;
+        margin: auto;
+        margin-bottom: 2rem;
+        @include screen-down(sm) {
+            max-width: 100%;
+        }
+    }
+    &__dots {
+        .ReactVirtualized__Grid {
+            &::-webkit-scrollbar-thumb {
+                background: rgba($green, .5) !important;
+            }
+        }
+        .dot {
+            span {
+                background-color: $green;
+                border-radius: 50%;
+                padding: 0.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 24px;
+                max-width: 24px;
+                line-height: 1;
+                color: $white;
+                cursor: pointer;
+                transition: all 0.5 ease;
+            }
+            &__current {
+                span {
+                    background-color: $purple;
+                }
+            }
+        }
+    }
+    &__counter {
+        margin-top: 0.5rem;
+        text-align: right;
+    }
+    &__slider {
+        display: flex;
+        align-items: center;
+        height: 600px;
+        padding: 1rem 0;
+        width: 90%;
+        margin: auto;
+        position: relative;
+        .controls {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            .control {
+                z-index: 2;
+                cursor: pointer;
+                -webkit-tap-highlight-color: rgb(0 0 0 / 0) !important;
+                @include screen-down(sm) {
+                    width: 30px;
+                }
+                &__next {
+                    position: absolute;
+                    top: 140px;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                }
+                &__prev {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: $purple-light;
+            border-radius: 32px;
+            display: flex;
+            will-change: transform;
+            touch-action: none;
+            &__current {
+                box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+            }
+            .article {
+                max-width: 80%;
+                margin: 2rem auto;
+            }
+        }
+    }
+    &__download {
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button {
+            border: none;
+            outline: none;
+            padding: .8rem 1.2rem;
+            line-height: 1;
+            background-color: $orange;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            border-radius: 24px;
+            color: $orange-light;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0 10px 1px rgb(0 0 0 / 15%);
+            transition: all 0.25s ease;
+            will-change: transform;
+            &:hover {
+                transform: scale(1.025);
+            }
+        }
+    }
+}

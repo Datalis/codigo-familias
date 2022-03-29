@@ -1,0 +1,8 @@
+.related-articles {
+    padding-bottom: 2rem;
+    background-color: $white;
+    &__item {
+        height: 200px;
+        background-color: $green;
+    }
+}

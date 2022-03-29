@@ -1,6 +1,6 @@
-import Collapsible from "../_components/collapsible";
+import Collapsible from "./Collapsible";
 
-import SendIcon from '../../public/icons/send.svg';
+import SendIcon from '../public/icons/send.svg';
 
 const FrequentQuestions = () => {
     return (
@@ -32,7 +32,7 @@ const FrequentQuestions = () => {
                             <input className="form-control" placeholder="Nombre" />
                             <input className="form-control" placeholder="Correo electrónico" />
                             <div className="textarea-container">
-                                <textarea className="form-control" placeholder="Deja tu comentario" rows={5}></textarea>
+                                <textarea className="form-control" placeholder="Deja tu comentario" rows={8}></textarea>
                                 <div className="send-icon">
                                     <SendIcon></SendIcon>
                                 </div>
