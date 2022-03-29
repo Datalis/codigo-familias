@@ -82,6 +82,7 @@ const Infographics = () => {
 }
 
 const Slide = React.memo(
+    
     function (props) {
         const { data, dataIndex } = props;
         const { cover } = data[dataIndex];
@@ -99,5 +100,7 @@ const Slide = React.memo(
         );
     }
 );
+
+Slide.displayName = "Slide";
 
 export default Infographics;

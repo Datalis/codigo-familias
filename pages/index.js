@@ -24,7 +24,7 @@ export default function Index({ articles }) {
       <Header articles={articles} />
       <main className='main'>
         <div className='main__image'>
-          <Image src={mainImage}></Image>
+          <Image src={mainImage} alt=""></Image>
         </div>
         <div className='main__content'>
           <ArticleSlider articles={articles}></ArticleSlider>
