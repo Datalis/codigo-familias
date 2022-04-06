@@ -91,16 +91,6 @@
         height: 800px;
         position: relative;
 
-        @include screen-down(sm) {
-            width: 90%;
-            margin: auto;
-            .article {
-                p {
-                    font-size: 12px;
-                }
-            }
-        }
-
         .controls {
             position: absolute;
             width: 100%;

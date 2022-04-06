@@ -10,6 +10,7 @@ import useWindowSize from "../hooks/useWindowSize";
 
 const Slide = ({ i, currentIndex, children, onDragEnd }) => {
     const SLIDE_SHADOW = '0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6)';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const shouldRender = useMemo(() => Math.abs(i - currentIndex) < 5, [currentIndex]);
 
     const { width } = useWindowSize();
@@ -89,8 +90,16 @@ const GuidedVisit = ({ articles }) => {
         }
     }
 
-    const handleDragEnd = (e, { offset }) => {
+    const handleDragEnd = (e, { offset, velocity }) => {
+        const swipe = Math.abs(offset.x) * velocity.x;
 
+        if (swipe < -10000) {
+            handleNext();
+        } else if (swipe > 10000) {
+            handlePrev();
+        }
+
+        console.log(swipe);
     }
 
     return (

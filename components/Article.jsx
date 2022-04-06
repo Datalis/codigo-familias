@@ -67,6 +67,7 @@ const Article = ({
 
             <div className="show-more-less">
                 <motion.p
+                    className='article__text'
                     variants={{
                         collapsed: {
                             opacity: [0,1],

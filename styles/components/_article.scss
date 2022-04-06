@@ -24,6 +24,9 @@
                 &:not(:first-child) {
                     padding-top: 0.5rem;
                 }
+                @include screen-down(sm) {
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -37,11 +40,17 @@
         > * {
           margin-top: 0.5rem;
         }
+        @include screen-down(sm) {
+            font-size: 12px;
+        }
     }
     &__text {
         font-weight: 400;
         line-height: 1.4;
         white-space: break-spaces;
+        @include screen-down(sm) {
+            font-size: 12px;
+        }
     }
 
     .show-more-less {
