@@ -8,7 +8,7 @@ const Media = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3 className="center text-green uppercase">Videos y Audios</h3>
+                        <h3 className="center text-green uppercase font-semi-bold">Videos y Audios</h3>
                     </div>
                     <div className="row">
                         <div className="col-4">

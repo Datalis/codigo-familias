@@ -1,0 +1,262 @@
+.guided-visit {
+    margin-bottom: 4rem;
+
+    &__intro {
+        max-width: 60%;
+        margin: auto;
+        margin-bottom: 2rem;
+
+        @include screen-down(sm) {
+            max-width: 100%;
+        }
+    }
+
+    &__download {
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+            border: none;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            line-height: 1;
+            background-color: $orange;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            border-radius: 24px;
+            color: $orange-light;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0 10px 1px rgb(0 0 0 / 15%);
+            transition: all 0.25s ease;
+            will-change: transform;
+            user-select: none;
+
+            &:hover {
+                transform: scale(1.025);
+            }
+        }
+    }
+
+    &__counter {
+        margin-top: 1.5rem;
+        text-align: right;
+    }
+
+    &__dots {
+        .ReactVirtualized__Grid {
+            &::-webkit-scrollbar-thumb {
+                background: rgba($green, 0.5) !important;
+            }
+        }
+
+        .dot {
+            width: 100%;
+
+            span {
+                background-color: $green;
+                border-radius: 50%;
+                padding: 0.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 24px;
+                max-width: 24px;
+                line-height: 1;
+                color: $white;
+                cursor: pointer;
+                transition: all 0.5 ease;
+                user-select: none;
+            }
+
+            &__current {
+                span {
+                    background-color: $purple;
+                }
+            }
+        }
+    }
+
+    &__slider {
+        margin-top: 1rem;
+        width: 100%;
+        height: 800px;
+        position: relative;
+
+        @include screen-down(sm) {
+            width: 90%;
+            margin: auto;
+            .article {
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .controls {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            .control {
+                z-index: 2;
+                cursor: pointer;
+
+                @include screen-down(sm) {
+                    width: 30px;
+                }
+
+                &__next {
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &__prev {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+
+        .track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+
+            .slide {
+                background-color: $purple-light;
+                border-radius: 32px;
+                will-change: transform;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: auto;
+                transform: translate3d(0, 0, 0);
+                touch-action: pan-x;
+
+                .article {
+                    height: 80%;
+                    max-width: 80%;
+                    margin: auto;
+                    touch-action: pan-y;
+                }
+            }
+        }
+
+        .slider__container {
+            .dots {
+                .ReactVirtualized__Grid {
+                    &::-webkit-scrollbar-thumb {
+                        background: rgba($green, 0.5) !important;
+                    }
+                }
+
+                .dot {
+                    width: 100%;
+
+                    span {
+                        background-color: $green;
+                        border-radius: 50%;
+                        padding: 0.25rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 24px;
+                        max-width: 24px;
+                        line-height: 1;
+                        color: $white;
+                        cursor: pointer;
+                        transition: all 0.5 ease;
+                        user-select: none;
+                    }
+
+                    &__current {
+                        span {
+                            background-color: $purple;
+                        }
+                    }
+                }
+            }
+
+            .counter {
+                margin-top: 1.5rem;
+                text-align: right;
+            }
+
+            .slides {
+                height: 800px;
+                display: flex;
+                flex-flow: row;
+                position: relative;
+
+                .controls {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+
+                    .control {
+                        z-index: 2;
+                        cursor: pointer;
+
+                        @include screen-down(sm) {
+                            width: 30px;
+                        }
+
+                        &__next {
+                            position: absolute;
+                            top: 50%;
+                            right: 0;
+                            height: 24px;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        &__prev {
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            height: 24px;
+                            display: flex;
+                            align-items: center;
+                        }
+                    }
+                }
+
+                .slide {
+                    background-color: $purple-light;
+                    border-radius: 32px;
+                    will-change: transform;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: auto;
+                    transform: translate3d(0, 0, 0);
+                    touch-action: pan-x;
+
+                    .article {
+                        height: 80%;
+                        max-width: 80%;
+                        margin: auto;
+                        touch-action: pan-y;
+                    }
+                }
+            }
+        }
+    }
+}

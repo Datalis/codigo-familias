@@ -1,7 +1,7 @@
 
-import React, { useDebugValue, useEffect, useRef, useState } from 'react'
-import { motion, useAnimation } from 'framer-motion';
-import Highlighter from 'react-highlight-words';
+import React, { useDebugValue, useEffect, useMemo, useRef, useState } from 'react'
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import ReactHtmlParser from 'react-html-parser';
 
 const Article = ({
     _id,
@@ -14,16 +14,7 @@ const Article = ({
     matches = []
 }) => {
 
-    const textRef = useRef();
-    const controls = useAnimation();
-
     const [collapsed, setCollapsed] = useState(true);
-
-    useEffect(() => {
-        controls.start({
-            height: collapsed ? textRef.current?.offsetHeight : 'auto'
-        })
-    }, [collapsed])
 
 
     const highlight = (value, indices = [], i = 1) => {
@@ -37,12 +28,16 @@ const Article = ({
         );
     };
 
+    const unquote = (text) => {
+        return text.replace(/^"(.+(?="$))"$/, '$1');
+    }
+
     const textMatches = matches.find(m => m.key == 'texto');
     const titleMatches = matches.find(m => m.key == 'articulo');
 
     const truncate = (text = "") => {
-        if (text.length < 500) return text;
-        const _temp = text.substring(0, 500);
+        if (text.length < 260) return text;
+        const _temp = text.substring(0, 260);
         const _end = _temp.substring(0, _temp.lastIndexOf(' ')) + '...';
         return _end;
     }
@@ -51,22 +46,57 @@ const Article = ({
         <article className="article" id={_id}>
             <header className='article__header'>
                 <h6 className='heading font-bold text-purple my-0 uppercase'>{titulo}</h6>
-                <span className='separator font-bold mx-4'>/</span>
-                <h6 className='heading font-bold text-purple my-0 uppercase'>{capitulo || '-'}</h6>
-                <span className='separator font-bold mx-4'>/</span>
-                <h6 className='heading font-bold text-purple my-0 uppercase'>{seccion || '-'}</h6>
+                {!!capitulo && (
+                    <>
+                        <span className='separator font-bold mx-4'>/</span>
+                        <h6 className='heading font-bold text-purple my-0 uppercase'>{capitulo}</h6>
+                    </>
+                )
+                }
+                {!!seccion && (
+                    <>
+                        <span className='separator font-bold mx-4'>/</span>
+                        <h6 className='heading font-bold text-purple my-0 uppercase'>{seccion}</h6>
+                    </>
+                )
+                }
             </header>
-            <h3 className='article__title mb-2 mt-4'>
+            <h3 className='article__title font-bold mb-2 mt-4'>
                 {highlight(titleMatches?.value || articulo, titleMatches?.indices)}
             </h3>
-            <motion.p ref={textRef} animate={controls} initial={{height:'auto'}} className={collapsed ? `text-truncate` : ''}>
-                {highlight(textMatches?.value || texto, textMatches?.indices)}
-            </motion.p>
-            <motion.div className='article__toggle-more'>
-                <motion.button className='button' onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
-            </motion.div>
+
+            <div className="show-more-less">
+                <motion.p
+                    variants={{
+                        collapsed: {
+                            opacity: [0,1],
+                            height: 'auto',
+                            display: '-webkit-box'
+                        },
+                        expanded: {
+                            opacity: [0,1],
+                            height: 'auto',
+                            display: 'block',
+                            transition: {
+                                display: {
+                                    //delay: 0.2
+                                }
+                            }
+                        }
+                    }}
+                    initial="collapsed"
+                    animate={collapsed ? "collapsed" : "expanded"}>
+                    {texto}
+                </motion.p>
+                <motion.div className='toggle-more' layout="position">
+                    <motion.button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
+                </motion.div>
+            </div>
+
             <footer className='article__footer'>
-                <span className='article__comments' dangerouslySetInnerHTML={{__html: comentario}}></span>
+                <span className='article__comments'>
+                    {ReactHtmlParser(comentario)}
+                </span>
             </footer>
         </article>
     );

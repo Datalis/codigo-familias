@@ -8,46 +8,9 @@
             max-width: 100%;
         }
     }
-    &__dots {
-        .ReactVirtualized__Grid {
-            &::-webkit-scrollbar-thumb {
-                background: rgba($green, .5) !important;
-            }
-        }
-        .dot {
-            span {
-                background-color: $green;
-                border-radius: 50%;
-                padding: 0.25rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 24px;
-                max-width: 24px;
-                line-height: 1;
-                color: $white;
-                cursor: pointer;
-                transition: all 0.5 ease;
-            }
-            &__current {
-                span {
-                    background-color: $purple;
-                }
-            }
-        }
-    }
-    &__counter {
-        margin-top: 0.5rem;
-        text-align: right;
-    }
     &__slider {
-        display: flex;
-        align-items: center;
-        height: 600px;
-        padding: 1rem 0;
-        width: 90%;
-        margin: auto;
-        position: relative;
+        width: 100%;
+        height: 800px;
         .controls {
             position: absolute;
             width: 100%;
@@ -78,21 +41,64 @@
                 }
             }
         }
-        .slide {
-            position: absolute;
+        .dots {
+            .ReactVirtualized__Grid {
+                &::-webkit-scrollbar-thumb {
+                    background: rgba($green, 0.5) !important;
+                }
+            }
+            .dot {
+                width: 100%;
+                span {
+                    background-color: $green;
+                    border-radius: 50%;
+                    padding: 0.25rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 24px;
+                    max-width: 24px;
+                    line-height: 1;
+                    color: $white;
+                    cursor: pointer;
+                    transition: all 0.5 ease;
+                    user-select: none;
+                }
+                &__current {
+                    span {
+                        background-color: $purple;
+                    }
+                }
+            }
+        }
+        .counter {
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+        .carousel {
+            margin-top: 0.5rem;
+            max-height: 700px;
+            position: relative;
             width: 100%;
             height: 100%;
-            background-color: $purple-light;
-            border-radius: 32px;
-            display: flex;
-            will-change: transform;
-            touch-action: none;
-            &__current {
-                box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+            .slide {
+                background-color: $purple-light;
+                border-radius: 32px;
+                will-change: transform;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: auto;
+                transform: translate3d(0, 0, 0);
+                /*&__active {
+                    box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+                    z-index: 1;
+                }*/
             }
-            .article {
+            .slide .article {
+                height: 80%;
                 max-width: 80%;
-                margin: 2rem auto;
+                margin: auto;
             }
         }
     }
@@ -106,7 +112,7 @@
         .button {
             border: none;
             outline: none;
-            padding: .8rem 1.2rem;
+            padding: 0.8rem 1.2rem;
             line-height: 1;
             background-color: $orange;
             border-radius: 12px;

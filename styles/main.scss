@@ -6,10 +6,10 @@
 @import "fonts";
 @import "utils";
 @import "grid";
-//@import "components";
 
 @import "components/header";
 @import "components/collapsible";
+@import "components/guided-visit";
 @import "components/article";
 @import "components/article-slider";
 @import "components/media";
@@ -27,6 +27,7 @@ body {
   color: $dark-grey;
   overflow-x: hidden;
   background-color: $orange-light;
+  scroll-behavior: smooth;
 }
 
 mark {
@@ -48,6 +49,18 @@ mark {
     flex-direction: column;
   }
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b7b7b7 #e5e5e5;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+p {
+  white-space: break-spaces;
+  line-height: 1.4;
+}
+
 
 ::-webkit-scrollbar {
   width: 8px;

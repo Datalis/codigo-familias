@@ -22,6 +22,8 @@ const Header = ({ articles }) => {
     const [pageOffset, setPageOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
+    const searchContentRef = useRef();
+
     const itemsPerPage = 5;
 
     const {
@@ -36,6 +38,8 @@ const Header = ({ articles }) => {
         keys: ['articulo', 'texto']
     });
 
+    const scrollToSearch = () => searchContentRef.current?.scrollIntoView();
+
     const items = useCallback(() => hits.slice(pageOffset, pageOffset + itemsPerPage), [pageOffset, hits]);
     const pageCount = useCallback(() => Math.ceil(hits.length / itemsPerPage), [hits])
 
@@ -43,6 +47,7 @@ const Header = ({ articles }) => {
         const offset = page * itemsPerPage % hits.length;
         setPageOffset(offset);
         setCurrentPage(page);
+        scrollToSearch();
     }
 
     const bgImage = useCallback(() => {
@@ -79,9 +84,9 @@ const Header = ({ articles }) => {
                     <div className="row">
                         <div className="col-12">
                             <div className='intro'>
-                                <div className='intro__image mt-8'>
+                                <h1 className='intro__image mt-8'>
                                     <Image src={headerTitle} layout='responsive' alt='Nuevo código de familia' />
-                                </div>
+                                </h1>
                                 <h3 className='intro__title font-normal mt-8'>Una cobertura para el debate informado</h3>
                                 <h5 className='intro__message font-medium mt-8'>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -109,29 +114,31 @@ const Header = ({ articles }) => {
                         </div>
                     </div>
                 </div>
-                <AnimatePresence>
-                    <div className={`results ${items().length ? 'py-8' : ''}`}>
-                        <div className="container">
-                            <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
-                                {items().map(hit => (
-                                    <motion.div key={hit.refIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                        <Article {...hit.item} matches={hit.matches}></Article>
-                                        <div className="divider"></div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                            <div className="results__pagination">
-                                <div className='pagination'>
-                                    {
-                                        [...Array(pageCount()).keys()].map(e => (
-                                            <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
-                                        ))
-                                    }
+                <div ref={searchContentRef}>
+                    <AnimatePresence>
+                        <div className={`results ${items().length ? 'py-8' : ''}`}>
+                            <div className="container">
+                                <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
+                                    {items().map(hit => (
+                                        <motion.div key={hit.refIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                                            <Article {...hit.item} matches={hit.matches}></Article>
+                                            <div className="divider"></div>
+                                        </motion.div>
+                                    ))}
+                                </motion.div>
+                                <div className="results__pagination">
+                                    <div className='pagination'>
+                                        {
+                                            [...Array(pageCount()).keys()].map(e => (
+                                                <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </AnimatePresence>
+                    </AnimatePresence>
+                </div>
             </motion.div>
         </header>
     );

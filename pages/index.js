@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image';
 import Infographics from '../components/Infographics';
-import ArticleSlider from '../components/ArticlesSlider';
+import ArticleSlider from '../components/ArticleSlider';
 import Header from '../components/Header';
 import RelatedArticles from '../components/RelatedArticles';
 import FrequentQuestions from '../components/FrecuentQuestions';
@@ -9,11 +9,13 @@ import Media from '../components/Media';
 import Footer from '../components/Footer';
 import { fetchArticles } from '../data/api';
 import mainImage from '../public/images/main.png';
+import { Fragment } from 'react';
+import GuidedVisit from '../components/GuidedVisit';
 
 
 export default function Index({ articles }) {
   return (
-    <>
+    <Fragment>
       <Head>
         <title>Código de Familias | elTOQUE</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,15 +29,15 @@ export default function Index({ articles }) {
           <Image src={mainImage} alt=""></Image>
         </div>
         <div className='main__content'>
-          <ArticleSlider articles={articles}></ArticleSlider>
-          <Media></Media>
-          <Infographics></Infographics>
-          <RelatedArticles></RelatedArticles>
-          <FrequentQuestions></FrequentQuestions>
+          <GuidedVisit articles={articles} />
+          <Media/>
+          <Infographics/>
+          <RelatedArticles/>
+          <FrequentQuestions/>
         </div>
       </main>
       <Footer />
-    </>
+    </Fragment>
   )
 }
 

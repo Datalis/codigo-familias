@@ -8,7 +8,7 @@ const FrequentQuestions = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3 className="uppercase mb-4 text-purple font-bold">Preguntas frecuentes</h3>
+                        <h3 className="uppercase mb-4 text-purple font-semi-bold">Preguntas frecuentes</h3>
                         <div className="divider"></div>
                     </div>
                 </div>
