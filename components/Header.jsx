@@ -55,9 +55,16 @@ const Header = ({ articles }) => {
         return headerImg;
     }, [viewport])
 
+    const { scrollY } = useViewportScroll();
+    const ref = useRef(null);
+
+    const y = useTransform(scrollY, [(ref.current?.offsetTop || 0), (ref.current?.offsetTop || 0) + 3], [0, 1], {
+        clamp: false,
+    })
+
     //const { scrollY } = useViewportScroll();
 
-    const ref = useRef(null);
+    
     /*const offset = useCallback(() => ref.current.offsetTop, [ref]);
     const y = useTransform(scrollY, [offset, offset + 3], [0, -1], {
         clamp: false,
@@ -73,9 +80,9 @@ const Header = ({ articles }) => {
 
     return (
         <header className='header' ref={ref}>
-            <div className="header__img">
+            <motion.div className="header__img" style={{y}}>
                 <Image src={bgImage()} alt='' />
-            </div>
+            </motion.div>
             <motion.div>
                 <div className="container pb-8">
                     <div className='logo'>
