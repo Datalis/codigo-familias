@@ -75,6 +75,8 @@ const Infographics = () => {
   const [currentGroup, setCurrentGroup] = useState(0);
   const [currentItem, setCurrentItem] = useState(0);
 
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
+
   const calculateItemZIndex = (index) => {
     const max = groups[currentGroup].length;
     if (currentItem == index) return max;
@@ -88,6 +90,11 @@ const Infographics = () => {
   }
 
   useEffect(() => {
+    if (viewport.width > 501) {
+      setIsSmallScreen(false);
+    } else {
+      setIsSmallScreen(true);
+    }
 
     if (viewport.width > 501) {
       setCarouselItemWidth(500);
@@ -124,18 +131,15 @@ const Infographics = () => {
         <div className="row">
           <div className="infographics__intro" ref={introRef}>
             <motion.div
+              className="infographics__container"
               drag='x'
-              dragConstraints={{
-                left: -introDragOffset,
-                right: 0
-              }}
+              dragConstraints={introRef}
               dragElastic={0.2}
               style={{
                 display: 'flex',
                 justifyContent: 'center',
                 flexWrap: 'nowrap',
                 minWidth: 'min-content',
-                gap: '1rem'
               }}>
               {intros.map((e, i) => (
                 <div
@@ -187,12 +191,9 @@ const Infographics = () => {
                       zIndex: calculateItemZIndex(i),
                       scale: currentItem == i ? 1 : 0.95,
                     }}
-                    drag="x"
+                    drag={isSmallScreen ? 'x' : false}
                     dragElastic={0.2}
-                    dragConstraints={{
-                      left: i * carouselItemOffset,
-                      right: i * carouselItemOffset
-                    }}
+                    dragConstraints={carouselRef}
                     onDragEnd={(e, { offset, velocity }) => {
                       const swipe = Math.abs(offset.x) * velocity.x;
                       if (swipe < -10000) {

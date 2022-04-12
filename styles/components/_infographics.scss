@@ -7,6 +7,10 @@
     display: flex;
     flex-flow: column;
 
+    &__container {
+        > * + * { margin-left: 1rem;}
+    }
+
     &__intro {
         margin-top: 1rem;
         display: flex;
@@ -14,6 +18,7 @@
         position: relative;
         //justify-content: center;
         //height: 300px;
+        
         &--item {
             overflow: hidden;
             border-radius: 24px;
@@ -29,6 +34,9 @@
                     scale: 1.1;
                 }
             }
+            img {
+                pointer-events: none;
+            }
         }
     }
 
@@ -43,6 +51,9 @@
         }
         &--item {
             box-shadow: 0 62.5px 125px -25px rgb(50 50 73 / 10%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%);
+            img {
+                pointer-events: none;
+            }
         }
     }
 }

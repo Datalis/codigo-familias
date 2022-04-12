@@ -106,9 +106,8 @@
             align-items: center;
             justify-content: center;
             margin-top: 2rem;
-            gap: 1rem;
+            > * + * { margin-left: 1rem;}
             @include screen-down(sm) {
-                gap: 0.35rem;
                 margin-top: 1.5rem;
             }
             &--tag {
@@ -119,6 +118,7 @@
                 font-weight: 400;
                 cursor: pointer;
                 transition: all 0.1s ease;
+                margin-top: .5rem;
                 &.selected {
                     font-weight: 500;
                     box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
