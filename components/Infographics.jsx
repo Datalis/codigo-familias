@@ -27,6 +27,7 @@ import intro2 from '../public/images/infographics/2/intro.jpg';
 import intro3 from '../public/images/infographics/3/intro.jpg';
 
 const group1 = [
+  intro1,
   group1_1,
   group1_2,
   group1_3,
@@ -35,6 +36,7 @@ const group1 = [
 ]
 
 const group2 = [
+  intro2,
   group2_1,
   group2_2,
   group2_3,
@@ -42,6 +44,7 @@ const group2 = [
 ]
 
 const group3 = [
+  intro3,
   group3_1,
   group3_2,
   group3_3,
@@ -70,12 +73,13 @@ const Infographics = () => {
   const [carouselItemOffset, setCarouselItemOffset] = useState(0);
   const [introItemWidth, setIntroItemWidth] = useState(300);
   const [carouselItemWidth, setCarouselItemWidth] = useState(300);
-  const [introDragOffset, setIntroDragOffset] = useState(0);
+  //const [introDragOffset, setIntroDragOffset] = useState(0);
 
   const [currentGroup, setCurrentGroup] = useState(0);
   const [currentItem, setCurrentItem] = useState(0);
 
   const [isSmallScreen, setIsSmallScreen] = useState(true);
+  const [enableIntroDrag, setEnableIntroDrag] = useState(false);
 
   const calculateItemZIndex = (index) => {
     const max = groups[currentGroup].length;
@@ -99,7 +103,7 @@ const Infographics = () => {
     if (viewport.width > 501) {
       setCarouselItemWidth(500);
       const currentGroupLength = groups[currentGroup].length;
-      setCarouselItemOffset(carouselRef.current?.clientWidth / currentGroupLength - 500 / 6);
+      setCarouselItemOffset((carouselRef.current?.clientWidth / currentGroupLength) - (500 / (currentGroupLength + 1)));
     } else {
       setCarouselItemWidth(carouselRef.current?.clientWidth);
       setCarouselItemOffset(0);
@@ -107,13 +111,19 @@ const Infographics = () => {
 
     if (viewport.width > 960) {
       setIntroItemWidth(300);
-      setIntroDragOffset(viewport.width - introRef.current?.clientWidth );
+      //setIntroDragOffset(viewport.width - introRef.current?.clientWidth );
     } else if (viewport.width > 501) {
       setIntroItemWidth((viewport.width || 0) / 3);
-      setIntroDragOffset(viewport.width / 3);
+      //setIntroDragOffset(viewport.width / 3);
     } else {
       setIntroItemWidth(150);
-      setIntroDragOffset(viewport.width - 150);
+      //setIntroDragOffset(viewport.width - 150);
+    }
+
+    if (viewport.width > 501) {
+      setEnableIntroDrag(false);
+    } else {
+      setEnableIntroDrag(true);
     }
   }, [viewport, currentGroup]);
 
@@ -132,7 +142,7 @@ const Infographics = () => {
           <div className="infographics__intro" ref={introRef}>
             <motion.div
               className="infographics__container"
-              drag='x'
+              drag={enableIntroDrag ? 'x' : false}
               dragConstraints={introRef}
               dragElastic={0.2}
               style={{
@@ -142,7 +152,7 @@ const Infographics = () => {
                 minWidth: 'min-content',
               }}>
               {intros.map((e, i) => (
-                <div
+                <motion.div
                   className="infographics__intro--item"
                   style={{
                     flex: 'none',
@@ -158,59 +168,57 @@ const Infographics = () => {
                   <div className="image">
                     <Image src={e} alt="" priority />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
         </div>
 
         <div className="row">
-          <div className="infographics__carousel" ref={carouselRef} style={{height: carouselItemWidth}}>
+          <div className="infographics__carousel" ref={carouselRef} style={{ height: carouselItemWidth }}>
             <motion.div
               style={{
                 display: "flex",
                 flexFlow: "row",
               }}
             >
-              <AnimatePresence>
-                {groups[currentGroup].map((e, i) => (
-                  <motion.div
-                    className="infographics__carousel--item"
-                    key={i}
-                    exit={{ opacity: 0 }}
-                    style={{
-                      flex: "none",
-                      position: "absolute",
-                      width: carouselItemWidth,
-                      height: carouselItemWidth,
-                      borderRadius: 24,
-                      overflow: "hidden",
-                    }}
-                    animate={{
-                      x: i * carouselItemOffset,
-                      zIndex: calculateItemZIndex(i),
-                      scale: currentItem == i ? 1 : 0.95,
-                    }}
-                    drag={isSmallScreen ? 'x' : false}
-                    dragElastic={0.2}
-                    dragConstraints={carouselRef}
-                    onDragEnd={(e, { offset, velocity }) => {
-                      const swipe = Math.abs(offset.x) * velocity.x;
-                      if (swipe < -10000) {
-                        if (currentItem < groups[currentGroup].length - 1) {
-                          setCurrentItem(++currentItem);
-                        }
-                      } else if (swipe > 10000) {
-                        if (currentItem > 0) {
-                          setCurrentItem(--currentItem);
-                        }
+              {groups[currentGroup].map((e, i) => (
+                <motion.div
+                  className="infographics__carousel--item"
+                  key={`${currentGroup}-${i}`}
+                  exit={{ opacity: 0 }}
+                  style={{
+                    flex: "none",
+                    position: "absolute",
+                    width: carouselItemWidth,
+                    height: carouselItemWidth,
+                    borderRadius: 24,
+                    overflow: "hidden",
+                  }}
+                  animate={{
+                    x: i * carouselItemOffset,
+                    zIndex: calculateItemZIndex(i),
+                    scale: currentItem == i ? 1 : 0.95,
+                  }}
+                  drag={isSmallScreen ? 'x' : false}
+                  dragElastic={0.2}
+                  dragConstraints={carouselRef}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+                    if (swipe < -10000) {
+                      if (currentItem < groups[currentGroup].length - 1) {
+                        setCurrentItem(++currentItem);
                       }
-                    }}
-                    onClick={() => setCurrentItem(i)}>
-                    <Image src={e} alt="" priority />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                    } else if (swipe > 10000) {
+                      if (currentItem > 0) {
+                        setCurrentItem(--currentItem);
+                      }
+                    }
+                  }}
+                  onClick={() => setCurrentItem(i)}>
+                  <Image src={e} alt="" priority />
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>

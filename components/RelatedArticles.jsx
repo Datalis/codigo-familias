@@ -1,4 +1,19 @@
-const RelatedArticles = () => {
+import { useMemo } from "react";
+
+const RelatedArticles = ({ relatedPosts }) => {
+
+    const posts = useMemo(() => {
+        return relatedPosts.map((e) => {
+            const { id, title, feature_image, excerpt } = e;
+            return {
+                id,
+                title,
+                feature_image,
+                excerpt
+            }
+        })
+    }, [relatedPosts]);
+
     return (
         <div className="related-articles">
             <div className="container">
@@ -8,12 +23,20 @@ const RelatedArticles = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6">
-                        <div className="related-articles__item"></div>
-                    </div>
-                    <div className="col-6">
-                        <div className="related-articles__item"></div>
-                    </div>
+                    {posts.map((e, i) => (
+                        <div className="col-6">
+                            <div className="related-articles__item"
+                                style={{
+                                    //backgroundImage: `url(https://api.eltoque.com${e.feature_image.url})`
+                                }}>
+                                <div className="content">
+                                    <img className="image" src={`https://api.eltoque.com${e.feature_image.url}`}/>
+                                    <span className="title font-bold">{ e.title }</span>
+                                    <p className="excerpt font-regular">{e.excerpt}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

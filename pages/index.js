@@ -6,14 +6,14 @@ import RelatedArticles from '../components/RelatedArticles';
 import FrequentQuestions from '../components/FrecuentQuestions';
 import Media from '../components/Media';
 import Footer from '../components/Footer';
-import { fetchArticles } from '../data/api';
+import { fetchArticles, fetchRelatedPosts } from '../data/api';
 import mainImage from '../public/images/main.png';
 import { Fragment } from 'react';
 import GuidedVisit from '../components/GuidedVisit';
 import staticData from '../data/static.json';
 
 
-export default function Index({ articles, keywords }) {
+export default function Index({ articles, keywords, relatedPosts  }) {
   return (
     <Fragment>
       <Head>
@@ -32,7 +32,7 @@ export default function Index({ articles, keywords }) {
           <GuidedVisit articles={articles} />
           <Media/>
           <Infographics/>
-          <RelatedArticles/>
+          <RelatedArticles relatedPosts={relatedPosts}/>
           <FrequentQuestions/>
         </div>
       </main>
@@ -43,11 +43,13 @@ export default function Index({ articles, keywords }) {
 
 export async function getStaticProps(context) {
   const articles = await fetchArticles();
+  const relatedPosts = await fetchRelatedPosts();
   const { keywords } = staticData;
   return {
     props: {
       articles,
-      keywords
+      keywords,
+      relatedPosts
     }
   }
 }

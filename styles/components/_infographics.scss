@@ -20,6 +20,8 @@
         //height: 300px;
         
         &--item {
+            will-change: transform;
+            transform: translate3d();
             overflow: hidden;
             border-radius: 24px;
             /*&.active {
@@ -31,7 +33,7 @@
             &:hover {
                 .image {
                     transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
-                    scale: 1.1;
+                    scale: 1.05;
                 }
             }
             img {
@@ -50,6 +52,8 @@
             //height: 350px;
         }
         &--item {
+            will-change: transform;
+            transform: translate3d();
             box-shadow: 0 62.5px 125px -25px rgb(50 50 73 / 10%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%);
             img {
                 pointer-events: none;
