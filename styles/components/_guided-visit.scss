@@ -52,6 +52,8 @@
     }
 
     &__dots {
+        position: relative;
+        
         .ReactVirtualized__Grid {
             &::-webkit-scrollbar-thumb {
                 background: rgba($green, 0.5) !important;
@@ -89,6 +91,9 @@
         margin-top: 1rem;
         width: 100%;
         height: 800px;
+        @include screen-down(sm) {
+            height: 90vh;
+        }
         position: relative;
 
         .controls {
@@ -145,106 +150,6 @@
                     max-width: 80%;
                     margin: auto;
                     touch-action: pan-y;
-                }
-            }
-        }
-
-        .slider__container {
-            .dots {
-                .ReactVirtualized__Grid {
-                    &::-webkit-scrollbar-thumb {
-                        background: rgba($green, 0.5) !important;
-                    }
-                }
-
-                .dot {
-                    width: 100%;
-
-                    span {
-                        background-color: $green;
-                        border-radius: 50%;
-                        padding: 0.25rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 24px;
-                        max-width: 24px;
-                        line-height: 1;
-                        color: $white;
-                        cursor: pointer;
-                        transition: all 0.5 ease;
-                        user-select: none;
-                    }
-
-                    &__current {
-                        span {
-                            background-color: $purple;
-                        }
-                    }
-                }
-            }
-
-            .counter {
-                margin-top: 1.5rem;
-                text-align: right;
-            }
-
-            .slides {
-                height: 800px;
-                display: flex;
-                flex-flow: row;
-                position: relative;
-
-                .controls {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-
-                    .control {
-                        z-index: 2;
-                        cursor: pointer;
-
-                        @include screen-down(sm) {
-                            width: 30px;
-                        }
-
-                        &__next {
-                            position: absolute;
-                            top: 50%;
-                            right: 0;
-                            height: 24px;
-                            display: flex;
-                            align-items: center;
-                        }
-
-                        &__prev {
-                            position: absolute;
-                            top: 50%;
-                            left: 0;
-                            height: 24px;
-                            display: flex;
-                            align-items: center;
-                        }
-                    }
-                }
-
-                .slide {
-                    background-color: $purple-light;
-                    border-radius: 32px;
-                    will-change: transform;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: auto;
-                    transform: translate3d(0, 0, 0);
-                    touch-action: pan-x;
-
-                    .article {
-                        height: 80%;
-                        max-width: 80%;
-                        margin: auto;
-                        touch-action: pan-y;
-                    }
                 }
             }
         }

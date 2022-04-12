@@ -1,0 +1,32 @@
+{
+    "keywords": [
+        {
+            "name": "Patria potestad",
+            "description": "La patria potestad es una institución jurídica originada en la Antigua Roma y adoptada por algunos países, con diversos alcances, para regular las relaciones entre el padre —y, en las últimas décadas, también la madre— con sus hijos no emancipados. El sistema fue creado por el Derecho romano, estableciendo el poder exclusivo del padre (pater familiae) sobre los hijos, integrándose con el poder que el pater familiae también ejercía sobre su esposa y sus esclavos.En las últimas décadas, sobre todo a partir de la sanción en 1989 de la Convención sobre los Derechos del Niño, existe una tendencia a abandonar definitivamente los regímenes de patria potestad que aún quedan, para establecer regímenes denominados de «responsabilidad parental»."
+        },
+        {
+            "name": "Responsabilidad parental",
+            "description": "Complejo funcional de derechos, deberes, obligaciones, facultades, cargas, funciones y responsabilidades para el cumplimiento de su función de asistencia, educación y cuidado legalmente reconocido a los padres y las madres sobre el ámbito personal y patrimonial de los hijos menores de edad que no han contraído matrimonio, a fin de ser ejercitados siempre en beneficio de estos y teniendo en cuenta siempre su personalidad e interés superior."
+        },
+        {
+            "name": "Autonomía progresiva",
+            "description": "Aptitud de niña, niño o adolescente para tomar decisiones, asumir responsabilidades y ejercer derechos, que se adquiere de manera gradual en función de su grado de madurez y desarrollo en relación con las particularidades de la decisión de que se trate; a medida que sus competencias son cada vez mayores disminuye su necesidad de dirección y orientación y aumenta su capacidad de asumir responsabilidades, tomando decisiones que afectan su vida. Implica que no se establezcan edades fijas pues el proceso de madurez no es lineal y aplicable a todos las NNA por igual y está estrechamente vinculada a su consideración como sujetos de derechos y a las funciones parentales de orientación y dirección para que ellos y ellas conozcan tales derechos y las formas de ejercitarlos y exigirlos."
+        },
+        {
+            "name": "Gestación solidaria",
+            "description": "Es la gestación que lleva a cabo una tercera persona, mujer, distinta de quienes quieren asumir la maternidad o paternidad, para lo cual aporta el útero, si bien los gametos (óvulo y espermatozoide) le corresponden a quienes quieren ser madre o padre o incluso a una persona diferente. Supone un acto de total entrega, solidaridad, altruismo, respecto de las personas que quieren tener hijas o hijos cuando biológicamente no lo pueden tener."
+        },
+        {
+            "name": "Adopción por integración",
+            "description": "Se configura cuando se adopta al hijo o hija del cónyuge o de la pareja de hecho afectiva. En este caso no se trata de una persona menor de edad que hay que proteger buscándole una familia que lo cuide porque carece de ella, sino del reconocimiento de la existencia de las denominadas familias ensambladas o reconstituidas como un nuevo módulo familiar, por lo que no está destinada a excluir, extinguir o restringir vínculos, sino a ampliarlos mediante la integración de una persona al grupo familiar ya existente de la niña, niño o adolescente (NNA)."
+        },
+        {
+            "name": "Crianza positiva",
+            "description": "Conjunto de prácticas de cuidado, protección, formación y guía de niñas, niños y adolescentes en respeto de sus derechos, la evolución de sus facultades, y sus características y cualidades individuales. Implica la decisión consciente de madres, padres y personas cuidadoras de considerar como elemento central su interés superior; generar vínculos afectivos que garanticen la satisfacción de sus necesidades emocionales, por sí mismos y mediante redes afectivas de apoyo; no emplear ninguna forma de violencia, ni ejercer abuso de poder o autoritarismo; potenciar sus habilidades y competencias; promover su participación, la comunicación, el diálogo abierto y el protagonismo en sus propias vidas; evitar la permisividad y establecer límites sanos, con firmeza, afectividad y respeto."
+        },
+        {
+            "name": "Interés superior del menor",
+            "description": "constituye el marco (directriz, tamiz, filtro) fundamental para decidir en todos aquellos casos en que estén en juego ante los tribunales, situaciones que afecten a menores, a sus derechos o incluso a su situación, otorgándoles un plus de protección, con carácter de orden público y prevalente ante cualquier otro interés o derecho, incluso fundamental, que pudiera  entrar en conflicto con el interés del menor, decidiendo siempre a tenor de las circunstancias del caso concreto."
+        }
+    ]
+}

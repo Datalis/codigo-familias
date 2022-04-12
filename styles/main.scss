@@ -28,6 +28,8 @@ body {
   overflow-x: hidden;
   background-color: $orange-light;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 mark {

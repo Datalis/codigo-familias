@@ -35,13 +35,14 @@
     }
 
     .logo {
-        margin-left: 1rem;
-        margin-top: 2rem;
+        //margin-left: 1rem;
+        max-width: 120px;
+        opacity: 0.75;
     }
 
     .intro {
         width: 50%;
-        margin-top: 8rem;
+        margin-top: 5rem;
         @include screen-down(md) {
             width: 80%;
         }
@@ -79,7 +80,7 @@
     }
 
     .search {
-        margin-top: 6rem;
+        margin-top: 5rem;
         &__input {
             @include screen-down(md) {
                 width: 80%;
@@ -113,14 +114,15 @@
             &--tag {
                 padding: 0.5rem 1rem;
                 background-color: $orange;
-                font-weight: 600;
                 border-radius: 25px;
                 min-width: 100px;
-                font-weight: 500;
-                //margin-top: 1rem;
-                //margin-right: 1rem;
-                //margin-left: 1rem;
-                //min-width: 80px;
+                font-weight: 400;
+                cursor: pointer;
+                transition: all 0.1s ease;
+                &.selected {
+                    font-weight: 500;
+                    box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+                }
             }
         }
     }

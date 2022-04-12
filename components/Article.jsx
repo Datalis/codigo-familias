@@ -3,6 +3,25 @@ import React, { useDebugValue, useEffect, useMemo, useRef, useState } from 'reac
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import ReactHtmlParser from 'react-html-parser';
 
+const highlight = (pos, value, i = 1) => {
+    const pair = pos[pos.length - i];
+    return !pair ? value : 
+        `${highlight(pos, value.substring(0, pair[0]), i + 1)}<mark>${value.substring(pair[0], pair[0] + pair[1])}</mark>${value.substring(pair[0] + pair[1])}`;
+}
+
+const highlighter = (text, field, metadata) => {
+    if (metadata) {
+        const positions = [];
+        Object.keys(metadata).forEach(term => {
+            const data = metadata[term][field];
+            const pos = data?.position || [];
+            positions.push(...pos);
+        });
+        return highlight(positions, text);
+    }
+    return text;
+}
+
 const Article = ({
     _id,
     titulo,
@@ -11,36 +30,10 @@ const Article = ({
     articulo,
     texto,
     comentario,
-    matches = []
+    matchData
 }) => {
 
     const [collapsed, setCollapsed] = useState(true);
-
-
-    const highlight = (value, indices = [], i = 1) => {
-        const pair = indices[indices.length - i];
-        return !pair ? value : (
-            <>
-                {highlight(value.substring(0, pair[0]), indices, i + 1)}
-                <mark>{value.substring(pair[0], pair[1] + 1)}</mark>
-                {value.substring(pair[1] + 1)}
-            </>
-        );
-    };
-
-    const unquote = (text) => {
-        return text.replace(/^"(.+(?="$))"$/, '$1');
-    }
-
-    const textMatches = matches.find(m => m.key == 'texto');
-    const titleMatches = matches.find(m => m.key == 'articulo');
-
-    const truncate = (text = "") => {
-        if (text.length < 260) return text;
-        const _temp = text.substring(0, 260);
-        const _end = _temp.substring(0, _temp.lastIndexOf(' ')) + '...';
-        return _end;
-    }
 
     return (
         <article className="article" id={_id}>
@@ -61,8 +54,9 @@ const Article = ({
                 )
                 }
             </header>
+
             <h3 className='article__title font-bold mb-2 mt-4'>
-                {highlight(titleMatches?.value || articulo, titleMatches?.indices)}
+                {ReactHtmlParser(highlighter(articulo, 'articulo', matchData?.metadata))}
             </h3>
 
             <div className="show-more-less">
@@ -70,12 +64,12 @@ const Article = ({
                     className='article__text'
                     variants={{
                         collapsed: {
-                            opacity: [0,1],
+                            opacity: [0, 1],
                             height: 'auto',
                             display: '-webkit-box'
                         },
                         expanded: {
-                            opacity: [0,1],
+                            opacity: [0, 1],
                             height: 'auto',
                             display: 'block',
                             transition: {
@@ -87,7 +81,7 @@ const Article = ({
                     }}
                     initial="collapsed"
                     animate={collapsed ? "collapsed" : "expanded"}>
-                    {texto}
+                    {ReactHtmlParser(highlighter(texto, 'texto', matchData?.metadata))}
                 </motion.p>
                 <motion.div className='toggle-more' layout="position">
                     <motion.button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
@@ -96,7 +90,7 @@ const Article = ({
 
             <footer className='article__footer'>
                 <span className='article__comments'>
-                    {ReactHtmlParser(comentario)}
+                    {ReactHtmlParser(highlighter(comentario, 'comentario', matchData?.metadata))}
                 </span>
             </footer>
         </article>

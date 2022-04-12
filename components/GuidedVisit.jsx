@@ -1,7 +1,6 @@
 import Article from "./Article";
-import Slider from "./base/Slider";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 import { AutoSizer, Grid } from "react-virtualized";
 
 import ArrowLeft from "../public/icons/arrow-left.svg";
@@ -38,25 +37,25 @@ const Slide = ({ i, currentIndex, children, onDragEnd }) => {
     return (
         shouldRender && (
             <motion.div className="slide"
-            style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute'
-            }}
-            animate={{
-                ...props
-            }}
-            drag="x"
-            dragConstraints={{
-                left: 0,
-                right: 0
-            }}
-            dragElastic={0.2}
-            dragSnapToOrigin={true}
-            onDragEnd={onDragEnd}>
-            {children}
-        </motion.div>
-        )    
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute'
+                }}
+                animate={{
+                    ...props
+                }}
+                drag="x"
+                dragConstraints={{
+                    left: 0,
+                    right: 0
+                }}
+                dragElastic={0.2}
+                dragSnapToOrigin={true}
+                onDragEnd={onDragEnd}>
+                {children}
+            </motion.div>
+        )
     )
 }
 
@@ -109,13 +108,11 @@ const GuidedVisit = ({ articles }) => {
                     <h3 className="center uppercase text-green font-semi-bold mb-5">
                         Visita guiada por el código de familias
                     </h3>
-                    <p className="font-regular center mx">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.
+                    <p className="font-medium center mx">
+                        El proyecto del Código de las Familias cuenta con 471 artículos, segmentados en 11 títulos. Desde <em>elTOQUE</em> queremos contribuir a facilitar su comprensión con una visita comentada sobre los principales cambios y aportes del texto.
+                        <br />
+                        <br />
+                        Con esta herramienta podrás avanzar por 114 comentarios en los cuales encontrarás elementos relevantes de la propuesta jurídica. Si te interesa buscar un artículo en específico, los puedes encontrar todos enumerados al inicio.
                     </p>
                 </div>
                 <div className="guided-visit__dots">

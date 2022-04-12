@@ -3,150 +3,164 @@ import Image from 'next/image';
 import headerImg from '../public/images/header.png';
 import headerImgLg from '../public/images/header_large.png';
 
-import headerTitle from '../public/images/header_title.png';
-import logo from '../public/images/logo.png';
+import HeaderTitle from '../public/images/header_title.svg';
+import Logo from '../public/images/logo.svg';
 
 import { AnimatePresence, useTransform, useViewportScroll } from 'framer-motion';
-import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import useWindowSize from '../hooks/useWindowSize';
 import { DebounceInput } from 'react-debounce-input';
-import useFuse from '../hooks/useFuse';
 import Article from './Article';
-import ReactPaginate from 'react-paginate';
+import useLunr from '../hooks/useLunr';
 
 
-const Header = ({ articles }) => {
-    const viewport = useWindowSize();
-    const [headerBg, setHeaderBg] = useState(headerImgLg);
+
+const SearchResults = ({ results }) => {
     const [pageOffset, setPageOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
+    const resultsContainerRef = useRef();
+    const itemsPerPage = 4;
 
-    const searchContentRef = useRef();
+    const pageCount = useMemo(() => Math.ceil(results.length / itemsPerPage), [results])
+    const resultItems = useMemo(() => results.slice(pageOffset, pageOffset + itemsPerPage), [pageOffset, results]);
 
-    const itemsPerPage = 5;
-
-    const {
-        hits,
-        onSearch,
-    } = useFuse(articles, {
-        matchAllOnEmptyQuery: false,
-        includeMatches: true,
-        limit: 50,
-        ignoreFieldNorm: true,
-        minMatchCharLength: 4,
-        keys: ['articulo', 'texto']
-    });
-
-    const scrollToSearch = () => searchContentRef.current?.scrollIntoView();
-
-    const items = useCallback(() => hits.slice(pageOffset, pageOffset + itemsPerPage), [pageOffset, hits]);
-    const pageCount = useCallback(() => Math.ceil(hits.length / itemsPerPage), [hits])
+    const scrollTop = () => resultsContainerRef.current?.scrollIntoView();
 
     const handlePageChange = (page) => {
-        const offset = page * itemsPerPage % hits.length;
+        const offset = page * itemsPerPage % results.length;
         setPageOffset(offset);
         setCurrentPage(page);
-        scrollToSearch();
+        scrollTop();
     }
 
-    const bgImage = useCallback(() => {
+    return (
+        <div ref={resultsContainerRef}>
+            <AnimatePresence>
+                <div className={`results ${resultItems.length ? 'py-8' : ''}`}>
+                    <div className="container">
+                        <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
+                            {resultItems.map(hit => (
+                                <motion.div key={hit.ref} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                                    <Article {...hit.item} matchData={hit.matchData}></Article>
+                                    <div className="divider"></div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                        <div className="results__pagination">
+                            <div className='pagination'>
+                                {
+                                    [...Array(pageCount).keys()].map(e => (
+                                        <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </AnimatePresence>
+        </div>
+    )
+}
+
+
+
+const Header = ({ articles, keywords }) => {
+    const [selectedKeyword, setSelectedKeyword] = useState(null);
+    const viewport = useWindowSize();
+    const { scrollY } = useViewportScroll();
+    const headerRef = useRef(null);
+    const inputRef = useRef(null);
+
+    const bgImage = useMemo(() => {
         if (viewport.width > 560) return headerImgLg;
         return headerImg;
-    }, [viewport])
+    }, [viewport]);
 
-    const { scrollY } = useViewportScroll();
-    const ref = useRef(null);
-
-    const y = useTransform(scrollY, [(ref.current?.offsetTop || 0), (ref.current?.offsetTop || 0) + 3], [0, 1], {
+    const offsetY = useTransform(scrollY, [(headerRef.current?.offsetTop || 0), (headerRef.current?.offsetTop || 0) + 3], [0, 1], {
         clamp: false,
-    })
+    });
 
-    //const { scrollY } = useViewportScroll();
+    const {
+        results,
+        onSearch
+    } = useLunr(articles, {
+        limit: 50
+    });
 
-    
-    /*const offset = useCallback(() => ref.current.offsetTop, [ref]);
-    const y = useTransform(scrollY, [offset, offset + 3], [0, -1], {
-        clamp: false,
-    });*/
+    const onKeywordSelected = (keyword) => {
+        onSearch(splitTerms(keyword.name));
+        setSelectedKeyword(keyword);
+    }
 
-    /*useEffect(() => {
-        if (size.width > 560) {
-            setHeaderBg(headerImgLg);
-        } else {
-            setHeaderBg(headerImg);
-        }
-    }, [size])*/
+    const splitTerms = (query) => {
+        return query.split(" ").map(e => `+${e}`).join(" ");
+    }
+
+    const handleSearch = (query) => {
+        const terms = query ? splitTerms(query) : null;
+        onSearch(terms);
+    }
 
     return (
-        <header className='header' ref={ref}>
-            <motion.div className="header__img" style={{y}}>
-                <Image src={bgImage()} alt='' />
+        <header className='header' ref={headerRef}>
+            <motion.div className="header__img" style={{ y: offsetY }}>
+                <Image src={bgImage} alt='' />
             </motion.div>
-            <motion.div>
-                <div className="container pb-8">
-                    <div className='logo'>
-                        <Image src={logo} alt='elTOQUE logo' />
+            <div className="container py-8">
+                <div className="row">
+                    <div className="col-12">
+                        <div className='logo'>
+                            <Logo />
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className='intro'>
-                                <h1 className='intro__image mt-8'>
-                                    <Image src={headerTitle} layout='responsive' alt='Nuevo código de familia' />
-                                </h1>
-                                <h3 className='intro__title font-normal mt-8'>Una cobertura para el debate informado</h3>
-                                <h5 className='intro__message font-medium mt-8'>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className='intro'>
+                            <h1 className='intro__image mt-8'>
+                                <HeaderTitle />
+                            </h1>
+                            <h3 className='intro__title font-normal mt-8'>Una cobertura para el debate informado</h3>
+                            <p className='intro__message font-medium mt-8'>
+                                El anteproyecto del Código de las Familias ha dividido la opinión pública cubana, generando polémicos debates. Los que se oponen muestran preocupación por la posible «limitación» de los derechos de los padres sobre la crianza de hijos e hijas, por el reconocimiento del matrimonio como la unión entre dos personas, por el peligro de que el Código sirva como basamento legal para la represión política a activistas y opositores, o por que se utilice como «lavado de cara» de un Gobierno autocrático.
+                                <br />
+                                <br />
+                                Sin embargo, para varios grupos de la sociedad civil, el anteproyecto reconoce los derechos de las familias plurales que existen hoy en Cuba. En cualquier caso, el impacto que tendrá en la práctica este nuevo Código dependerá de las normas y leyes posteriores que lo acompañen.
+                                <br />
+                                <br />
+                                ¿Y tú?¿Te has informado sobre el contenido del anteproyecto antes de decidir?
 
-                                </h5>
+                            </p>
+                        </div>
+                        <div className='search center'>
+                            <h3 className='text-green uppercase'>Lorem ipsum dolor sit amet,</h3>
+                            <DebounceInput
+                                inputMode='search'
+                                value={selectedKeyword?.name}
+                                inputRef={inputRef}
+                                minLength={2}
+                                debounceTimeout={300}
+                                onChange={(e) => handleSearch(e.target.value)}
+                                className='search__input'
+                                placeholder='Buscar por palabra o artículo' />
+                            <div className='search__tags'>
+                                {
+                                    keywords.map((e, i) => (
+                                        <div key={i} className={`search__tags--tag ${e.name == selectedKeyword?.name ? 'selected' : ''}`} onClick={() => onKeywordSelected(e)}>
+                                            {e.name}
+                                        </div>
+                                    ))
+                                }
                             </div>
-                            <div className='search center'>
-                                <h3 className='text-green uppercase'>Lorem ipsum dolor sit amet,</h3>
-                                <DebounceInput minLength={1} debounceTimeout={400} className='search__input' onChange={(e) => onSearch(e.target.value)} placeholder='Buscar por palabra o artículo' />
-                                <div className='search__tags'>
-                                    <div className='search__tags--tag'>
-                                        Familia
-                                    </div>
-                                    <div className='search__tags--tag'>
-                                        Matrimonio
-                                    </div>
-                                    <div className='search__tags--tag'>
-                                        Matrimonio
-                                    </div>
-                                    <div className='search__tags--tag'>
-                                        Matrimonio
-                                    </div>
-                                </div>
+                            <div className='mt-8'>
+                                <p className='font-medium'>{selectedKeyword?.description}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div ref={searchContentRef}>
-                    <AnimatePresence>
-                        <div className={`results ${items().length ? 'py-8' : ''}`}>
-                            <div className="container">
-                                <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
-                                    {items().map(hit => (
-                                        <motion.div key={hit.refIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                            <Article {...hit.item} matches={hit.matches}></Article>
-                                            <div className="divider"></div>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
-                                <div className="results__pagination">
-                                    <div className='pagination'>
-                                        {
-                                            [...Array(pageCount()).keys()].map(e => (
-                                                <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </AnimatePresence>
-                </div>
-            </motion.div>
+            </div>
+            <SearchResults results={results}  />
         </header>
     );
 }

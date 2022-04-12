@@ -1,9 +1,11 @@
 
 $width: 96%;
 $gutter: 4%;
-$breakpoint-small: 540px; // 540px
-$breakpoint-med: 720px; // 720px
-$breakpoint-large: 960; // 960px
+$breakpoint-small: 576px; // 540px
+$breakpoint-med: 768px; // 720px
+$breakpoint-large: 992px; // 960px
+$breakpoint-xlarge: 1200px;
+$breakpoint-xxlarge: 1400px;
 
 .container {
   width: 90%;
@@ -12,11 +14,22 @@ $breakpoint-large: 960; // 960px
 
   @media only screen and (min-width: $breakpoint-small) {
     width: 80%;
+    max-width: 720px;
   }
 
   @media only screen and (min-width: $breakpoint-large) {
-    width: 75%;
-    max-width: 60rem;
+    //width: 75%;
+    max-width: 960px;
+  }
+
+  @media only screen and (min-width: $breakpoint-xlarge) {
+    //width: 75%;
+    max-width: 1140px;
+  }
+
+  @media only screen and (min-width: $breakpoint-xxlarge) {
+    //width: 75%;
+    max-width: 1320px;
   }
 }
 

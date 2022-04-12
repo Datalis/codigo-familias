@@ -1,120 +1,215 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-import img1 from "../public/images/infographics/1.jpg";
-import img2 from "../public/images/infographics/2.jpg";
-import img3 from "../public/images/infographics/3.jpg";
-import img4 from "../public/images/infographics/4.jpg";
-import img5 from "../public/images/infographics/5.jpg";
+import group1_1 from "../public/images/infographics/1/1.jpg";
+import group1_2 from "../public/images/infographics/1/2.jpg";
+import group1_3 from "../public/images/infographics/1/3.jpg";
+import group1_4 from "../public/images/infographics/1/4.jpg";
+import group1_5 from "../public/images/infographics/1/5.jpg";
+
+import group2_1 from "../public/images/infographics/2/1.jpg";
+import group2_2 from "../public/images/infographics/2/2.jpg";
+import group2_3 from "../public/images/infographics/2/3.jpg";
+import group2_4 from "../public/images/infographics/2/4.jpg";
+
+import group3_1 from "../public/images/infographics/3/1.jpg";
+import group3_2 from "../public/images/infographics/3/2.jpg";
+import group3_3 from "../public/images/infographics/3/3.jpg";
+import group3_4 from "../public/images/infographics/3/4.jpg";
+import group3_5 from "../public/images/infographics/3/5.jpg";
 
 import useWindowSize from "../hooks/useWindowSize";
-import useMeasure from "react-use-measure";
 
-const infographics = [img1, img2, img3, img4, img5];
+import intro1 from '../public/images/infographics/1/intro.jpg';
+import intro2 from '../public/images/infographics/2/intro.jpg';
+import intro3 from '../public/images/infographics/3/intro.jpg';
+
+const group1 = [
+  group1_1,
+  group1_2,
+  group1_3,
+  group1_4,
+  group1_5,
+]
+
+const group2 = [
+  group2_1,
+  group2_2,
+  group2_3,
+  group2_4,
+]
+
+const group3 = [
+  group3_1,
+  group3_2,
+  group3_3,
+  group3_4,
+  group3_5,
+]
+
+const intros = [
+  intro1,
+  intro2,
+  intro3
+]
+
+const groups = [
+  group1,
+  group2,
+  group3
+]
 
 const Infographics = () => {
   const viewport = useWindowSize();
-  const containerRef = useRef();
-  const [offset, setOffset] = useState();
-  const [index, setIndex] = useState(0);
 
-  const [topicIndex, setTopicIndex] = useState(0);
+  const introRef = useRef();
+  const carouselRef = useRef();
 
-  const [topicsRef, topicsDimensions] = useMeasure();
+  const [carouselItemOffset, setCarouselItemOffset] = useState(0);
+  const [introItemWidth, setIntroItemWidth] = useState(300);
+  const [carouselItemWidth, setCarouselItemWidth] = useState(300);
+  const [introDragOffset, setIntroDragOffset] = useState(0);
 
-  const topicsContainerRef = useRef();
+  const [currentGroup, setCurrentGroup] = useState(0);
+  const [currentItem, setCurrentItem] = useState(0);
 
-  const topics = [
-    {
-      title: "Some topic",
-      img: "/images/infographics/1.jpg",
-    },
-    {
-      title: "Some topic",
-      img: "/images/infographics/3.jpg",
-    },
-    {
-      title: "Some topic",
-      img: "/images/infographics/4.jpg",
-    },
-  ];
+  const calculateItemZIndex = (index) => {
+    const max = groups[currentGroup].length;
+    if (currentItem == index) return max;
+    if (index > currentItem) return max - index;
+    else if (index < currentItem) return max - (max - index);
+  }
+
+  const handleGroupChange = (i) => {
+    setCurrentItem(0);
+    setCurrentGroup(i)
+  }
 
   useEffect(() => {
-    const containerWidth = containerRef.current?.clientWidth || 0;
-    setOffset(containerWidth / 6);
-  }, [viewport]);
+
+    if (viewport.width > 501) {
+      setCarouselItemWidth(500);
+      const currentGroupLength = groups[currentGroup].length;
+      setCarouselItemOffset(carouselRef.current?.clientWidth / currentGroupLength - 500 / 6);
+    } else {
+      setCarouselItemWidth(carouselRef.current?.clientWidth);
+      setCarouselItemOffset(0);
+    }
+
+    if (viewport.width > 960) {
+      setIntroItemWidth(300);
+      setIntroDragOffset(viewport.width - introRef.current?.clientWidth );
+    } else if (viewport.width > 501) {
+      setIntroItemWidth((viewport.width || 0) / 3);
+      setIntroDragOffset(viewport.width / 3);
+    } else {
+      setIntroItemWidth(150);
+      setIntroDragOffset(viewport.width - 150);
+    }
+  }, [viewport, currentGroup]);
 
   return (
     <div className="infographics">
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h3 className="uppercase mb-4 text-green font-semi-bold center">
+            <h3 className="uppercase text-green font-semi-bold center">
               El código en imágenes
             </h3>
             <div className="divider"></div>
           </div>
         </div>
         <div className="row">
-          <div className="infographics__topics">
-            {topics.map((e, i) => (
-              <motion.div
-                layout
-                onClick={() => setIndex(i)}
-                key={i}
-                animate={{
-                  scale: index == i ? 1 : 0.95,
-                }}
-                className={`infographics__topics--item ${
-                  index == i ? "active" : ""
-                }`}
-              >
-                <div className="overlay">   </div>
-                <Image
-                  src={e.img}
-                  width={200}
-                  height={200}
-                  layout="fill"
-                  alt=""
-                />
-              </motion.div>
-            ))}
+          <div className="infographics__intro" ref={introRef}>
+            <motion.div
+              drag='x'
+              dragConstraints={{
+                left: -introDragOffset,
+                right: 0
+              }}
+              dragElastic={0.2}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexWrap: 'nowrap',
+                minWidth: 'min-content',
+                gap: '1rem'
+              }}>
+              {intros.map((e, i) => (
+                <div
+                  className="infographics__intro--item"
+                  style={{
+                    flex: 'none',
+                    width: introItemWidth,
+                    height: introItemWidth,
+                    cursor: 'pointer'
+                  }}
+                  animate={{
+                    scale: currentGroup == i ? 1.05 : 1
+                  }}
+                  key={i}
+                  onClick={() => handleGroupChange(i)}>
+                  <div className="image">
+                    <Image src={e} alt="" priority />
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
+
         <div className="row">
-          <div className="infographics__carousel" ref={containerRef}>
+          <div className="infographics__carousel" ref={carouselRef} style={{height: carouselItemWidth}}>
             <motion.div
               style={{
                 display: "flex",
                 flexFlow: "row",
               }}
             >
-              {infographics.map((e, i) => (
-                <motion.div
-                  style={{
-                    flex: "none",
-                    position: "absolute",
-                    width: 500,
-                    height: 500,
-                  }}
-                  animate={{
-                    x: i * 120,
-                    boxShadow:
-                      index == i
-                        ? "0 62.5px 125px -25px rgb(127 98 178 / 72%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%)"
-                        : "0 62.5px 125px -25px rgb(50 50 73 / 50%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%)",
-                    overflow: "hidden",
-                    borderRadius: 24,
-                    zIndex: index == i ? (infographics.length + 1) : infographics.length - i,
-                    scale: index == i ? 1 : 0.9,
-                  }}
-                  key={i}
-                >
-                  <Image src={e} alt="" />
-                </motion.div>
-              ))}
+              <AnimatePresence>
+                {groups[currentGroup].map((e, i) => (
+                  <motion.div
+                    className="infographics__carousel--item"
+                    key={i}
+                    exit={{ opacity: 0 }}
+                    style={{
+                      flex: "none",
+                      position: "absolute",
+                      width: carouselItemWidth,
+                      height: carouselItemWidth,
+                      borderRadius: 24,
+                      overflow: "hidden",
+                    }}
+                    animate={{
+                      x: i * carouselItemOffset,
+                      zIndex: calculateItemZIndex(i),
+                      scale: currentItem == i ? 1 : 0.95,
+                    }}
+                    drag="x"
+                    dragElastic={0.2}
+                    dragConstraints={{
+                      left: i * carouselItemOffset,
+                      right: i * carouselItemOffset
+                    }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) * velocity.x;
+                      if (swipe < -10000) {
+                        if (currentItem < groups[currentGroup].length - 1) {
+                          setCurrentItem(++currentItem);
+                        }
+                      } else if (swipe > 10000) {
+                        if (currentItem > 0) {
+                          setCurrentItem(--currentItem);
+                        }
+                      }
+                    }}
+                    onClick={() => setCurrentItem(i)}>
+                    <Image src={e} alt="" priority />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </motion.div>
           </div>
         </div>
