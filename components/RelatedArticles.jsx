@@ -24,7 +24,7 @@ const RelatedArticles = ({ relatedPosts }) => {
                 </div>
                 <div className="row">
                     {posts.map((e, i) => (
-                        <div className="col-6">
+                        <div className="col-6" key={i}>
                             <div className="related-articles__item"
                                 style={{
                                     //backgroundImage: `url(https://api.eltoque.com${e.feature_image.url})`
