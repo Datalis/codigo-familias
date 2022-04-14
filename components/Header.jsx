@@ -42,7 +42,7 @@ const SearchResults = ({ results }) => {
                         <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
                             {resultItems.map(hit => (
                                 <motion.div key={hit.ref} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                    <Article {...hit.item} matchData={hit.matchData}></Article>
+                                    <Article {...hit.item} matchData={hit.matchData} showComment={false}></Article>
                                     <div className="divider"></div>
                                 </motion.div>
                             ))}
@@ -134,7 +134,7 @@ const Header = ({ articles, keywords }) => {
                             </p>
                         </div>
                         <div className='search center'>
-                            <h3 className='text-green uppercase'>Lorem ipsum dolor sit amet,</h3>
+                            <h3 className='text-green uppercase'>Encuentra términos, conceptos y contenidos <br /> del Código de las Familias</h3>
                             <DebounceInput
                                 inputMode='search'
                                 value={selectedKeyword?.name}

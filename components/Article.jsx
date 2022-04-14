@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 
 const highlight = (pos, value, i = 1) => {
     const pair = pos[pos.length - i];
-    return !pair ? value : 
+    return !pair ? value :
         `${highlight(pos, value.substring(0, pair[0]), i + 1)}<mark>${value.substring(pair[0], pair[0] + pair[1])}</mark>${value.substring(pair[0] + pair[1])}`;
 }
 
@@ -30,7 +30,8 @@ const Article = ({
     articulo,
     texto,
     comentario,
-    matchData
+    matchData,
+    showComment = true
 }) => {
 
     const [collapsed, setCollapsed] = useState(true);
@@ -88,11 +89,13 @@ const Article = ({
                 </motion.div>
             </div>
 
-            <footer className='article__footer'>
-                <span className='article__comments'>
-                    {ReactHtmlParser(highlighter(comentario, 'comentario', matchData?.metadata))}
-                </span>
-            </footer>
+            {showComment && (
+                <footer className='article__footer'>
+                    <span className='article__comments'>
+                        {ReactHtmlParser(highlighter(comentario, 'comentario', matchData?.metadata))}
+                    </span>
+                </footer>
+            )}
         </article>
     );
 }

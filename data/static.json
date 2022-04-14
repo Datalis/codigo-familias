@@ -28,5 +28,24 @@
             "name": "Interés superior del menor",
             "description": "constituye el marco (directriz, tamiz, filtro) fundamental para decidir en todos aquellos casos en que estén en juego ante los tribunales, situaciones que afecten a menores, a sus derechos o incluso a su situación, otorgándoles un plus de protección, con carácter de orden público y prevalente ante cualquier otro interés o derecho, incluso fundamental, que pudiera  entrar en conflicto con el interés del menor, decidiendo siempre a tenor de las circunstancias del caso concreto."
         }
+    ],
+    "infografias": [],
+    "audios": [
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_1_967c289d73.mp4",
+            "cover": "/images/media/audio1.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_2_b17acd1e92.mp4",
+            "cover": "/images/media/audio2.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_3_3bf006b10b.mp4",
+            "cover": "/images/media/audio3.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_4_d60f7a7078.mp4",
+            "cover": "/images/media/audio4.jpg"
+        }
     ]
 }

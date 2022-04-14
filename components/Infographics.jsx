@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-
-import { AnimatePresence, motion } from "framer-motion";
+import ArrowLeft from "../public/icons/arrow-left.svg";
+import ArrowRight from "../public/icons/arrow-right.svg";
+import { AnimatePresence, motion, useMotionValue } from "framer-motion";
 
 import group1_1 from "../public/images/infographics/1/1.jpg";
 import group1_2 from "../public/images/infographics/1/2.jpg";
@@ -25,6 +26,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import intro1 from '../public/images/infographics/1/intro.jpg';
 import intro2 from '../public/images/infographics/2/intro.jpg';
 import intro3 from '../public/images/infographics/3/intro.jpg';
+
 
 const group1 = [
   intro1,
@@ -75,7 +77,7 @@ const Infographics = () => {
   const [carouselItemWidth, setCarouselItemWidth] = useState(300);
   //const [introDragOffset, setIntroDragOffset] = useState(0);
 
-  const [currentGroup, setCurrentGroup] = useState(0);
+  const [currentGroup, setCurrentGroup] = useState(null);
   const [currentItem, setCurrentItem] = useState(0);
 
   const [isSmallScreen, setIsSmallScreen] = useState(true);
@@ -88,9 +90,13 @@ const Infographics = () => {
     else if (index < currentItem) return max - (max - index);
   }
 
-  const handleGroupChange = (i) => {
+  const handleToggleGroup = (i) => {
+    if (i == currentGroup) {
+      setCurrentGroup(null);
+    } else {
+      setCurrentGroup(i);
+    }
     setCurrentItem(0);
-    setCurrentGroup(i)
   }
 
   useEffect(() => {
@@ -102,7 +108,7 @@ const Infographics = () => {
 
     if (viewport.width > 501) {
       setCarouselItemWidth(500);
-      const currentGroupLength = groups[currentGroup].length;
+      const currentGroupLength = groups[currentGroup]?.length || 0;
       setCarouselItemOffset((carouselRef.current?.clientWidth / currentGroupLength) - (500 / (currentGroupLength + 1)));
     } else {
       setCarouselItemWidth(carouselRef.current?.clientWidth);
@@ -127,6 +133,19 @@ const Infographics = () => {
     }
   }, [viewport, currentGroup]);
 
+  const handlePrevItem = () => {
+    if (currentItem !== 0) {
+      setCurrentItem(--currentItem);
+    }
+  }
+
+  const handleNextItem = () => {
+    const currentGroupLength = groups[currentGroup]?.length || 0;
+    if (currentItem !== currentGroupLength - 1) {
+      setCurrentItem(++currentItem);
+    }
+  }
+
   return (
     <div className="infographics">
       <div className="container">
@@ -138,89 +157,126 @@ const Infographics = () => {
             <div className="divider"></div>
           </div>
         </div>
-        <div className="row">
-          <div className="infographics__intro" ref={introRef}>
-            <motion.div
-              className="infographics__container"
-              drag={enableIntroDrag ? 'x' : false}
-              dragConstraints={introRef}
-              dragElastic={0.2}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                flexWrap: 'nowrap',
-                minWidth: 'min-content',
-              }}>
-              {intros.map((e, i) => (
-                <motion.div
-                  className="infographics__intro--item"
-                  style={{
-                    flex: 'none',
-                    width: introItemWidth,
-                    height: introItemWidth,
-                    cursor: 'pointer'
-                  }}
-                  animate={{
-                    scale: currentGroup == i ? 1.05 : 1
-                  }}
-                  key={i}
-                  onClick={() => handleGroupChange(i)}>
-                  <div className="image">
-                    <Image src={e} alt="" priority />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="infographics__carousel" ref={carouselRef} style={{ height: carouselItemWidth }}>
-            <motion.div
-              style={{
-                display: "flex",
-                flexFlow: "row",
-              }}
-            >
-              {groups[currentGroup].map((e, i) => (
-                <motion.div
-                  className="infographics__carousel--item"
-                  key={`${currentGroup}-${i}`}
-                  exit={{ opacity: 0 }}
-                  style={{
-                    flex: "none",
-                    position: "absolute",
-                    width: carouselItemWidth,
-                    height: carouselItemWidth,
-                    borderRadius: 24,
-                    overflow: "hidden",
-                  }}
-                  animate={{
-                    x: i * carouselItemOffset,
-                    zIndex: calculateItemZIndex(i),
-                    scale: currentItem == i ? 1 : 0.95,
-                  }}
-                  drag={isSmallScreen ? 'x' : false}
-                  dragElastic={0.2}
-                  dragConstraints={carouselRef}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = Math.abs(offset.x) * velocity.x;
-                    if (swipe < -10000) {
-                      if (currentItem < groups[currentGroup].length - 1) {
-                        setCurrentItem(++currentItem);
-                      }
-                    } else if (swipe > 10000) {
-                      if (currentItem > 0) {
-                        setCurrentItem(--currentItem);
-                      }
-                    }
-                  }}
-                  onClick={() => setCurrentItem(i)}>
+      </div>
+      <div className="row">
+        <div className="infographics__intro" ref={introRef}>
+          <motion.div
+            className="infographics__container"
+            drag={enableIntroDrag ? 'x' : false}
+            dragConstraints={introRef}
+            dragElastic={0.2}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'nowrap',
+              minWidth: 'min-content',
+            }}>
+            {intros.map((e, i) => (
+              <motion.div
+                className="infographics__intro--item"
+                style={{
+                  flex: 'none',
+                  width: introItemWidth,
+                  height: introItemWidth,
+                  cursor: 'pointer'
+                }}
+                animate={{
+                  scale: currentGroup == i ? 1 : 0.85
+                }}
+                key={i}
+                onClick={() => handleToggleGroup(i)}>
+                <motion.div className="image" animate={{
+                  scale: currentGroup == i ? 0.90 : 1,
+                  borderRadius: 20,
+                  overflow: 'hidden',
+                  height: '100%'
+                }}>
                   <Image src={e} alt="" priority />
                 </motion.div>
-              ))}
-            </motion.div>
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row">
+          <motion.div
+            className="infographics__carousel"
+            ref={carouselRef}
+            animate={{
+              height: currentGroup == null ? 0 : carouselItemWidth,
+              marginTop: currentGroup == null ? 0 : '3rem'
+            }}>
+            <AnimatePresence>
+              {
+                currentGroup !== null && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                    }}
+                    style={{
+                      display: "flex",
+                      flexFlow: "row",
+                      position: 'relative',
+                      height: '100%'
+                    }}
+                  >
+                    <div className="infographics__carousel--controls">
+                      <div className="control control-left">
+                        <ArrowLeft onClick={handlePrevItem}></ArrowLeft>
+                      </div>
+                      <div className="control control-right">
+                        <ArrowRight onClick={handleNextItem}></ArrowRight>
+                      </div>
+                    </div>
+                    {groups[currentGroup].map((e, i) => (
+                      <motion.div
+                        className="infographics__carousel--item"
+                        key={`${currentGroup}-${i}`}
+                        exit={{ opacity: 0 }}
+                        style={{
+                          flex: "none",
+                          position: "absolute",
+                          width: carouselItemWidth,
+                          height: carouselItemWidth,
+                          borderRadius: 24,
+                          overflow: "hidden",
+                          x: i * carouselItemOffset,
+                        }}
+                        animate={{
+                          zIndex: calculateItemZIndex(i),
+                          scale: currentItem == i ? 1 : 0.95,
+                        }}
+                        drag={isSmallScreen ? 'x' : false}
+                        dragElastic={0.2}
+                        dragConstraints={carouselRef}
+                        onDragEnd={(e, { offset, velocity }) => {
+                          const swipe = Math.abs(offset.x) * velocity.x;
+                          if (swipe < -10000) {
+                            if (currentItem < groups[currentGroup].length - 1) {
+                              setCurrentItem(++currentItem);
+                            }
+                          } else if (swipe > 10000) {
+                            if (currentItem > 0) {
+                              setCurrentItem(--currentItem);
+                            }
+                          }
+                        }}
+                        onClick={() => setCurrentItem(i)}>
+                        <Image src={e} alt="" priority />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )
+              }
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </div>

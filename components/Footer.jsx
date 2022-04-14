@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import footerImg from '../public/images/footer.png';
 import footerLogo from '../public/images/logo_variant.png';
@@ -6,6 +7,9 @@ import footerLogo from '../public/images/logo_variant.png';
 const Footer = () => {
     return (
         <footer className='footer'>
+            <div className="footer__img">
+                <Image src={footerImg}></Image>
+            </div>
             <div className="footer__content container">
                 <div className="row">
                     <div className="col-6"></div>
@@ -18,17 +22,19 @@ const Footer = () => {
                                 <h4 className='font-semi-bold text-purple my-1'>Contenidos:</h4>
                             </dt>
                             <dd className='col-6-sm my-0'>
-                                <h4 className='font-semi-bold my-1'>elTOQUE Jurídico</h4>
+                                <a href="https://eltoque.com/proyectos/juridico">
+                                    <h4 className='font-bold my-1'>elTOQUE Jurídico</h4>
+                                </a>
                             </dd>
                         </dl>
-                        <di className="my-0">
+                        <dl className="my-0">
                             <dt className='col-6-sm right my-0'>
                                 <h4 className='font-semi-bold text-purple my-1'>Edición:</h4>
                             </dt>
                             <dd className='col-6-sm my-0'>
                                 <h4 className='font-semi-bold my-1'>Mónica Rivero</h4>
                             </dd>
-                        </di>
+                        </dl>
                         <dl className="my-0">
                             <dt className='col-6-sm right my-0'>
                                 <h4 className='font-semi-bold text-purple my-1'>Diseño:</h4>
@@ -58,7 +64,9 @@ const Footer = () => {
                                 <h4 className='font-semi-bold text-purple my-1'>Desarrollo web:</h4>
                             </dt>
                             <dd className='col-6-sm my-0'>
-                                <h4 className='font-semi-bold my-1'>Datalis</h4>
+                                <a href="https://datalis.dev">
+                                    <h4 className='font-bold my-1'>Datalis</h4>
+                                </a>
                             </dd>
                         </dl>
                         <dl className='my-0'>
@@ -66,7 +74,9 @@ const Footer = () => {
                                 <h4 className='font-semi-bold text-purple my-1'>Procesamiento de datos:</h4>
                             </dt>
                             <dd className='col-6-sm my-0'>
-                                <h4 className='font-semi-bold my-1'>DeFacto</h4>
+                                <a href="https://eltoque.com/proyectos/eltoque-defacto-verificacion-datos">
+                                    <h4 className='font-bold my-1'>DeFacto</h4>
+                                </a>
                             </dd>
                         </dl>
                         <dl className='my-0'>
@@ -91,9 +101,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="footer__img">
-                <Image src={footerImg}></Image>
-            </div>
+            
         </footer>
     );
 }

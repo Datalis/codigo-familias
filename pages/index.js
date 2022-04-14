@@ -13,7 +13,7 @@ import GuidedVisit from '../components/GuidedVisit';
 import staticData from '../data/static.json';
 
 
-export default function Index({ articles, keywords, relatedPosts  }) {
+export default function Index({ articles, keywords, relatedPosts, audios  }) {
   return (
     <Fragment>
       <Head>
@@ -30,7 +30,7 @@ export default function Index({ articles, keywords, relatedPosts  }) {
         </div>
         <div className='main__content'>
           <GuidedVisit articles={articles} />
-          <Media/>
+          <Media audios={audios}/>
           <Infographics/>
           <RelatedArticles relatedPosts={relatedPosts}/>
           <FrequentQuestions/>
@@ -44,12 +44,13 @@ export default function Index({ articles, keywords, relatedPosts  }) {
 export async function getStaticProps(context) {
   const articles = await fetchArticles();
   const relatedPosts = await fetchRelatedPosts();
-  const { keywords } = staticData;
+  const { keywords, audios } = staticData;
   return {
     props: {
       articles,
       keywords,
-      relatedPosts
+      relatedPosts,
+      audios
     }
   }
 }

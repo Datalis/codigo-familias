@@ -21,12 +21,12 @@
             .image {
                 max-height: 180px;
                 object-fit: cover;
-                object-position: center;
+                object-position: top;
                 //margin: auto 0;
                 border-radius: 6px;
                 flex-grow: 1;
                 margin-top: 0;
-                margin-bottom: auto;
+                margin-bottom: 1rem;
             }
 
             .title {

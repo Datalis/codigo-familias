@@ -60,7 +60,7 @@ const Slide = ({ i, currentIndex, children, onDragEnd }) => {
 }
 
 const GuidedVisit = ({ articles }) => {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(1);
 
     const handleNext = () => {
         if (index + 1 !== articles.length) {
@@ -93,19 +93,19 @@ const GuidedVisit = ({ articles }) => {
         const swipe = Math.abs(offset.x) * velocity.x;
 
         if (swipe < -10000) {
-            handleNext();
+            //handleNext();
+            handleNextComment();
         } else if (swipe > 10000) {
-            handlePrev();
+            //handlePrev();
+            handlePrevCommented();
         }
-
-        console.log(swipe);
     }
 
     return (
         <section className="guided-visit">
             <div className="container">
                 <div className="guided-visit__intro">
-                    <h3 className="center uppercase text-green font-semi-bold mb-5">
+                    <h3 className="center uppercase text-green font-bold mb-5">
                         Visita guiada por el código de familias
                     </h3>
                     <p className="font-medium center mx">
@@ -148,8 +148,8 @@ const GuidedVisit = ({ articles }) => {
                 <div className="guided-visit__slider">
                     <div className="controls">
                         {index > 0 && (
-                            <span className="control control__prev" onClick={handlePrevCommented}>
-                                <ArrowLeft></ArrowLeft>
+                            <span className="control control__prev" >
+                                <ArrowLeft onClick={handlePrevCommented}></ArrowLeft>
                             </span>
                         )}
                         {index < articles.length - 1 && (

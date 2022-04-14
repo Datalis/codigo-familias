@@ -16,26 +16,37 @@
         display: flex;
         flex-flow: row;
         position: relative;
-        //justify-content: center;
+        justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
         //height: 300px;
         
         &--item {
             will-change: transform;
-            transform: translate3d();
+            transform: translate3d(0,0,0);
             overflow: hidden;
             border-radius: 24px;
+            &:nth-child(1) {
+                background-color: #ffdbce;
+            }
+            &:nth-child(2) {
+                background-color: #4ab2a6;
+            }
+            &:nth-child(3) {
+                background-color: #f9b5b3;
+            }
             /*&.active {
                 box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
             }*/
             .image { 
                 transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
             }
-            &:hover {
+            /*&:hover {
                 .image {
                     transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
                     scale: 1.05;
                 }
-            }
+            }*/
             img {
                 pointer-events: none;
             }
@@ -43,7 +54,7 @@
     }
 
     &__carousel {
-        margin-top: 6rem;
+        //margin-top: 3rem;
         display: block;
         position: relative;
        // height: 600px;
@@ -57,6 +68,28 @@
             box-shadow: 0 62.5px 125px -25px rgb(50 50 73 / 10%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%);
             img {
                 pointer-events: none;
+            }
+        }
+        &--controls {
+            .control {
+                display: none;
+                position: absolute;
+                top: calc(50% - 24px);
+                bottom: auto;
+                height: 48px;
+                z-index: 10;
+                &-right {
+                    right: 12px;
+                }
+                &-left {
+                    left: 12px;
+                }
+                svg {
+                    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.733));
+                }
+                @include screen-down(sm) {
+                    display: block;
+                }
             }
         }
     }

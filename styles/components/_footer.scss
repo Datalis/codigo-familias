@@ -22,12 +22,16 @@
       }
     }
     &__content {
-      z-index: 1;
+      //z-index: 1;
       margin-top: 5rem;
       margin-bottom: 5rem;
       .logo {
         margin-top: 4rem;
         width: 100px;
+      }
+      a {
+        text-decoration: underline;
+        color: #333447;
       }
       @include screen-down(sm) {
         margin-top: 1rem;
