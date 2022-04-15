@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 import 'react-h5-audio-player/lib/styles.css';
-import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import PlayIcon from '../public/icons/play.svg';

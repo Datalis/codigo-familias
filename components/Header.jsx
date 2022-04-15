@@ -13,6 +13,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import { DebounceInput } from 'react-debounce-input';
 import Article from './Article';
 import useLunr from '../hooks/useLunr';
+import HeaderParallax from './parallax/HeaderParallax';
 
 
 
@@ -104,9 +105,12 @@ const Header = ({ articles, keywords }) => {
 
     return (
         <header className='header' ref={headerRef}>
-            <motion.div className="header__img" style={{ y: offsetY }}>
+            {/*<motion.div className="header__img" style={{ y: offsetY }}>
                 <Image src={bgImage} alt='' />
-            </motion.div>
+            </motion.div>*/}
+            <div className='header__img'>
+                <HeaderParallax />
+            </div>
             <div className="container py-8">
                 <div className="row">
                     <div className="col-12">

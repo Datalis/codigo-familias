@@ -14,8 +14,8 @@
         position: absolute;
         width: 80%;
         max-width: 1200px;
-        top: 0;
-        right: 0;
+        top: -200px;
+        right: -100px;
         @include screen-down(lg) {
             width: 700px;
             top: 0px;

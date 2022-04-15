@@ -1,6 +1,6 @@
 
-import React, { useDebugValue, useEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion';
 import ReactHtmlParser from 'react-html-parser';
 
 const highlight = (pos, value, i = 1) => {
