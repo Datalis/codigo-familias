@@ -27,7 +27,7 @@ const RelatedArticles = ({ relatedPosts }) => {
                     {posts.map((e, i) => (
                         <div className="col-6" key={i}>
                             <div className="related-articles__item">
-                                <a target="_blank" href={`https://eltoque.com/${e.slug}`} className="content">
+                                <a href={`https://eltoque.com/${e.slug}`} className="content">
                                     <img className="image" src={`https://api.eltoque.com${e.feature_image.url}`}/>
                                     <span className="title font-bold">{ e.title }</span>
                                     <p className="excerpt font-regular">{e.excerpt}</p>
