@@ -68,6 +68,16 @@ const GuidedVisit = ({ articles }) => {
         }
     }
 
+    const totalWithComment = useMemo(() => articles.filter(e => !!e.comentario), [articles]);
+
+    const slides = useMemo(() => articles.map(e => {
+        return {
+            ...e,
+            comentarioIndex: totalWithComment.findIndex((i) => i._id == e._id),
+            comentarioTotal: totalWithComment.length
+        }
+    }), [articles]);
+
     const handleNextComment = () => {
         const _next = articles.slice(index + 1);
         const _nextCommented = _next.find(e => !!e.comentario);
@@ -166,9 +176,12 @@ const GuidedVisit = ({ articles }) => {
                                 width: '100%'
                             }}>
                             {
-                                articles.map((e, i) => (
+                                slides.map((e, i) => (
                                     <Slide key={e._id} i={i} currentIndex={index} onDragEnd={handleDragEnd}>
                                         <Article {...e} />
+                                        <div className="comment">
+                                              
+                                        </div>
                                     </Slide>
                                 ))
                             }

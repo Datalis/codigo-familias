@@ -164,7 +164,7 @@ const Header = ({ articles, keywords }) => {
                     </div>
                 </div>
             </div>
-            <SearchResults results={results}  />
+            <SearchResults results={results} />
         </header>
     );
 }

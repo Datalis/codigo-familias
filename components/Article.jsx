@@ -30,6 +30,8 @@ const Article = ({
     articulo,
     texto,
     comentario,
+    comentarioIndex,
+    comentarioTotal,
     matchData,
     showComment = true
 }) => {
@@ -39,7 +41,7 @@ const Article = ({
     return (
         <article className="article" id={_id}>
             <header className='article__header'>
-                <h6 className='heading font-bold text-purple my-0 uppercase'>{titulo}</h6>
+                <h6 className='heading font-bold text-purple my-0 uppercase'>Título {titulo}</h6>
                 {!!capitulo && (
                     <>
                         <span className='separator font-bold mx-4'>/</span>
@@ -94,6 +96,13 @@ const Article = ({
                     <span className='article__comments'>
                         {ReactHtmlParser(highlighter(comentario, 'comentario', matchData?.metadata))}
                     </span>
+                    {
+                        !!comentario && (
+                            <span className="article__comments_data">
+                                <em>Notas</em> <strong>{comentarioIndex + 1} / {comentarioTotal}</strong>
+                            </span>
+                        )
+                    }
                 </footer>
             )}
         </article>

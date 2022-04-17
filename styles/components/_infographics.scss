@@ -86,6 +86,9 @@
                 }
                 svg {
                     filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.733));
+                    @include screen-down(sm) {
+                        max-width: 30px;
+                    }
                 }
                 @include screen-down(sm) {
                     display: block;

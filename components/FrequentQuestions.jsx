@@ -17,7 +17,7 @@ const FrequentQuestions = () => {
                         <div className="flex flex-column">
                             <Collapsible title={<span>¿La responsabilidad parental me quita derechos sobre mis hijos e hijas?</span>}>
                                 <p className="font-regular my-1">
-                                    La sustitución de la denominación «patria potestad» por «responsabilidad parental» en el anteproyecto del Código de las Familias implica más que un cambio de nombre. Implica que Cuba ha decidido asumir algunos de los compromisos internacionales derivados de su ratificación de la <a  href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354792263&amp;usg=AOvVaw1w21cKqpnrBMyQohC6PT2E">Convención Internacional de los Derechos del Niño</a>
+                                    La sustitución de la denominación «patria potestad» por «responsabilidad parental» en el anteproyecto del Código de las Familias implica más que un cambio de nombre. Implica que Cuba ha decidido asumir algunos de los compromisos internacionales derivados de su ratificación de la <a href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354792263&amp;usg=AOvVaw1w21cKqpnrBMyQohC6PT2E">Convención Internacional de los Derechos del Niño</a>
                                     <br />
                                     <br />
                                     La responsabilidad parental no defiende la obediencia indiscutible de los hijos a los padres y madres, sino que persigue la conformación de una relación paterno/materno filial que —sin eliminar la capacidad de contención de padres y madres sobre sus hijos— coloque en el centro la escucha y el reconocimiento del menor como un sujeto de derecho y no como alguien que solo está obligado a obedecer.
@@ -68,30 +68,30 @@ const FrequentQuestions = () => {
                             <Collapsible title={<span>¿Puedo perder la titularidad de la responsabilidad parental?</span>}>
                                 <p className="font-regular my-1">
                                     Sí, en caso de ser estimado por las autoridades competentes. Algunas de las circunstancias especiales que pueden llevar a la pérdida de la titularidad son las siguientes:
-                                    <ul>
-                                        <li>
-                                            Se incumplan grave o reiteradamente los deberes previstos para con el niño o niña.
-                                        </li>
-                                        <li>
-                                            Se ejerzan malos tratos, castigo corporal o violencia en cualquiera de sus otras manifestaciones, o cualquier hecho que en el entorno familiar lesione o menoscabe física o psíquicamente, directa o indirectamente, a las niñas, niños o adolescentes.
-                                        </li>
-                                        <li>
-                                            Se induzca a la hija o hijo a ejecutar algún acto delictivo.
-                                        </li>
-                                        <li>
-                                            Se abandone a la hija o hijo, aunque se encuentre bajo la guarda y cuidado de la otra madre, padre o de una tercera persona.
-                                        </li>
-                                        <li>
-                                            Se observe una conducta viciosa, corruptora o delictiva, que resulte incompatible con el debido ejercicio de la responsabilidad parental.
-                                        </li>
-                                        <li>
-                                            Se cometa delito contra la persona de la hija o hijo.
-                                        </li>
-                                        <li>
-                                            Se arriesgue gravemente la vida o la integridad psíquica y física de la hija o hijo. (Artículo 187. Capítulo V. Título V)
-                                        </li>
-                                    </ul>
                                 </p>
+                                <ul>
+                                    <li>
+                                        Se incumplan grave o reiteradamente los deberes previstos para con el niño o niña.
+                                    </li>
+                                    <li>
+                                        Se ejerzan malos tratos, castigo corporal o violencia en cualquiera de sus otras manifestaciones, o cualquier hecho que en el entorno familiar lesione o menoscabe física o psíquicamente, directa o indirectamente, a las niñas, niños o adolescentes.
+                                    </li>
+                                    <li>
+                                        Se induzca a la hija o hijo a ejecutar algún acto delictivo.
+                                    </li>
+                                    <li>
+                                        Se abandone a la hija o hijo, aunque se encuentre bajo la guarda y cuidado de la otra madre, padre o de una tercera persona.
+                                    </li>
+                                    <li>
+                                        Se observe una conducta viciosa, corruptora o delictiva, que resulte incompatible con el debido ejercicio de la responsabilidad parental.
+                                    </li>
+                                    <li>
+                                        Se cometa delito contra la persona de la hija o hijo.
+                                    </li>
+                                    <li>
+                                        Se arriesgue gravemente la vida o la integridad psíquica y física de la hija o hijo. (Artículo 187. Capítulo V. Título V)
+                                    </li>
+                                </ul>
                             </Collapsible>
                             <Collapsible title={<span>¿Cuáles son las autoridades competentes y las circunstancias especiales?</span>}>
                                 <p className="font-regular my-1">

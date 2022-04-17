@@ -32,17 +32,25 @@
     }
     &__footer {
         margin-top: 2rem;
+        display: flex;
+        flex-flow: column;
     }
     &__comments {
-        font-weight: 500;
+        font-weight: 700;
         color: $green;
         font-style: italic;
+        font-size: 18px;
         > * {
           margin-top: 0.5rem;
         }
         @include screen-down(sm) {
             font-size: 12px;
         }
+    }
+    &__comments_data {
+        margin-top: 1rem;
+        color: rgba(#fff, .5);
+        font-size: 18px;
     }
     &__text {
         font-weight: 400;

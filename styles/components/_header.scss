@@ -106,7 +106,7 @@
             align-items: center;
             justify-content: center;
             margin-top: 2rem;
-            > * + * { margin-left: 1rem;}
+            //> * + * { margin-left: 1rem;}
             @include screen-down(sm) {
                 margin-top: 1.5rem;
             }
@@ -119,9 +119,15 @@
                 cursor: pointer;
                 transition: all 0.1s ease;
                 margin-top: .5rem;
+                margin-right: .5rem;
                 &.selected {
-                    font-weight: 500;
-                    box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+                    //font-weight: 500;
+                    //box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+                    text-decoration: underline;
+                }
+                @include screen-down(sm) {
+                    font-size: 12px;
+                    flex-basis: 49%;
                 }
             }
         }
