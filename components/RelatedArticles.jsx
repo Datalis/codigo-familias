@@ -4,12 +4,13 @@ const RelatedArticles = ({ relatedPosts }) => {
 
     const posts = useMemo(() => {
         return relatedPosts.map((e) => {
-            const { id, title, feature_image, excerpt } = e;
+            const { id, title, feature_image, excerpt, slug } = e;
             return {
                 id,
                 title,
                 feature_image,
-                excerpt
+                excerpt,
+                slug
             }
         })
     }, [relatedPosts]);
@@ -25,15 +26,12 @@ const RelatedArticles = ({ relatedPosts }) => {
                 <div className="row">
                     {posts.map((e, i) => (
                         <div className="col-6" key={i}>
-                            <div className="related-articles__item"
-                                style={{
-                                    //backgroundImage: `url(https://api.eltoque.com${e.feature_image.url})`
-                                }}>
-                                <div className="content">
+                            <div className="related-articles__item">
+                                <a target="_blank" href={`https://eltoque.com/${e.slug}`} className="content">
                                     <img className="image" src={`https://api.eltoque.com${e.feature_image.url}`}/>
                                     <span className="title font-bold">{ e.title }</span>
                                     <p className="excerpt font-regular">{e.excerpt}</p>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     ))}

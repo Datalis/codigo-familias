@@ -33,6 +33,10 @@
         text-decoration: underline;
         color: #333447;
       }
+      .credit-row {
+        display: flex;
+        align-items: flex-end;
+      }
       @include screen-down(sm) {
         margin-top: 1rem;
         margin-bottom: 25rem;
