@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Infographics from '../components/Infographics';
 import Header from '../components/Header';
 import RelatedArticles from '../components/RelatedArticles';
-import FrequentQuestions from '../components/FrecuentQuestions';
+import FrequentQuestions from '../components/FrequentQuestions';
 import Media from '../components/Media';
 import Footer from '../components/Footer';
 import { fetchArticles, fetchRelatedPosts } from '../data/api';

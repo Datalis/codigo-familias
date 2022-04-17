@@ -18,9 +18,12 @@
             -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            font-size: 14px;
         }
         &--icon {
             width: 18px;
+            min-width: 18px;
+            height: 18px;
             fill: $orange;
         }
     }

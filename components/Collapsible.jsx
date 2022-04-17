@@ -36,7 +36,7 @@ const Collapsible = ({
                     animate={open ? "open" : "collapsed"}
                     /*transition={{ type: "spring", velocity: 10, duration: .2 }}*/
                     variants={{
-                        open: { opacity: 1, height: "auto", scale: 1 },
+                        open: { opacity: 1, height: "auto", scale: 1, marginTop: 12 },
                         collapsed: { opacity: 0, height: 0, scale: .99 }
                     }}
                 >

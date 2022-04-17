@@ -10,11 +10,12 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+            filter: 'hue-rotate(300deg)'
         },
         containerStyles: {}
     },
-    {
+   {
         img: '/images/parallax/header/6-01.png',
         depth: 0.1,
         layerStyles: {
@@ -22,7 +23,8 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+            filter: 'hue-rotate(340deg)'
         },
         containerStyles: {}
     },
@@ -34,7 +36,8 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+            filter: 'hue-rotate(340deg)'
         },
         containerStyles: {}
     },
@@ -46,7 +49,9 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+            filter: 'hue-rotate(340deg)'
+            //scale: '1.2'
         },
         containerStyles: {}
     },
@@ -58,7 +63,9 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+           // scale: '1.2'
+            filter: 'hue-rotate(340deg)'
         },
         containerStyles: {}
     },
@@ -70,7 +77,8 @@ const parallaxLayers = [
             position: 'absolute',
             top: 0,
             left: 0,
-            mixBlendMode: 'multiply'
+            mixBlendMode: 'multiply',
+            scale: '1.1'
         },
         containerStyles: {}
     },
