@@ -51,9 +51,11 @@ const SearchResults = ({ results }) => {
                         <div className="results__pagination">
                             <div className='pagination'>
                                 {
-                                    [...Array(pageCount).keys()].map(e => (
-                                        <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
-                                    ))
+                                    pageCount > 1 && (
+                                        [...Array(pageCount).keys()].map(e => (
+                                            <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
+                                        ))
+                                    )
                                 }
                             </div>
                         </div>
