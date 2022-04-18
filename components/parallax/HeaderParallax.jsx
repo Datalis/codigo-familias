@@ -1,120 +1,85 @@
 import Parallax from 'parallax-js';
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const parallaxLayers = [
     {
-        img: '/images/parallax/header/7-01.png',
-        depth: 0.1,
-        layerStyles: {
+        src: "/images/parallax/header/6-01.png",
+        depth: 0.3,
+        styles: {
             maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
             mixBlendMode: 'multiply',
-            filter: 'hue-rotate(300deg)'
-        },
-        containerStyles: {}
-    },
-   {
-        img: '/images/parallax/header/6-01.png',
-        depth: 0.1,
-        layerStyles: {
-            maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            mixBlendMode: 'multiply',
-            filter: 'hue-rotate(340deg)'
-        },
-        containerStyles: {}
+            filter: 'saturate(0.9)'
+        }
     },
     {
-        img: '/images/parallax/header/5-01.png',
-        depth: 0.1,
-        layerStyles: {
+        src: "/images/parallax/header/5-01.png",
+        depth: 0.25,
+        styles: {
             maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
             mixBlendMode: 'multiply',
-            filter: 'hue-rotate(340deg)'
-        },
-        containerStyles: {}
+            filter: 'saturate(0.9)'
+        }
     },
     {
-        img: '/images/parallax/header/4-01.png',
-        depth: 0.1,
-        layerStyles: {
-            maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            mixBlendMode: 'multiply',
-            filter: 'hue-rotate(340deg)'
-            //scale: '1.2'
-        },
-        containerStyles: {}
-    },
-    {
-        img: '/images/parallax/header/3-01.png',
-        depth: 0.1,
-        layerStyles: {
-            maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            mixBlendMode: 'multiply',
-           // scale: '1.2'
-            filter: 'hue-rotate(340deg)'
-        },
-        containerStyles: {}
-    },
-    {
-        img: '/images/parallax/header/2-01.png',
-        depth: 0.1,
-        layerStyles: {
-            maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            mixBlendMode: 'multiply',
-            scale: '1.1'
-        },
-        containerStyles: {}
-    },
-    {
-        img: '/images/parallax/header/1-01.png',
+        src: "/images/parallax/header/4-01.png",
         depth: 0.2,
-        layerStyles: {
+        styles: {
             maxWidth: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0
-        },
-        containerStyles: {}
+            mixBlendMode: 'multiply',
+            filter: 'saturate(0.9)'
+        }
+    },
+    {
+        src: "/images/parallax/header/3-01.png",
+        depth: 0.12,
+        styles: {
+            maxWidth: '100%',
+            mixBlendMode: 'multiply',
+            filter: 'saturate(0.9)',
+        }
+    },
+    {
+        src: "/images/parallax/header/2-01.png",
+        depth: 0.6,
+        styles: {
+            maxWidth: '100%'
+        }
+    },
+    {
+        src: "/images/parallax/header/1-01.png",
+        depth: 0.5,
+        styles: {
+            maxWidth: '100%'   
+        }
     },
     
 ];
+
+const Layer = React.memo(({src, depth, styles}) => {
+    return (
+        <img className='layer' data-depth={depth} src={src} style={styles} alt="" />
+    );
+})
 
 const HeaderParallax = () => {
 
     const sceneRef = useRef();
 
     useEffect(() => {
-        /*new Parallax(sceneRef.current, {
-            selector: '.layer'
-        });*/
-    }, [sceneRef])
+        new Parallax(sceneRef.current, {
+            selector: '.layer',
+            //relativeInput: true,
+            //hoverOnly: true
+        });
+    }, [])
 
 
     return (
         <div className="header-parallax">
-            <div id="scene" ref={sceneRef}>
+            <div id="scene" ref={sceneRef} style={{mixBlendMode: 'multiply'}}>
                 {
                     parallaxLayers.map((e, i) => (
-                        <div className='layer-item' key={i} style={{...e.containerStyles}}>
-                            <img src={e.img} className="layer" style={{...e.layerStyles}} data-depth={e.depth} alt=""/>
-                        </div>
+                        <Layer {...e} key={i} />
                     ))
                 }
             </div>

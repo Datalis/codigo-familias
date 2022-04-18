@@ -17,20 +17,15 @@
         top: -200px;
         right: -100px;
         @include screen-down(lg) {
-            width: 700px;
-            top: 0px;
-        }
-
-        @include screen-down(md) {
-            width: 600px;
-            top: 0px;
-        }
-
-        @include screen-down(sm) {
             width: 100%;
-            top: 0;
-            right: 0;
-            max-height: 400px;
+            top: -200px;
+            right: -200px;
+        }
+        @include screen-down(sm) { 
+            width: auto;
+            left: -120px;
+            right: -100px;
+            top: 25px;
         }
     }
 
