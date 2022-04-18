@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import footerImg from '../public/images/footer.png';
 import footerLogo from '../public/images/logo_variant.png';
@@ -8,7 +7,7 @@ const Footer = () => {
     return (
         <footer className='footer'>
             <div className="footer__img">
-                <Image src={footerImg}></Image>
+                <Image src={footerImg} alt=""></Image>
             </div>
             <div className="footer__content container">
                 <div className="row">

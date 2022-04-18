@@ -59,7 +59,9 @@ const Layer = React.memo(({src, depth, styles}) => {
     return (
         <img className='layer' data-depth={depth} src={src} style={styles} alt="" />
     );
-})
+});
+
+Layer.displayName = "Layer";
 
 const HeaderParallax = () => {
 
