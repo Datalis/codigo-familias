@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import ReactHtmlParser from 'react-html-parser';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const highlight = (pos, value, i = 1) => {
     const pair = pos[pos.length - i];
@@ -36,7 +38,13 @@ const Article = ({
     showComment = true
 }) => {
 
+    const textRef = useRef();
     const [collapsed, setCollapsed] = useState(true);
+    const [useShowMore, setUseShowMore] = useState(false);
+
+    useEffect(() => {
+        
+    }, [])
 
     return (
         <article className="article" id={_id}>
@@ -65,6 +73,7 @@ const Article = ({
             <div className="show-more-less">
                 <motion.p
                     className='article__text'
+                    ref={textRef}
                     variants={{
                         collapsed: {
                             opacity: [0, 1],
