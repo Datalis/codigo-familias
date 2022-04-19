@@ -1,76 +1,9 @@
-import Parallax from 'parallax-js';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-
-const parallaxLayers = [
-    {
-        src: "/images/parallax/header/6-01.png",
-        depth: 0.3,
-        styles: {
-            maxWidth: '100%',
-            mixBlendMode: 'multiply',
-            filter: 'saturate(0.9)'
-        }
-    },
-    {
-        src: "/images/parallax/header/5-01.png",
-        depth: 0.25,
-        styles: {
-            maxWidth: '100%',
-            mixBlendMode: 'multiply',
-            filter: 'saturate(0.9)'
-        }
-    },
-    {
-        src: "/images/parallax/header/4-01.png",
-        depth: 0.2,
-        styles: {
-            maxWidth: '100%',
-            mixBlendMode: 'multiply',
-            filter: 'saturate(0.9)'
-        }
-    },
-    {
-        src: "/images/parallax/header/3-01.png",
-        depth: 0.12,
-        styles: {
-            maxWidth: '100%',
-            mixBlendMode: 'multiply',
-            filter: 'saturate(0.9)',
-        }
-    },
-    {
-        src: "/images/parallax/header/2-01.png",
-        depth: 0.6,
-        styles: {
-            maxWidth: '100%'
-        }
-    },
-    {
-        src: "/images/parallax/header/1-01.png",
-        depth: 0.5,
-        styles: {
-            maxWidth: '100%'
-        }
-    },
-
-];
-
-const Layer = React.memo(({ src, depth, styles }) => {
-    return (
-        <img className='layer' data-depth={depth} src={src} style={styles} alt="" />
-    );
-});
-
-Layer.displayName = "Layer";
 
 const HeaderParallax = () => {
 
     const sceneRef = useRef();
-
-    useEffect(() => {
-    }, [])
-
 
     return (
         <div className="header-parallax">
@@ -85,7 +18,8 @@ const HeaderParallax = () => {
                     }}
                     transition={{
                         repeat: Infinity,
-                        duration: 25
+                        duration: 25,
+                        repeatDelay: 1
                     }}
                     src='/images/parallax/header/6-01.png' />
                 <motion.img style={{
@@ -94,11 +28,12 @@ const HeaderParallax = () => {
                     mixBlendMode: 'multiply',
                 }}
                 whileInView={{
-                        scale: [1, 1.08, 1]
+                        scale: [1, 1.12, 1]
                     }}
                     transition={{
                         repeat: Infinity,
-                        duration: 25
+                        duration: 20,
+                        repeatDelay: 2
                     }}
                     src='/images/parallax/header/5-01.png' />
                 <motion.img style={{
@@ -107,11 +42,12 @@ const HeaderParallax = () => {
                     mixBlendMode: 'multiply',
                 }}
                 whileInView={{
-                        scale: [1, 1.08, 1]
+                        scale: [1, 1.11, 1]
                     }}
                     transition={{
                         repeat: Infinity,
-                        duration: 25
+                        duration: 18,
+                        repeatDelay: 1
                     }}
                     src='/images/parallax/header/4-01.png' />
                 <motion.img style={{
@@ -120,11 +56,11 @@ const HeaderParallax = () => {
                     mixBlendMode: 'multiply',
                 }}
                 whileInView={{
-                        scale: [1, 1.08, 1]
+                        scale: [1, 1.1, 1]
                     }}
                     transition={{
                         repeat: Infinity,
-                        duration: 25
+                        duration: 15
                     }}
                     src='/images/parallax/header/3-01.png' />
                 <img style={{
@@ -143,9 +79,8 @@ const HeaderParallax = () => {
                     transition={{
                         ease: 'linear',
                         repeat: Infinity,
-
-                        duration: 50,
-                        repeatType: 'reverse'
+                        duration: 20,
+                        repeatType: 'loop'
                     }}
                     style={{
                         maxWidth: '100%',

@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import ReactHtmlParser from 'react-html-parser';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useMemo } from 'react';
+import useWindowSize from '../hooks/useWindowSize';
+import { useCallback } from 'react';
 
 const highlight = (pos, value, i = 1) => {
     const pair = pos[pos.length - i];
@@ -38,13 +41,25 @@ const Article = ({
     showComment = true
 }) => {
 
-    const textRef = useRef();
+    const viewport = useWindowSize();
     const [collapsed, setCollapsed] = useState(true);
-    const [useShowMore, setUseShowMore] = useState(false);
 
-    useEffect(() => {
-        
-    }, [])
+    const truncateLimit = useMemo(() => {
+        if (viewport.width > 560) return 400;
+        return 200;
+    }, [viewport]);
+
+    const showMore = useMemo(() => {
+        return texto.length > truncateLimit;
+    }, [texto, truncateLimit]);
+
+    const truncateText = useCallback((text) => {
+        //if (text.length < 500) return text;
+        const _temp = text.substring(0, truncateLimit);
+        const _end = _temp.substring(0, _temp.lastIndexOf(' ')) + '...';
+        return _end;
+    }, [truncateLimit])
+
 
     return (
         <article className="article" id={_id}>
@@ -73,31 +88,27 @@ const Article = ({
             <div className="show-more-less">
                 <motion.p
                     className='article__text'
-                    ref={textRef}
                     variants={{
                         collapsed: {
                             opacity: [0, 1],
                             height: 'auto',
-                            display: '-webkit-box'
+                            //display: '-webkit-box'
                         },
                         expanded: {
                             opacity: [0, 1],
                             height: 'auto',
-                            display: 'block',
-                            transition: {
-                                display: {
-                                    //delay: 0.2
-                                }
-                            }
+                            //display: 'block'
                         }
                     }}
                     initial="collapsed"
                     animate={collapsed ? "collapsed" : "expanded"}>
-                    {ReactHtmlParser(highlighter(texto, 'texto', matchData?.metadata))}
+                    {ReactHtmlParser(highlighter(showMore ? (collapsed ? truncateText(texto) : texto) : texto, 'texto', matchData?.metadata))}
                 </motion.p>
-                <motion.div className='toggle-more' layout="position">
-                    <motion.button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
-                </motion.div>
+                {
+                    showMore && (<motion.div className='toggle-more' layout="position">
+                        <motion.button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
+                    </motion.div>)
+                }
             </div>
 
             {showComment && (
