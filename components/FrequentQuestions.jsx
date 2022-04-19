@@ -1,8 +1,75 @@
 import Collapsible from "./Collapsible";
+import { motion } from 'framer-motion';
 
 import SendIcon from '../public/icons/send.svg';
+import LoadingIcon from '../public/icons/loading.svg';
+import { useState } from "react";
+import * as yup from 'yup';
+import { useFormik } from "formik";
+
+const schema = yup.object().shape({
+    name: yup.string().required('El nombre es requerido'),
+    email: yup.string().email("El correo electrónico no es válido").required('El correo electrónico es requerido'),
+    message: yup.string().required('El mensaje no debe quedar en blanco')
+})
+
+const initialValues = {
+    name: '',
+    email: '',
+    message: ''
+}
 
 const FrequentQuestions = () => {
+
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const onSubmit = ({ name, email, message }) => {
+        const payload = {
+            authorId: "_",
+            authorName: name,
+            authorEmail: email,
+            content: message,
+            threadOf: null, // si es la respuesta a otro comentario el id del comentario padre
+            related: [{
+                refId: "625ad9e1c28905001ce0eda0", // id del conetenido a comentar
+                ref: "especial",
+                field: "comments"
+            }]
+        }
+        const url = "https://api.eltoque.datalis.dev/comments/especial:625ad9e1c28905001ce0eda0";
+        const reqOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }
+        setLoading(true);
+        fetch(url, reqOptions).then((res) => {
+            if (res.status == 200) {
+                resetForm(initialValues);
+                setSuccess(true);
+            }
+            setLoading(false);
+        })
+    }
+
+    const {
+        values,
+        errors,
+        touched,
+        handleSubmit,
+        handleChange,
+        submitForm,
+        resetForm
+    } = useFormik({
+        initialValues,
+        validationSchema: schema,
+        onSubmit
+    })
+
+
+
+
     return (
         <div className="frequent-questions">
             <div className="container">
@@ -106,21 +173,57 @@ const FrequentQuestions = () => {
                         </div>
                     </div>
                     <div className="col-5">
-                        <form id="contactForm" noValidate className="flex flex-column">
+
+                        <form onSubmit={handleSubmit} id="contactForm" noValidate className="flex flex-column">
                             <h4 className="text-orange mt-2">¿Tienes alguna pregunta?</h4>
-                            <input className="form-control" placeholder="Nombre" />
-                            <input className="form-control" placeholder="Correo electrónico" />
-                            <div className="textarea-container">
-                                <textarea className="form-control" placeholder="Deja tu comentario" rows={8}></textarea>
-                                <div className="send-icon">
-                                    <SendIcon></SendIcon>
-                                </div>
+                            <div className="input-group">
+                                <input className="form-control" placeholder="Nombre" type="text"
+                                    name="name" value={values.name} onChange={handleChange} />
+                                {
+                                    errors.name && touched.name && (
+                                        <span className="text-error">{errors.name}</span>
+                                    )
+                                }
                             </div>
+                            <div className="input-group mt-4">
+                                <input className="form-control" placeholder="Correo electrónico" type="email"
+                                    name="email" value={values.email} onChange={handleChange} />
+                                {
+                                    errors.email && touched.email && (
+                                        <span className="text-error">{errors.email}</span>
+                                    )
+                                }
+                            </div>
+                            <div className="input-group mt-4">
+                                <div className="textarea-container">
+                                    <textarea className="form-control" placeholder="Deja tu comentario" rows={5}
+                                        name="message" value={values.message} onChange={handleChange}></textarea>
+                                    <motion.div onClick={() => submitForm()} className="send-icon" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }}>
+                                        {
+                                            !loading ? (
+                                                <SendIcon />
+                                            ) : (
+                                                <LoadingIcon />
+                                            )
+                                        }
+                                    </motion.div>
+                                </div>
+                                {
+                                    errors.message && touched.message && (
+                                        <span className="text-error">{errors.message}</span>
+                                    )
+                                }
+                            </div>
+                            {
+                                success && (
+                                    <span className="text-green mt-4 font-semi-bold">Tu comentario se envio correctamente!</span>
+                                )
+                            }
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

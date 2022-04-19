@@ -15,13 +15,23 @@
         background-color: $purple;
     }
     #contactForm {
-        margin-left: 25%;
+        margin-left: 12%;
         @include screen-down(sm) {
             margin: auto;
         }
     }
+    .input-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .text-error {
+        font-size: 14px;
+        color: red;
+        margin-top: 0.25rem;
+    }
     .form-control {
-        height: 38px;
+        //width: 100%;
+        height: 42px;
         padding-left: 1rem;
         padding-right: 1rem;
         border-radius: 12px;
@@ -30,7 +40,6 @@
         font-style: italic;
         color: $white;
         background-color: $orange;
-        margin-bottom: 1rem;
         font-size: 1rem;
         box-shadow: inset 0 0 15px 1px rgb(0 0 0 / 10%);
         &::placeholder {
@@ -40,7 +49,10 @@
     .textarea-container {
         position: relative;
         display: flex;
+        flex-direction: column;
         textarea {
+            //width: 100%;
+            height: auto;
             flex-grow: 1;
             padding-left: 1rem;
             padding-right: 1rem;
@@ -61,10 +73,14 @@
         .send-icon {
             cursor: pointer;
             position: absolute;
-            bottom: 20px;
+            bottom: 8px;
             right: 12px;
-            width: 24px;
+            width: 28px;
+            height: 28px;
             fill: $orange-light;
+            background: none;
+            border: none;
+            outline: none;
         }
     }
 }

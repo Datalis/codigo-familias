@@ -70,7 +70,7 @@ const SearchResults = ({ results, query }) => {
                         {
                             (!resultItems.length && !!query) && (
                                 <div className='no-results'>
-                                    <span>No se encontraron resultados para <em>"{query}"</em></span>
+                                    <span>No se encontraron resultados para <em>&quot;{query}&quot;</em></span>
                                 </div>
                             )
                         }

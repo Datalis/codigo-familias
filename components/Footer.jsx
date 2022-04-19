@@ -95,7 +95,7 @@ const Footer = () => {
                             </dd>
                         </dl>
                         <div className='logo center '>
-                            <Image src={footerLogo} />
+                            <Image src={footerLogo} alt="elTOQUE logo" />
                         </div>
                     </div>
                 </div>
