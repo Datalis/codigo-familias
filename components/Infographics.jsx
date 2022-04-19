@@ -191,7 +191,7 @@ const Infographics = () => {
                   overflow: 'hidden',
                   height: '100%'
                 }}>
-                  <Image src={e} alt="" priority />
+                  <Image src={e} alt="" priority={true} />
                 </motion.div>
               </motion.div>
             ))}

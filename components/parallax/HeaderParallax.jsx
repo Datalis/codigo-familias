@@ -72,9 +72,7 @@ const HeaderParallax = () => {
                 <motion.img
                     whileInView={{
                         scale: [1, 1.08, 1],
-                        //x: [0, -10, 0],
-                        //y: [0, -5, 0],
-                        rotate: [0, 10, 0]
+                        //rotate: [0, 10, 0]
                     }}
                     transition={{
                         ease: 'linear',
@@ -87,7 +85,7 @@ const HeaderParallax = () => {
                         position: 'absolute',
                         top: 0,
                         left: 0
-                    }} src='/images/parallax/header/1-01.png' />
+                    }} src='/images/parallax/header/1-01-small.png' />
 
             </div>
         </div>

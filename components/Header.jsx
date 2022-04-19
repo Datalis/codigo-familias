@@ -14,10 +14,11 @@ import { DebounceInput } from 'react-debounce-input';
 import Article from './Article';
 import useLunr from '../hooks/useLunr';
 import HeaderParallax from './parallax/HeaderParallax';
+import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
 
 
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ results, query }) => {
     const [pageOffset, setPageOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const resultsContainerRef = useRef();
@@ -40,6 +41,13 @@ const SearchResults = ({ results }) => {
             <AnimatePresence>
                 <div className={`results ${resultItems.length ? 'py-8' : ''}`}>
                     <div className="container">
+                        {
+                            !!results.length && (
+                                <div className="results__count">
+                                    <span className='text-purple'>{results.length} resultados</span>
+                                </div>
+                            )
+                        }
                         <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
                             {resultItems.map(hit => (
                                 <motion.div key={hit.ref} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -59,6 +67,13 @@ const SearchResults = ({ results }) => {
                                 }
                             </div>
                         </div>
+                        {
+                            (!resultItems.length && !!query) && (
+                                <div className='no-results'>
+                                    <span>No se encontraron resultados para <em>"{query}"</em></span>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </AnimatePresence>
@@ -70,19 +85,9 @@ const SearchResults = ({ results }) => {
 
 const Header = ({ articles, keywords }) => {
     const [selectedKeyword, setSelectedKeyword] = useState(null);
-    const viewport = useWindowSize();
-    const { scrollY } = useViewportScroll();
     const headerRef = useRef(null);
     const inputRef = useRef(null);
-
-    const bgImage = useMemo(() => {
-        if (viewport.width > 560) return headerImgLg;
-        return headerImg;
-    }, [viewport]);
-
-    const offsetY = useTransform(scrollY, [(headerRef.current?.offsetTop || 0), (headerRef.current?.offsetTop || 0) + 3], [0, 1], {
-        clamp: false,
-    });
+    const [query, setQuery] = useState();
 
     const {
         results,
@@ -93,6 +98,7 @@ const Header = ({ articles, keywords }) => {
 
     const onKeywordSelected = (keyword) => {
         onSearch(splitTerms(keyword.name));
+        setQuery(keyword.name);
         setSelectedKeyword(keyword);
     }
 
@@ -102,22 +108,37 @@ const Header = ({ articles, keywords }) => {
 
     const handleSearch = (query) => {
         const terms = query ? splitTerms(query) : null;
+        setSelectedKeyword(null);
+        setQuery(query);
         onSearch(terms);
     }
 
     return (
         <header className='header' ref={headerRef}>
-            {/*<motion.div className="header__img" style={{ y: offsetY }}>
-                <Image src={bgImage} alt='' />
-            </motion.div>*/}
             <div className='header__img'>
                 <HeaderParallax />
             </div>
             <div className="container py-8">
                 <div className="row">
                     <div className="col-12">
-                        <div className='logo'>
-                            <Logo />
+                        <div className="flex">
+                            <div className='logo'>
+                                <Logo />
+                            </div>
+                            <div className='ml-auto'>
+                                <FacebookShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
+                                    <FacebookIcon round={true} size={32} />
+                                </FacebookShareButton>
+                                <TwitterShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
+                                    <TwitterIcon round={true} size={32} />
+                                </TwitterShareButton>
+                                <WhatsappShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
+                                    <WhatsappIcon round={true} size={32} />
+                                </WhatsappShareButton>
+                                <TelegramShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
+                                    <TelegramIcon round={true} size={32} />
+                                </TelegramShareButton>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -166,7 +187,7 @@ const Header = ({ articles, keywords }) => {
                     </div>
                 </div>
             </div>
-            <SearchResults results={results} />
+            <SearchResults results={results} query={query} />
         </header>
     );
 }

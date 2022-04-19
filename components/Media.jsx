@@ -69,7 +69,7 @@ const Media = ({ audios }) => {
                                        </AnimatePresence>
                                     </span>
                                 </div>
-                                <Image src={e.cover} width={300} height={200} />
+                                <Image src={e.cover} layout="fill" objectFit='cover' objectPosition='center' />
                             </div>
                         ))
                     }

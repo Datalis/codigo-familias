@@ -31,7 +31,7 @@
 
     .logo {
         //margin-left: 1rem;
-        max-width: 120px;
+        width: 120px;
         opacity: 0.75;
     }
 
@@ -130,7 +130,7 @@
 
     .results {
         position: relative;
-        background-color: rgba($white, 0.8);
+        background-color: rgba($white, 0.5);
         display: block;
         z-index: 2;
         &__pagination {
@@ -157,6 +157,17 @@
                 }
                
             }
+        }
+        &__count {
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: 2rem;
+        }
+        .no-results {
+            display: flex;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            justify-content: center;
         }
     }
 
