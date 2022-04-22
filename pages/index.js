@@ -13,22 +13,42 @@ import GuidedVisit from '../components/GuidedVisit';
 import staticData from '../data/static.json';
 
 
-export default function Index({ articles, keywords, relatedPosts, audios  }) {
+export default function Index({ articles, keywords, relatedPosts, audios }) {
   return (
     <Fragment>
       <Head>
-        <title>Nuevo código de Familias | elTOQUE</title>
+
+        {/* <!-- Primary Meta Tags --> */}
+        <title>Nuevo código de Familias</title>
+        <meta name="title" content="Nuevo código de Familias" />
+        <meta name="description" content="Una plataforma para informar tu voto" />
+
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://codigo-de-familias.netlify.app/" />
+        <meta property="og:title" content="Nuevo código de Familias" />
+        <meta property="og:description" content="Una plataforma para informar tu voto" />
+        <meta property="og:image" content="/images/facebook.jpg" />
+
+        {/*<!-- Twitter -->*/}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://codigo-de-familias.netlify.app/" />
+        <meta property="twitter:title" content="Nuevo código de Familias" />
+        <meta property="twitter:description" content="Una plataforma para informar tu voto" />
+        <meta property="twitter:image" content="/images/twitter.jpg" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="description" content="Nuevo código de las familias" />
+        <meta name="msapplication-TileColor" content="#f8f4ef" />
+        <meta name="theme-color" content="#f8f4ef" />
+
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f8f4ef" />
-        <meta name="msapplication-TileColor" content="#f8f4ef" />
-        <meta name="theme-color" content="#f8f4ef" />
+
       </Head>
       <Header articles={articles} keywords={keywords} />
       <main className='main'>
@@ -37,10 +57,10 @@ export default function Index({ articles, keywords, relatedPosts, audios  }) {
         </div>
         <div className='main__content'>
           <GuidedVisit articles={articles} />
-          <Media audios={audios}/>
-          <Infographics/>
-          <RelatedArticles relatedPosts={relatedPosts}/>
-          <FrequentQuestions/>
+          <Media audios={audios} />
+          <Infographics />
+          <RelatedArticles relatedPosts={relatedPosts} />
+          <FrequentQuestions />
         </div>
       </main>
       <Footer />
