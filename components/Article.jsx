@@ -1,12 +1,9 @@
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion';
 import ReactHtmlParser from 'react-html-parser';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useMemo } from 'react';
 import useWindowSize from '../hooks/useWindowSize';
-import { useCallback } from 'react';
 
 const highlight = (pos, value, i = 1) => {
     const pair = pos[pos.length - i];

@@ -7,17 +7,8 @@ import { useAnimation } from "framer-motion";
 import { AutoSizer } from 'react-virtualized';
 import { Grid } from 'react-virtualized';
 import Article from "./Article";
+import useWindowSize from "../hooks/useWindowSize";
 
-const setSlideStatus = (indexes, index) => {
-  if (indexes.current === index) {
-    return "active";
-  } else if (indexes.next === index) {
-    return `next`;
-  } else if (indexes.prev === index) {
-    return `prev`;
-  }
-  return `inactive`;
-};
 
 const shouldRender = (indexes, index) => {
   if (index == indexes.prev || index == indexes.prev - 1 || index === indexes.current || index === indexes.next || index === indexes.next + 1) return true;
@@ -54,6 +45,8 @@ const StackedCarousel = ({ children, data }) => {
     next: 2,
   });
 
+  const viewport = useWindowSize();
+
   useEffect(() => {
     controls.start(
       (i) => {
@@ -62,6 +55,15 @@ const StackedCarousel = ({ children, data }) => {
         const isNext = i == indexes.next;
 
         const direction = i - indexes.current < 0 ? -1 : 1;
+
+        let offset = 100;
+        if (viewport.width > 1200) {
+          offset = 100;
+        } else if (viewport.width > 768) {
+          offset = 50;
+        } else {
+          offset = 30;
+        }
 
         let x = 0;
         let zIndex = 1;
@@ -78,14 +80,14 @@ const StackedCarousel = ({ children, data }) => {
           scale = 1;
           opacity = 1;
         } else if (isNext) {
-          x = 100;
+          x = offset;
           zIndex = 2;
           display = 'flex';
           boxShadow = '0 10px 5px rgba(0, 0, 0, 0.1)';
           scale = .9;
           opacity = .8;
         } else if (isPrev) {
-          x = -100;
+          x = -offset;
           zIndex = 2;
           display = 'flex';
           boxShadow = '0 10px 5px rgba(0, 0, 0, 0.1)';
@@ -110,7 +112,7 @@ const StackedCarousel = ({ children, data }) => {
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indexes.current]);
+  }, [indexes.current, viewport.width]);
 
   const handleNext = useCallback(() => {
 

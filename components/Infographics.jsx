@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import ArrowLeft from "../public/icons/arrow-left.svg";
 import ArrowRight from "../public/icons/arrow-right.svg";
-import { AnimatePresence, motion, useMotionValue } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import group1_1 from "../public/images/infographics/1/1.jpg";
 import group1_2 from "../public/images/infographics/1/2.jpg";

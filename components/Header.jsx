@@ -1,21 +1,14 @@
-import Image from 'next/image';
 
-import headerImg from '../public/images/header.png';
-import headerImgLg from '../public/images/header_large.png';
 
 import HeaderTitle from '../public/images/header_title.svg';
 import Logo from '../public/images/logo.svg';
-import debounce from 'lodash.debounce';
 
-import { AnimatePresence, useTransform, useViewportScroll } from 'framer-motion';
-import { useRef, useState, useMemo, useEffect, useCallback } from 'react';
+import { useRef, useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import useWindowSize from '../hooks/useWindowSize';
 import { DebounceInput } from 'react-debounce-input';
 import Article from './Article';
 import useLunr from '../hooks/useLunr';
-import HeaderParallax from './parallax/HeaderParallax';
-import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
+import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 import Lottie from 'react-lottie';
 
 import animData from '../public/anim/header_anim_large.json';
