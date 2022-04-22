@@ -28,14 +28,14 @@ export default function Index({ articles, keywords, relatedPosts, audios }) {
         <meta property="og:url" content="https://codigo-de-familias.netlify.app/" />
         <meta property="og:title" content="Nuevo código de Familias" />
         <meta property="og:description" content="Una plataforma para informar tu voto" />
-        <meta property="og:image" content="/images/facebook.jpg" />
+        <meta property="og:image" content="https://codigo-de-familias.netlify.app/images/facebook.jpg" />
 
         {/*<!-- Twitter -->*/}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://codigo-de-familias.netlify.app/" />
         <meta property="twitter:title" content="Nuevo código de Familias" />
         <meta property="twitter:description" content="Una plataforma para informar tu voto" />
-        <meta property="twitter:image" content="/images/twitter.jpg" />
+        <meta property="twitter:image" content="https://codigo-de-familias.netlify.app/images/twitter.jpg" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
