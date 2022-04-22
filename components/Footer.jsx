@@ -1,13 +1,27 @@
 import Image from 'next/image';
+import Lottie from 'react-lottie';
 
-import footerImg from '../public/images/footer.png';
-import footerLogo from '../public/images/logo_variant.png';
+import cvLogo from '../public/images/logo_cv.png';
+import etjLogo from '../public/images/logo_etqj.png';
+
+import animData from '../public/anim/footer_anim_large.json';
 
 const Footer = () => {
+
+    const animOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
+
+
     return (
         <footer className='footer'>
             <div className="footer__img">
-                <Image src={footerImg} alt=""></Image>
+                <Lottie options={animOptions} isStopped={true} />
             </div>
             <div className="footer__content container">
                 <div className="row">
@@ -94,13 +108,22 @@ const Footer = () => {
                                 <h4 className='font-semi-bold my-1'>Ana Lidia García</h4>
                             </dd>
                         </dl>
-                        <div className='logo center '>
-                            <Image src={footerLogo} alt="elTOQUE logo" />
+                        <div className='row mt-8'>
+                            <div className='col-6 col-6-sm'>
+                                <div className='logo center'>
+                                    <Image src={etjLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" />
+                                </div>
+                            </div>
+                            <div className="col-6 col-6-sm">
+                                <div className='logo center'>
+                                    <Image src={cvLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </footer>
     );
 }

@@ -5,9 +5,10 @@ import headerImgLg from '../public/images/header_large.png';
 
 import HeaderTitle from '../public/images/header_title.svg';
 import Logo from '../public/images/logo.svg';
+import debounce from 'lodash.debounce';
 
 import { AnimatePresence, useTransform, useViewportScroll } from 'framer-motion';
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState, useMemo, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import useWindowSize from '../hooks/useWindowSize';
 import { DebounceInput } from 'react-debounce-input';
@@ -15,10 +16,70 @@ import Article from './Article';
 import useLunr from '../hooks/useLunr';
 import HeaderParallax from './parallax/HeaderParallax';
 import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
+import Lottie from 'react-lottie';
+
+import animData from '../public/anim/header_anim_large.json';
 
 
+const splitTerms = (query) => {
+    return query.trim().split(" ").map(e => `+${e}`).join(" ");
+}
 
-const SearchResults = ({ results, query }) => {
+const SearchInput = ({ keywords, onSearch }) => {
+    const [query, setQuery] = useState("");
+    const [currentKeyword, setCurrentKeyword] = useState(null);
+
+    const handleKeywordChange = (keyword) => {
+        if (currentKeyword && currentKeyword.name == keyword.name) {
+            setCurrentKeyword(null);
+            setQuery("");
+        } else {
+            setCurrentKeyword(keyword);
+            setQuery(keyword.name);
+        }
+    }
+
+    const handleQueryChange = (q) => {
+        setCurrentKeyword(null);
+        setQuery(q);
+    }
+
+    useEffect(() => {
+        onSearch(query);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query])
+
+
+    return (
+        <div className='search center'>
+            <h3 className='text-green uppercase'>Encuentra términos, conceptos y contenidos <br /> del Código de las Familias</h3>
+            <DebounceInput
+                type='search'
+                debounceTimeout={400}
+                value={query}
+                onChange={(e) => handleQueryChange(e.target.value)}
+                className='search__input'
+                placeholder='Buscar por palabra o artículo' />
+            <div className='search__tags mb-4'>
+                {
+                    keywords.map((e, i) => (
+                        <div key={i} className={`search__tags--tag ${e.name == currentKeyword?.name ? 'selected' : ''}`} onClick={() => handleKeywordChange(e)}>
+                            {e.name}
+                        </div>
+                    ))
+                }
+            </div>
+            {currentKeyword && (
+                <motion.div className='m-0' style={{ overflow: 'hidden' }} exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .2 }}>
+                    <p className='font-medium'>{currentKeyword?.description}</p>
+                </motion.div>
+            )}
+        </div>
+    )
+}
+
+
+const SearchResults = ({ results }) => {
     const [pageOffset, setPageOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const resultsContainerRef = useRef();
@@ -38,56 +99,51 @@ const SearchResults = ({ results, query }) => {
 
     return (
         <div ref={resultsContainerRef}>
-            <AnimatePresence>
-                <div className={`results ${resultItems.length ? 'py-8' : ''}`}>
-                    <div className="container">
-                        {
-                            !!results.length && (
-                                <div className="results__count">
-                                    <span className='text-purple'>{results.length} resultados</span>
-                                </div>
-                            )
-                        }
-                        <motion.div className='results__items' initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
-                            {resultItems.map(hit => (
-                                <motion.div key={hit.ref} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                    <Article {...hit.item} matchData={hit.matchData} showComment={false}></Article>
-                                    <div className="divider"></div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                        <div className="results__pagination">
-                            <div className='pagination'>
-                                {
-                                    pageCount > 1 && (
-                                        [...Array(pageCount).keys()].map(e => (
-                                            <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
-                                        ))
-                                    )
-                                }
+            <div className={`results ${resultItems.length ? 'py-8' : ''}`}>
+                <div className="container">
+                    {
+                        !!results.length && (
+                            <div className="results__count">
+                                <span className='text-purple'>{results.length} resultados</span>
                             </div>
+                        )
+                    }
+                    <div className='results__items'>
+                        {resultItems.map(hit => (
+                            <div key={hit.ref}>
+                                <Article {...hit.item} matchData={hit.matchData} showComment={false}></Article>
+                                <div className="divider"></div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="results__pagination">
+                        <div className='pagination'>
+                            {
+                                pageCount > 1 && (
+                                    [...Array(pageCount).keys()].map(e => (
+                                        <a className={`page-link ${currentPage == e ? 'current' : ''}`} key={e} onClick={() => handlePageChange(e)}>{e + 1}</a>
+                                    ))
+                                )
+                            }
                         </div>
-                        {
-                            (!resultItems.length && !!query) && (
-                                <div className='no-results'>
-                                    <span>No se encontraron resultados para <em>&quot;{query}&quot;</em></span>
-                                </div>
-                            )
-                        }
                     </div>
                 </div>
-            </AnimatePresence>
+            </div>
         </div>
     )
 }
 
 
-
 const Header = ({ articles, keywords }) => {
-    const [selectedKeyword, setSelectedKeyword] = useState(null);
-    const headerRef = useRef(null);
-    const inputRef = useRef(null);
-    const [query, setQuery] = useState();
+
+    const animOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
 
     const {
         results,
@@ -96,27 +152,15 @@ const Header = ({ articles, keywords }) => {
         limit: 50
     });
 
-    const onKeywordSelected = (keyword) => {
-        onSearch(splitTerms(keyword.name));
-        setQuery(keyword.name);
-        setSelectedKeyword(keyword);
-    }
-
-    const splitTerms = (query) => {
-        return query.split(" ").map(e => `+${e}`).join(" ");
-    }
-
     const handleSearch = (query) => {
         const terms = query ? splitTerms(query) : null;
-        setSelectedKeyword(null);
-        setQuery(query);
         onSearch(terms);
     }
 
     return (
-        <header className='header' ref={headerRef}>
+        <header className='header'>
             <div className='header__img'>
-                <HeaderParallax />
+                <Lottie options={animOptions}  isStopped={true}/>
             </div>
             <div className="container py-8">
                 <div className="row">
@@ -132,9 +176,6 @@ const Header = ({ articles, keywords }) => {
                                 <TwitterShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
                                     <TwitterIcon round={true} size={32} />
                                 </TwitterShareButton>
-                                <WhatsappShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
-                                    <WhatsappIcon round={true} size={32} />
-                                </WhatsappShareButton>
                                 <TelegramShareButton className='mr-2' url='https://codigo-de-familias.netlify.com'>
                                     <TelegramIcon round={true} size={32} />
                                 </TelegramShareButton>
@@ -160,34 +201,11 @@ const Header = ({ articles, keywords }) => {
 
                             </p>
                         </div>
-                        <div className='search center'>
-                            <h3 className='text-green uppercase'>Encuentra términos, conceptos y contenidos <br /> del Código de las Familias</h3>
-                            <DebounceInput
-                                inputMode='search'
-                                value={selectedKeyword?.name}
-                                inputRef={inputRef}
-                                minLength={2}
-                                debounceTimeout={300}
-                                onChange={(e) => handleSearch(e.target.value)}
-                                className='search__input'
-                                placeholder='Buscar por palabra o artículo' />
-                            <div className='search__tags'>
-                                {
-                                    keywords.map((e, i) => (
-                                        <div key={i} className={`search__tags--tag ${e.name == selectedKeyword?.name ? 'selected' : ''}`} onClick={() => onKeywordSelected(e)}>
-                                            {e.name}
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                            <div className='mt-8'>
-                                <p className='font-medium'>{selectedKeyword?.description}</p>
-                            </div>
-                        </div>
+                        <SearchInput keywords={keywords} onSearch={handleSearch} />
                     </div>
                 </div>
             </div>
-            <SearchResults results={results} query={query} />
+            <SearchResults results={results} />
         </header>
     );
 }

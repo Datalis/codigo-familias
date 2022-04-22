@@ -15,6 +15,5 @@ export async function fetchArticles() {
 export async function fetchRelatedPosts() {
     const res = await fetch(RELATED_POSTS_URL);
     const _posts = await res.json();
-    const posts = _posts.reverse().slice(0, 2);
-    return posts;
+    return _posts;
 }

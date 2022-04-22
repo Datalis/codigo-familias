@@ -1,12 +1,35 @@
 .related-articles {
     padding-bottom: 2rem;
     background-color: $white;
+
+    .slick-slide > div {
+        margin: 0 .5rem;
+    }
+
+    .slick-prev {
+        width: 40px;
+        height: 40px;
+        left: -50px;
+        @include screen-down(sm) {
+            left: -28px;
+        }
+    }
+    .slick-next {
+        width: 40px;
+        height: 40px;
+        right: -50px;
+        @include screen-down(sm) {
+            right: -28px;
+        }
+    }
+
     &__item {
         height: 400px;
         background-color: $green;
         overflow: hidden;
         border-radius: 12px;
         position: relative;
+
         .content {
             position: absolute;
             inset: 0;
@@ -21,13 +44,15 @@
 
             .image {
                 max-height: 180px;
-                object-fit: cover;
-                object-position: top;
-                //margin: auto 0;
+                position: relative;
                 border-radius: 6px;
                 flex-grow: 1;
                 margin-top: 0;
                 margin-bottom: 1rem;
+                img {
+                    pointer-events: none;
+                    user-select: none;
+                }
             }
 
             .title {

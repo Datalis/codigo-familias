@@ -52,7 +52,7 @@ const Media = ({ audios }) => {
                     {
                         audios.map((e, i) => (
                             <div className="media__list--item" key={i}>
-                                <div className="overlay">
+                                <div className={`overlay ${currentAudio == i ? 'active' : ''}`}>
                                     <span className='play-btn' onClick={() => handleToggleAudio(i)}>
                                        <AnimatePresence initial={false}>
                                             {
@@ -69,7 +69,7 @@ const Media = ({ audios }) => {
                                        </AnimatePresence>
                                     </span>
                                 </div>
-                                <Image src={e.cover} layout="fill" objectFit='cover' objectPosition='center' />
+                                <Image src={e.cover} layout="fill" objectFit='cover' objectPosition='center' alt=''/>
                             </div>
                         ))
                     }

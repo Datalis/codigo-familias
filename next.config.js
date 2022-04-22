@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
 
+  images: {
+    domains: ["api.eltoque.com"]
+  },
   
   webpack(config) {
     config.module.rules.push({

@@ -16,7 +16,7 @@
     }
     #contactForm {
         margin-left: 12%;
-        @include screen-down(sm) {
+        @include screen-down(md) {
             margin: auto;
         }
     }

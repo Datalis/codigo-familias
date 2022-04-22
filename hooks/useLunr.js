@@ -46,6 +46,7 @@ const useLunr = (data, { limit }) => {
 
     const results = useMemo(() => {
         return query ? queryIndex(query) : [];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     const onSearch = useCallback((query) => setQuery(query), [setQuery]);

@@ -23,9 +23,9 @@ import group3_5 from "../public/images/infographics/3/5.jpg";
 
 import useWindowSize from "../hooks/useWindowSize";
 
-import intro1 from '../public/images/infographics/1/intro.jpg';
-import intro2 from '../public/images/infographics/2/intro.jpg';
-import intro3 from '../public/images/infographics/3/intro.jpg';
+import intro1 from '../public/images/infographics/1/0.jpg';
+import intro2 from '../public/images/infographics/2/0.jpg';
+import intro3 from '../public/images/infographics/3/0.jpg';
 
 
 const group1 = [
@@ -166,6 +166,7 @@ const Infographics = () => {
             dragConstraints={introRef}
             dragElastic={0.2}
             style={{
+              x: 0,
               display: 'flex',
               justifyContent: 'center',
               flexWrap: 'nowrap',
@@ -173,7 +174,7 @@ const Infographics = () => {
             }}>
             {intros.map((e, i) => (
               <motion.div
-                className="infographics__intro--item"
+                className={`infographics__intro--item`}
                 style={{
                   flex: 'none',
                   width: introItemWidth,
@@ -191,7 +192,7 @@ const Infographics = () => {
                   overflow: 'hidden',
                   height: '100%'
                 }}>
-                  <Image src={e} alt="" priority={true} />
+                  <Image src={e} alt="" layout="fill" priority={true} />
                 </motion.div>
               </motion.div>
             ))}
@@ -237,7 +238,7 @@ const Infographics = () => {
                     </div>
                     {groups[currentGroup].map((e, i) => (
                       <motion.div
-                        className="infographics__carousel--item"
+                        className={`infographics__carousel--item group-${currentGroup}`}
                         key={`${currentGroup}-${i}`}
                         exit={{ opacity: 0 }}
                         style={{
@@ -269,7 +270,7 @@ const Infographics = () => {
                           }
                         }}
                         onClick={() => setCurrentItem(i)}>
-                        <Image src={e} alt="" priority />
+                        <Image src={e} alt="" layout="fill" objectFit="contain" priority />
                       </motion.div>
                     ))}
                   </motion.div>

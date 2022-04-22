@@ -1,7 +1,9 @@
 $breakpoints: (
-    lg: 60em,
-    md: 45em,
-    sm: 33.75em
+    xxl: 1400px,
+    xl: 1200px,
+    lg: 992px,
+    md: 768px,
+    sm: 576px
 );
 
 @mixin screen-down($size) {

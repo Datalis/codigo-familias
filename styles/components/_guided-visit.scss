@@ -1,6 +1,7 @@
 .guided-visit {
     margin-bottom: 4rem;
     margin-top: 2rem;
+
     &__intro {
         max-width: 60%;
         margin: auto;
@@ -12,7 +13,7 @@
     }
 
     &__download {
-        margin-top: 6rem;
+        margin-top: 15rem;
         margin-bottom: 2rem;
         width: 100%;
         display: flex;
@@ -46,14 +47,29 @@
         }
     }
 
+
     &__counter {
         margin-top: 1.5rem;
         text-align: right;
     }
 
-    &__dots {
+
+    &__slider {
+        margin-top: 1rem;
+        width: 100%;
+        height: 700px;
+
+
+
+        @include screen-down(sm) {
+            height: 80vh;
+            max-height: 680px;
+        }
+
         position: relative;
-        
+
+        position: relative;
+
         .ReactVirtualized__Grid {
             &::-webkit-scrollbar-thumb {
                 background: rgba($green, 0.5) !important;
@@ -85,17 +101,6 @@
                 }
             }
         }
-    }
-
-    &__slider {
-        margin-top: 1rem;
-        width: 100%;
-        height: 700px;
-        @include screen-down(sm) {
-            height: 80vh;
-            max-height: 680px;
-        }
-        position: relative;
 
         .controls {
             position: absolute;
@@ -103,7 +108,7 @@
             height: 100%;
 
             .control {
-                z-index: 2;
+                z-index: 5;
                 cursor: pointer;
 
                 @include screen-down(sm) {
@@ -131,9 +136,11 @@
         }
 
         .track {
+            padding: 0;
+            margin: 0;
             display: flex;
             width: 100%;
-            height: 100%;
+            height: 700px;
 
             .slide {
                 background-color: $purple-light;
@@ -142,15 +149,45 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                z-index: auto;
-                transform: translate3d(0, 0, 0);
-                touch-action: pan-x;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+
+                &.active {
+                    box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                    z-index: 3;
+                }
+
+                &.inactive {
+                    transform: scale(1) translateX(0px);
+                    z-index: 1;
+                    opacity: 0;
+                }
+
+                &.next {
+                    opacity: 0.6;
+                    z-index: 2;
+                    transform: scale(0.9) translateX(100px);
+                }
+
+                &.prev {
+                    transform: scale(0.9) translateX(-100px);
+                    z-index: 1;
+                    opacity: 0.6;
+                }
 
                 .article {
-                    height: 80%;
-                    max-width: 80%;
+                    height: 90%;
+                    max-width: 87.5%;
                     margin: auto;
                     touch-action: pan-y;
+                    overflow-y: auto;
+                    @include screen-down(sm) {
+                        max-width: 80%;
+                    }
                 }
             }
         }

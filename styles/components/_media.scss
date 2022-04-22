@@ -8,6 +8,7 @@
     top: calc(100% - 1rem - 88px);
     right: 1rem;
     z-index: 999999;
+
     .player {
       width: 400px;
       border-radius: 18px;
@@ -16,20 +17,25 @@
       box-shadow: none;
       backdrop-filter: blur(10px);
       background-color: rgba(0, 0, 0, 0.553);
+
       .rhap_time {
         color: $orange-light;
         width: 40px;
       }
+
       .rhap_progress-indicator,
-      .rhap_progress-filled{
+      .rhap_progress-filled {
         background-color: $orange;
       }
+
       .rhap_progress-bar {
         background-color: rgba($orange-light, .5);
       }
+
       .rhap_download-progress {
         background-color: $orange-light;
       }
+
       svg path {
         fill: $orange-light;
       }
@@ -67,10 +73,14 @@
         z-index: 1;
         background-color: rgba(#000, 0.25);
 
+        &.active {
+          opacity: 1 !important;
+        }
+
         .play-btn {
           transition: none;
-          width: 58px;
-          height: 58px;
+          width: 48px;
+          height: 48px;
           background-color: rgba(#000, 0.60);
           display: flex;
           align-items: center;

@@ -7,9 +7,9 @@
     display: flex;
     flex-flow: column;
 
-    &__container {
+    /*&__container {
         > * + * { margin-left: 1rem;}
-    }
+    }*/
 
     &__intro {
         margin-top: 1rem;
@@ -66,6 +66,15 @@
             will-change: transform;
             transform: translate3d();
             box-shadow: 0 62.5px 125px -25px rgb(50 50 73 / 10%), 0 37.5px 75px -37.5px rgb(0 0 0 / 60%);
+            &.group-0 {
+                background-color:  #ffdbce;
+            }
+            &.group-1 {
+                background-color: #4ab2a6;
+            }
+            &.group-2 {
+                background-color: #f9b5b3;
+            }
             img {
                 pointer-events: none;
             }

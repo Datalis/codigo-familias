@@ -1,10 +1,16 @@
 .article {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     &::-webkit-scrollbar-thumb {
         background: rgba($purple, .5) !important;
+    }
+
+    &__title {
+        @include screen-down(sm) {
+            font-size: 20px;
+        }
     }
 
     &__header {
@@ -19,10 +25,9 @@
                 display: none;
             }
             .heading {
-                border-bottom: 1px solid currentColor;
-                padding-bottom: 0.2rem;
+                
                 &:not(:first-child) {
-                    padding-top: 0.5rem;
+                    padding-top: 0.25rem;
                 }
                 @include screen-down(sm) {
                     font-size: 12px;
@@ -54,8 +59,8 @@
     }
     &__text {
         font-weight: 400;
+        font-size: 16px;
         line-height: 1.4;
-        white-space: break-spaces;
         @include screen-down(sm) {
             font-size: 12px;
         }
@@ -72,6 +77,17 @@
             -webkit-box-orient: vertical;
             overflow: hidden !important;
         }*/
+        p.expanded {
+            height: auto;
+            display: block;
+        }
+
+        p.collapsed {
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden !important;
+        }
         
         .toggle-more {
             align-self: flex-end;

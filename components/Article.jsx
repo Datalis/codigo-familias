@@ -41,25 +41,26 @@ const Article = ({
     showComment = true
 }) => {
 
+    const textRef = useRef();
+
     const viewport = useWindowSize();
     const [collapsed, setCollapsed] = useState(true);
+    const [showMore, setShowMore] = useState(false);
 
     const truncateLimit = useMemo(() => {
         if (viewport.width > 560) return 400;
         return 200;
     }, [viewport]);
 
-    const showMore = useMemo(() => {
-        return texto.length > truncateLimit;
-    }, [texto, truncateLimit]);
 
-    const truncateText = useCallback((text) => {
-        //if (text.length < 500) return text;
-        const _temp = text.substring(0, truncateLimit);
-        const _end = _temp.substring(0, _temp.lastIndexOf(' ')) + '...';
-        return _end;
-    }, [truncateLimit])
-
+    const textLines = useMemo(() => {
+        const _h = textRef.current?.offsetHeight;
+        const _fs = textRef.current?.computedStyleMap().get('font-size').value || 16;
+        const _lh = textRef.current?.computedStyleMap().get('line-height').value || 1.4;
+        const _lines = Math.round(_h / (_fs * _lh));
+        return _lines;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [textRef.current]);
 
     return (
         <article className="article" id={_id}>
@@ -86,28 +87,17 @@ const Article = ({
             </h3>
 
             <div className="show-more-less">
-                <motion.p
-                    className='article__text'
-                    variants={{
-                        collapsed: {
-                            opacity: [0, 1],
-                            height: 'auto',
-                            //display: '-webkit-box'
-                        },
-                        expanded: {
-                            opacity: [0, 1],
-                            height: 'auto',
-                            //display: 'block'
-                        }
-                    }}
-                    initial="collapsed"
-                    animate={collapsed ? "collapsed" : "expanded"}>
-                    {ReactHtmlParser(highlighter(showMore ? (collapsed ? truncateText(texto) : texto) : texto, 'texto', matchData?.metadata))}
-                </motion.p>
+                <p
+                    ref={textRef}
+                    className={`article__text ${textLines > 5 ? (collapsed ? 'collapsed' : 'expanded') : 'regular'}`}
+                    >
+                    {ReactHtmlParser(highlighter(texto, 'texto', matchData?.metadata))}
+                </p>
                 {
-                    showMore && (<motion.div className='toggle-more' layout="position">
-                        <motion.button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</motion.button>
-                    </motion.div>)
+                    textLines > 5 && (
+                        <div className='toggle-more' layout="position">
+                            <button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Ver más' : 'Ver menos'}</button>
+                        </div>)
                 }
             </div>
 
