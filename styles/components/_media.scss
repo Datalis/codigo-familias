@@ -8,6 +8,9 @@
     top: calc(100% - 1rem - 88px);
     right: 1rem;
     z-index: 999999;
+    @include screen-down(sm) {
+      left: 1rem;
+    }
 
     .player {
       width: 400px;
@@ -17,6 +20,9 @@
       box-shadow: none;
       backdrop-filter: blur(10px);
       background-color: rgba(0, 0, 0, 0.553);
+      @include screen-down(sm) {
+        width: unset;
+      }
 
       .rhap_time {
         color: $orange-light;

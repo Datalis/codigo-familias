@@ -53,7 +53,7 @@ export default function Index({ articles, keywords, relatedPosts, audios }) {
       <Header articles={articles} keywords={keywords} />
       <main className='main'>
         <div className='main__image'>
-          <Image src={mainImage} alt=""></Image>
+          <Image src={mainImage} alt="" width={400} height={1368}></Image>
         </div>
         <div className='main__content'>
           <GuidedVisit articles={articles} />

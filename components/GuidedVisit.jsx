@@ -34,7 +34,7 @@ const GuidedVisit = ({ articles }) => {
           </StackedCarousel>
         </div>
         <div className="guided-visit__download">
-          <button className="button">Descargar PDF</button>
+          <a className="button" href='https://api.eltoque.com/uploads/Proyecto_de_Codigo_de_Familia_9eaa77e1ee.pdf' download>Descargar PDF</a>
         </div>
       </div>
     </section>

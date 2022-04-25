@@ -81,7 +81,7 @@ const FrequentQuestions = () => {
                 </div>
                 <div className="row mt-2">
                     <div className="col-7">
-                        <div className="flex flex-column">
+                        <div className="flex flex-column" id="questions">
                             <Collapsible title={<span>¿La responsabilidad parental me quita derechos sobre mis hijos e hijas?</span>}>
                                 <p className="font-regular my-1">
                                     La sustitución de la denominación «patria potestad» por «responsabilidad parental» en el anteproyecto del Código de las Familias implica más que un cambio de nombre. Implica que Cuba ha decidido asumir algunos de los compromisos internacionales derivados de su ratificación de la <a href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354792263&amp;usg=AOvVaw1w21cKqpnrBMyQohC6PT2E">Convención Internacional de los Derechos del Niño</a>

@@ -6,28 +6,29 @@
     align-items: stretch;
     height: 700px;
     @include screen-down(md) {
-      height: 100vh;
+      height: 950px;
     }
     &__img {
       position: absolute;
       left: -200px;
       top: 0;
-      bottom: -20px;
-      height: 100%;
+      bottom: -300px;
       width: 75%;
       max-width: 980px;
       z-index: 0;
+      margin: auto;
+      height: auto;
       @include screen-down(md) {
         top: unset;
-        bottom: -250px;
-        left: -200px;
-        right: -200px;
+        bottom: -370px;
+        left: -100px;
+        right: -50px;
         width: auto;
-        height: unset;
         margin: auto;
+        height: 100%;
       }
       @include screen-down(sm) {
-        bottom: -200px;
+        bottom: -370px;
       }
     }
     &__content {

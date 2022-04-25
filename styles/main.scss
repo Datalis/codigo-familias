@@ -1,5 +1,6 @@
 @import "./vendor/normalize.css";
-@import "./vendor/input_range.scss";
+//@import "./vendor/input_range.scss";
+@import "~slick-carousel/slick/slick.css"; 
 
 @import "mixins";
 @import "colors";
@@ -18,8 +19,8 @@
 @import "components/frecuent-questions";
 @import "components/footer";
 
-@import "~slick-carousel/slick/slick.css"; 
-@import "~slick-carousel/slick/slick-theme.css";
+
+//@import "~slick-carousel/slick/slick-theme.css";
 
 html,
 body {
@@ -31,6 +32,7 @@ body {
 
 #__next {
   font-family: $font-family;
+  font-display: fallback;
   font-size: $font-size;
   line-height: $font-height;
   color: $dark-grey;

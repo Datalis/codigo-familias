@@ -25,11 +25,12 @@
                 display: none;
             }
             .heading {
-                
+                flex-basis: 33.3333%;
                 &:not(:first-child) {
                     padding-top: 0.25rem;
                 }
                 @include screen-down(sm) {
+                    flex-basis: 100%;
                     font-size: 12px;
                 }
             }
@@ -70,16 +71,21 @@
         display: flex;
         flex-flow: column;
         width: 100%;
-    
-        /*p {
+
+        p {
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+        /* p {
             display: -webkit-box;
-            -webkit-line-clamp: 6;
+            -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden !important;
         }*/
         p.expanded {
             height: auto;
             display: block;
+            opacity: 1;
         }
 
         p.collapsed {
@@ -87,6 +93,7 @@
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden !important;
+            opacity: 1;
         }
         
         .toggle-more {

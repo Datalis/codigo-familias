@@ -1,31 +1,36 @@
 import lunr from 'lunr';
-import stemmer from 'lunr-languages/lunr.stemmer.support';
-import es from 'lunr-languages/lunr.es';
+import stemmer from 'lunr-languages/min/lunr.stemmer.support.min.js';
+import es from 'lunr-languages/min/lunr.es.min.js';
+
+import { useEffect, useMemo, useState } from 'react';
 
 stemmer(lunr);
 es(lunr);
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
-
 const useLunr = (data, { limit }) => {
-    const index = lunr(function () {
-        this.use(lunr.es);
-        this.ref('_id');
-        this.field('articulo');
-        this.field('texto');
-        this.field('comentario');
-        this.metadataWhitelist = ['position']
-        data.forEach(e => {
-            this.add(
-                {
-                    _id: e['_id'],
-                    articulo: e['articulo'],
-                    texto: e['texto'],
-                    comentario: e['comentario']
-                }
-            );
-        }, this)
-    })
+
+
+    const [index, setIndex] = useState();
+
+    useEffect(() => {
+        const index = lunr(function () {
+            this.use(lunr.es);
+            this.ref('_id');
+            this.field('articulo');
+            this.field('texto');
+            this.metadataWhitelist = ['position']
+            data.forEach(e => {
+                this.add(
+                    {
+                        _id: e['_id'],
+                        articulo: e['articulo'],
+                        texto: e['texto'],
+                    }
+                );
+            }, this)
+        });
+        setIndex(index);
+    }, []);
 
     const [query, setQuery] = useState(null);
 
@@ -49,13 +54,15 @@ const useLunr = (data, { limit }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
-    const onSearch = useCallback((query) => setQuery(query), [setQuery]);
+    const onSearch = (query) => setQuery(query);
 
-    return {
-        query,
-        results,
-        onSearch
-    }
+    return useMemo(() => (
+        {
+            //query,
+            results,
+            onSearch
+        }
+    ), [results, onSearch])
 }
 
 export default useLunr;

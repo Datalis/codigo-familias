@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
+import AudioPlayer from 'react-h5-audio-player'
 import 'react-h5-audio-player/lib/styles.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -81,6 +81,7 @@ const Media = ({ audios }) => {
                             autoPlayAfterSrcChange={true}
                             showSkipControls={true}
                             showJumpControls={false}
+                            showDownloadProgress={true}
                             customAdditionalControls={[]}
                             customVolumeControls={[
 

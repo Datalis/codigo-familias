@@ -13,7 +13,7 @@ const Collapsible = ({
     return (
         <div className="collapsible">
             <motion.div className='collapsible__header' initial={false} onClick={() => setOpen(!open)}>
-                <h4 className='collapsible__header--title'>{title}</h4>
+                <h4 className='collapsible__header--title' onClick={() => setOpen(!open)}>{title}</h4>
                 <motion.div className="collapsible__header--icon"
                     initial="collapsed"
                     animate={open ? "open" : "collapsed"}
@@ -22,7 +22,7 @@ const Collapsible = ({
                             rotate: 180
                         },
                         collapsed: {
-                            rotate: 0
+                            rotate: 0,
                         }
                     }}>
                     <ToggleIcon></ToggleIcon>
@@ -37,7 +37,7 @@ const Collapsible = ({
                     /*transition={{ type: "spring", velocity: 10, duration: .2 }}*/
                     variants={{
                         open: { opacity: 1, height: "auto", scale: 1, marginTop: 12 },
-                        collapsed: { opacity: 0, height: 0, scale: .99 }
+                        collapsed: { opacity: 0, height: 0, scale: .99, overflow: 'hidden' }
                     }}
                 >
                     {children}

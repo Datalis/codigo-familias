@@ -1,17 +1,18 @@
 import Image from 'next/image';
-import Lottie from 'react-lottie';
+//import Lottie from 'react-lottie';
 
 import cvLogo from '../public/images/logo_cv.png';
 import etjLogo from '../public/images/logo_etqj.png';
+import footerImg from '../public/images/footer.png';
 
-import animData from '../public/anim/footer_anim_large.json';
+//import animData from '../public/anim/footer_anim_large.json';
 
 const Footer = () => {
 
     const animOptions = {
         loop: true,
         autoplay: true,
-        animationData: animData,
+        //animationData: animData,
         rendererSettings: {
             preserveAspectRatio: "xMidYMid slice"
         }
@@ -21,7 +22,8 @@ const Footer = () => {
     return (
         <footer className='footer'>
             <div className="footer__img">
-                <Lottie options={animOptions} isStopped={true} />
+                {/*<Lottie options={animOptions} isStopped={true} />*/}
+                <Image src={footerImg} layout="fill" objectFit='contain' height='100%' width='50vw' alt='' />
             </div>
             <div className="footer__content container">
                 <div className="row">

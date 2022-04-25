@@ -190,9 +190,10 @@ const Infographics = () => {
                   scale: currentGroup == i ? 0.90 : 1,
                   borderRadius: 20,
                   overflow: 'hidden',
-                  height: '100%'
+                  height: '100%',
+                  position: 'relative'
                 }}>
-                  <Image src={e} alt="" layout="fill" priority={true} />
+                  <Image src={e} alt="" layout="fill" objectFit="contain" />
                 </motion.div>
               </motion.div>
             ))}
@@ -249,6 +250,7 @@ const Infographics = () => {
                           borderRadius: 24,
                           overflow: "hidden",
                           x: i * carouselItemOffset,
+                          cursor: 'pointer'
                         }}
                         animate={{
                           zIndex: calculateItemZIndex(i),

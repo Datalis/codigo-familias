@@ -2,6 +2,7 @@
     background-color: $orange-light;
     padding-top: 2rem;
     padding-bottom: 2rem;
+
     .collapsible {
         a {
             color: $green;
@@ -9,26 +10,37 @@
             font-weight: 500;
         }
     }
+
     .divider {
         width: 100%;
         height: 2px;
         background-color: $purple;
     }
+
+    #questions {
+        overflow: hidden;
+    }
+
     #contactForm {
         margin-left: 12%;
+        z-index: 999;
+
         @include screen-down(md) {
             margin: auto;
         }
     }
+
     .input-group {
         display: flex;
         flex-direction: column;
     }
+
     .text-error {
         font-size: 14px;
         color: red;
         margin-top: 0.25rem;
     }
+
     .form-control {
         //width: 100%;
         height: 42px;
@@ -42,14 +54,17 @@
         background-color: $orange;
         font-size: 1rem;
         box-shadow: inset 0 0 15px 1px rgb(0 0 0 / 10%);
+
         &::placeholder {
             color: rgba($white, 0.9);
         }
     }
+
     .textarea-container {
         position: relative;
         display: flex;
         flex-direction: column;
+
         textarea {
             //width: 100%;
             height: auto;
@@ -66,10 +81,12 @@
             color: $white;
             overflow-y: hidden;
             box-shadow: inset 0 0 15px 1px rgb(0 0 0 / 10%);
+
             &::placeholder {
                 color: rgba($white, 0.9);
             }
         }
+
         .send-icon {
             cursor: pointer;
             position: absolute;
@@ -83,4 +100,5 @@
             outline: none;
         }
     }
+
 }

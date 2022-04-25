@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import ArrowLeft from "../public/icons/arrow-left.svg";
 import ArrowRight from "../public/icons/arrow-right.svg";
 import { useAnimation } from "framer-motion";
-import { AutoSizer } from 'react-virtualized';
-import { Grid } from 'react-virtualized';
+import { AutoSizer, Grid } from 'react-virtualized';
+//import { Grid } from 'react-virtualized';
 import Article from "./Article";
 import useWindowSize from "../hooks/useWindowSize";
 
@@ -59,7 +59,9 @@ const StackedCarousel = ({ children, data }) => {
         let offset = 100;
         if (viewport.width > 1200) {
           offset = 100;
-        } else if (viewport.width > 768) {
+        } else if (viewport.width > 780) {
+          offset = 75;
+        } else if (viewport.width > 560) {
           offset = 50;
         } else {
           offset = 30;
@@ -195,8 +197,8 @@ const StackedCarousel = ({ children, data }) => {
           )}
         </AutoSizer>
       </div>
-      <div className="guided-visit__counter">
-          <h5 className="text-green mt-0">{items.length} artículos</h5>
+      <div className="guided-visit__counter mb-4">
+          <span className="text-green font-bold">{items.length} artículos</span>
         </div>
       <div className="controls">
         {indexes.current > 0 && (

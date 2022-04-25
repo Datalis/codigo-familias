@@ -11,6 +11,17 @@ const highlight = (pos, value, i = 1) => {
         `${highlight(pos, value.substring(0, pair[0]), i + 1)}<mark>${value.substring(pair[0], pair[0] + pair[1])}</mark>${value.substring(pair[0] + pair[1])}`;
 }
 
+const highlightJSX = (pos, value, i = 1) => {
+    const pair = pos[pos.length - i];
+    return !pair ? value : (
+        <>
+            {highlightJSX(pos, value.substring(0, pair[0]), i + 1)}
+            <mark>{value.substring(pair[0], pair[0] + pair[1])}</mark>
+            {value.substring(pair[0] + pair[1])}
+        </>
+    )
+}
+
 const highlighter = (text, field, metadata) => {
     if (metadata) {
         const positions = [];
@@ -19,7 +30,7 @@ const highlighter = (text, field, metadata) => {
             const pos = data?.position || [];
             positions.push(...pos);
         });
-        return highlight(positions, text);
+        return highlightJSX(positions, text);
     }
     return text;
 }
@@ -62,33 +73,33 @@ const Article = ({
     return (
         <article className="article" id={_id}>
             <header className='article__header'>
-                <h6 className='heading font-bold text-purple my-0 uppercase'>Título {titulo}</h6>
+                <small className='heading font-bold text-purple my-0 uppercase'>Título {titulo}</small>
                 {!!capitulo && (
                     <>
                         <span className='separator font-bold mx-4'>/</span>
-                        <h6 className='heading font-bold text-purple my-0 uppercase'>{capitulo}</h6>
+                        <small className='heading font-bold text-purple my-0 uppercase'>{capitulo}</small>
                     </>
                 )
                 }
                 {!!seccion && (
                     <>
                         <span className='separator font-bold mx-4'>/</span>
-                        <h6 className='heading font-bold text-purple my-0 uppercase'>{seccion}</h6>
+                        <small className='heading font-bold text-purple my-0 uppercase'>{seccion}</small>
                     </>
                 )
                 }
             </header>
 
             <h3 className='article__title font-bold mb-2 mt-4'>
-                {ReactHtmlParser(highlighter(articulo, 'articulo', matchData?.metadata))}
+                {highlighter(articulo, 'articulo', matchData?.metadata)}
             </h3>
 
             <div className="show-more-less">
                 <p
                     ref={textRef}
-                    className={`article__text ${textLines > 5 ? (collapsed ? 'collapsed' : 'expanded') : 'regular'}`}
-                    >
-                    {ReactHtmlParser(highlighter(texto, 'texto', matchData?.metadata))}
+                    className={`article__text ${textLines > 5 ? (collapsed ? 'collapsed' : 'expanded') : 'expanded'}`}
+                >
+                    {highlighter(texto, 'texto', matchData?.metadata)}
                 </p>
                 {
                     textLines > 5 && (
@@ -101,7 +112,7 @@ const Article = ({
             {showComment && (
                 <footer className='article__footer'>
                     <span className='article__comments'>
-                        {ReactHtmlParser(highlighter(comentario, 'comentario', matchData?.metadata))}
+                        {ReactHtmlParser(comentario)}
                     </span>
                     {
                         !!comentario && (

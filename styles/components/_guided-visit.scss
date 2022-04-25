@@ -40,6 +40,7 @@
             transition: all 0.25s ease;
             will-change: transform;
             user-select: none;
+            text-decoration: none;
 
             &:hover {
                 transform: scale(1.025);
@@ -181,7 +182,7 @@
 
                 .article {
                     height: 90%;
-                    max-width: 87.5%;
+                    max-width: 85%;
                     margin: auto;
                     touch-action: pan-y;
                     overflow-y: auto;

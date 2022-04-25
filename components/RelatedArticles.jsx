@@ -57,6 +57,7 @@ const RelatedArticles = ({ relatedPosts }) => {
                     </div>
                 </div>
                 <Slider className="row"
+                    lazyLoad="ondemand"
                     slidesToShow={2}
                     slidesToScroll={2}
                     responsive={[
@@ -79,7 +80,7 @@ const RelatedArticles = ({ relatedPosts }) => {
                             onClick={e => handleOnClick(e)}>
                             <div className="content">
                                 <div className="image">
-                                    <Image layout="fill" className="image" objectFit="cover" objectPosition="center" src={`https://api.eltoque.com${e.feature_image.url}`} alt={e.title} />
+                                    <Image layout="fill" className="image" objectFit="cover" objectPosition="top" src={`https://api.eltoque.com${e.feature_image.url}`} alt={e.title} />
                                 </div>
                                 <span className="title font-bold">{e.title}</span>
                                 <p className="excerpt font-regular">{e.excerpt}</p>
