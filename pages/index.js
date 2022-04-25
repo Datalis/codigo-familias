@@ -37,7 +37,7 @@ export default function Index({ articles, keywords, relatedPosts, audios }) {
         <meta property="twitter:description" content="Una plataforma para informar tu voto" />
         <meta property="twitter:image" content="https://codigo-de-familias.netlify.app/images/twitter.jpg" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="msapplication-TileColor" content="#f8f4ef" />
         <meta name="theme-color" content="#f8f4ef" />

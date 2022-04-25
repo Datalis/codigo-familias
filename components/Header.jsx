@@ -59,7 +59,8 @@ const SearchInput = ({ keywords, articles }) => {
             <div className="search-container container center">
                 <h3 className='text-green uppercase'>Encuentra términos, conceptos y contenidos <br /> del Código de las Familias</h3>
                 <DebounceInput
-                    type='search'
+                    //type='text'
+                    inputMode='search'
                     debounceTimeout={400}
                     value={query}
                     onChange={(e) => handleQueryChange(e.target.value)}
@@ -217,7 +218,7 @@ const Header = ({ articles, keywords }) => {
                                 Nuevo código de las familias
                             </h1>
                             <HeaderTitle className="intro__image mt-8" />
-                            <h2 className='intro__title font-normal mt-8'>Una cobertura para el debate informado</h2>
+                            <h2 className='intro__title font-normal mt-8'>Una plataforma para informar tu voto</h2>
                             <p className='intro__message font-medium mt-8'>
                                 El anteproyecto del Código de las Familias ha dividido la opinión pública cubana, generando polémicos debates. Los que se oponen muestran preocupación por la posible «limitación» de los derechos de los padres sobre la crianza de hijos e hijas, por el reconocimiento del matrimonio como la unión entre dos personas, por el peligro de que el Código sirva como basamento legal para la represión política a activistas y opositores, o por que se utilice como «lavado de cara» de un Gobierno autocrático.
                                 <br />

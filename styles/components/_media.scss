@@ -8,6 +8,7 @@
     top: calc(100% - 1rem - 88px);
     right: 1rem;
     z-index: 999999;
+
     @include screen-down(sm) {
       left: 1rem;
     }
@@ -20,6 +21,7 @@
       box-shadow: none;
       backdrop-filter: blur(10px);
       background-color: rgba(0, 0, 0, 0.553);
+
       @include screen-down(sm) {
         width: unset;
       }
@@ -59,7 +61,7 @@
       height: 200px;
       margin-bottom: 1rem;
       overflow: hidden;
-      border-radius: 18px;
+      border-radius: 18px !important;
       cursor: pointer;
       position: relative;
       margin: 0 .5rem;
@@ -81,6 +83,18 @@
 
         &.active {
           opacity: 1 !important;
+        }
+
+        @include screen-down(md) {
+          opacity: 1 !important;
+
+          .play-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 38px !important;
+            height: 38px !important;
+          }
         }
 
         .play-btn {
@@ -107,7 +121,7 @@
           }
 
           .play-icon svg {
-            margin-left: 1px;
+            margin-left: 3px;
           }
         }
       }

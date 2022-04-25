@@ -8,11 +8,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import PlayIcon from '../public/icons/play.svg';
 import StopIcon from '../public/icons/stop.svg';
+import LoadingIcon from '../public/icons/loading.svg';
 import { useState, useRef } from 'react';
 
 const Media = ({ audios }) => {
 
     const [currentAudio, setCurrentAudio] = useState(null);
+    const [isLoading, setIsLoading] = useState(-1);
+
     const audioRef = useRef();
 
     const handleClickNext = () => {
@@ -54,34 +57,58 @@ const Media = ({ audios }) => {
                             <div className="media__list--item" key={i}>
                                 <div className={`overlay ${currentAudio == i ? 'active' : ''}`}>
                                     <span className='play-btn' onClick={() => handleToggleAudio(i)}>
-                                       <AnimatePresence initial={false}>
+                                        <AnimatePresence initial={false}>
                                             {
+                                                i == isLoading ? (
+                                                    <motion.div className='stop-icon' exit={{ scale: 0, opacity: 0 }}>
+                                                        <LoadingIcon />
+                                                    </motion.div>
+                                                ) : (
+                                                    currentAudio == i ? (
+                                                        <motion.div className='stop-icon' exit={{ scale: 0, opacity: 0 }}>
+                                                            <StopIcon />
+                                                        </motion.div>
+                                                    ) : (
+                                                        <motion.div className='play-icon' exit={{ scale: 0, opacity: 0 }}>
+                                                            <PlayIcon />
+                                                        </motion.div>
+                                                    )
+                                                )
+                                            }
+                                            {/*
                                                 currentAudio == i ? (
-                                                    <motion.div className='stop-icon' exit={{scale: 0, opacity: 0}}>
+                                                    <motion.div className='stop-icon' exit={{ scale: 0, opacity: 0 }}>
                                                         <StopIcon />
                                                     </motion.div>
                                                 ) : (
-                                                    <motion.div className='play-icon' exit={{scale: 0, opacity: 0}}>
+                                                    <motion.div className='play-icon' exit={{ scale: 0, opacity: 0 }}>
                                                         <PlayIcon />
                                                     </motion.div>
                                                 )
-                                            }
-                                       </AnimatePresence>
+                                                */}
+                                        </AnimatePresence>
                                     </span>
                                 </div>
-                                <Image src={e.cover} layout="fill" objectFit='cover' objectPosition='center' alt=''/>
+                                <Image src={e.cover} layout="fill" objectFit='cover' objectPosition='center' alt='' />
                             </div>
                         ))
                     }
-                    <motion.div style={{opacity: 0}} animate={{opacity: currentAudio !== null ? 1 : 0}} className="media__player">
+                    <motion.div style={{ opacity: 0 }} animate={{ opacity: currentAudio !== null ? 1 : 0 }} className="media__player">
                         <AudioPlayer
                             className='player'
-                            ref={audioRef} 
+                            ref={audioRef}
+                            preload='auto'
                             onEnded={handleClickNext}
                             autoPlayAfterSrcChange={true}
                             showSkipControls={true}
                             showJumpControls={false}
                             showDownloadProgress={true}
+                            onLoadStart={(e) => {
+                                setIsLoading(currentAudio)
+                            }}
+                            onLoadedData={(e) => {
+                                setIsLoading(-1)
+                            }}
                             customAdditionalControls={[]}
                             customVolumeControls={[
 

@@ -9,14 +9,6 @@ import footerImg from '../public/images/footer.png';
 
 const Footer = () => {
 
-    const animOptions = {
-        loop: true,
-        autoplay: true,
-        //animationData: animData,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice"
-        }
-    };
 
 
     return (
