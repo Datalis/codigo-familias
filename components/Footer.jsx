@@ -23,7 +23,7 @@ const Footer = () => {
         <footer className='footer'>
             <div className="footer__img">
                 {/*<Lottie options={animOptions} isStopped={true} />*/}
-                <Image src={footerImg} layout="fill" objectFit='contain' height='100%' width='50vw' alt='' />
+                <Image src={footerImg} layout="fill" objectFit='contain' height='100%' width='50vw' alt=''  priority/>
             </div>
             <div className="footer__content container">
                 <div className="row">
