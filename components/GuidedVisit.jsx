@@ -11,7 +11,7 @@ const GuidedVisit = ({ articles }) => {
       <div className="container">
         <div className="guided-visit__intro">
           <h3 className="center uppercase text-green font-bold mb-5">
-            Visita guiada por el código de familias
+            Visita guiada por el código de las familias
           </h3>
           <p className="font-medium center mx">
             El proyecto del Código de las Familias cuenta con 471 artículos,
