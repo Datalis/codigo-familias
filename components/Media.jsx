@@ -47,8 +47,8 @@ const Media = ({ audios }) => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 center">
-                        <h3 className=" text-green uppercase font-bold">Videos y Audios</h3>
-                        <span className="font-medium">Escucha los audios más polémicos de esta cobertura</span>
+                        <h3 className=" text-green uppercase font-bold">Escucha los audios más polémicos de esta cobertura</h3>
+                        <span className="font-medium"></span>
                     </div>
                 </div>
                 <div className="media__list mt-8">
