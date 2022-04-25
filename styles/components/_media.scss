@@ -66,6 +66,7 @@
       position: relative;
       margin: 0 .5rem;
       margin-bottom: 1rem;
+      z-index: 2;
 
       .overlay {
         transition: opacity 0.5s ease;
@@ -87,11 +88,12 @@
 
         @include screen-down(md) {
           opacity: 1 !important;
+          background-color: transparent;
 
           .play-btn {
             position: absolute;
             bottom: 12px;
-            right: 12px;
+            left: 12px;
             width: 38px !important;
             height: 38px !important;
           }
@@ -137,6 +139,11 @@
 
         img {
           scale: 1.1;
+          @include screen-down(md) {
+            pointer-events: none;
+            scale: 1;
+            z-index: 0;
+          }
         }
       }
     }
