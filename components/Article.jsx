@@ -62,11 +62,15 @@ const Article = ({
 
 
     const textLines = useMemo(() => {
-        const _h = textRef.current?.offsetHeight;
-        const _fs = textRef.current?.computedStyleMap().get('font-size').value || 16;
-        const _lh = textRef.current?.computedStyleMap().get('line-height').value || 1.4;
+        if (textRef.current) {
+            const _h = textRef.current?.offsetHeight;
+        const _elStyle = typeof window !== "undefined" ? window?.getComputedStyle(textRef.current) : null;
+        const _fs = _elStyle?.getPropertyValue('font-size') || 16;
+        const _lh = _elStyle?.getPropertyValue('line-height') || 1.4;
         const _lines = Math.round(_h / (_fs * _lh));
         return _lines;
+        }
+        return 0;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [textRef.current]);
 

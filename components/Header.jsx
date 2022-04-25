@@ -169,15 +169,6 @@ const Header = ({ articles, keywords }) => {
         loadAnim();
     }, []);
 
-    const view = useMemo(() => (<>
-        {
-            !anim ? (
-                <Image priority src={headerImg} style={{ right: 28, top: 41 }} layout="fill" objectFit='contain' alt='' />
-            ) : (
-                <Lottie animationData={anim} play={true} rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }} />
-            )
-        }
-    </>), [anim])
 
     const showAnim = useMemo(() => {
         return viewport.width > 768 ? (
