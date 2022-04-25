@@ -231,10 +231,10 @@ const Infographics = () => {
                   >
                     <div className="infographics__carousel--controls">
                       <div className="control control-left">
-                        <ArrowLeft onClick={handlePrevItem}></ArrowLeft>
+                        {currentItem !== 0 && (<ArrowLeft onClick={handlePrevItem}></ArrowLeft>)}
                       </div>
                       <div className="control control-right">
-                        <ArrowRight onClick={handleNextItem}></ArrowRight>
+                        {currentItem !== (groups[currentGroup]?.length || 0) - 1 && (<ArrowRight onClick={handleNextItem}></ArrowRight>)}
                       </div>
                     </div>
                     {groups[currentGroup].map((e, i) => (
