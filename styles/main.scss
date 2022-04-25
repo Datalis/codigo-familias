@@ -28,6 +28,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
   height: 100vh;
+  overscroll-behavior: none;
 }
 
 #__next {
@@ -39,6 +40,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
+  overscroll-behavior: none;
   background-color: $orange-light;
   position: relative;
   width: 100%;

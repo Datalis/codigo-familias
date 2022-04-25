@@ -65,8 +65,8 @@ const Article = ({
         if (textRef.current) {
             const _h = textRef.current?.offsetHeight;
         const _elStyle = typeof window !== "undefined" ? window?.getComputedStyle(textRef.current) : null;
-        const _fs = _elStyle?.getPropertyValue('font-size') || 16;
-        const _lh = _elStyle?.getPropertyValue('line-height') || 1.4;
+        const _fs = +_elStyle?.getPropertyValue('font-size') || 16;
+        const _lh = +_elStyle?.getPropertyValue('line-height') || 1.4;
         const _lines = Math.round(_h / (_fs * _lh));
         return _lines;
         }
