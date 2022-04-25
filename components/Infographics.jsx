@@ -193,7 +193,7 @@ const Infographics = () => {
                   height: '100%',
                   position: 'relative'
                 }}>
-                  <Image src={e} alt="" layout="fill" objectFit="contain" />
+                  <Image src={e} alt="" layout="fill" objectFit="contain" priority />
                 </motion.div>
               </motion.div>
             ))}

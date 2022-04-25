@@ -105,12 +105,12 @@ const Footer = () => {
                         <div className='row mt-8'>
                             <div className='col-6 col-6-sm'>
                                 <div className='logo center'>
-                                    <Image src={etjLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" />
+                                    <Image src={etjLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" priority />
                                 </div>
                             </div>
                             <div className="col-6 col-6-sm">
                                 <div className='logo center'>
-                                    <Image src={cvLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" />
+                                    <Image src={cvLogo} width={200} height={100} objectFit="contain" alt="elTOQUE logo" priority />
                                 </div>
                             </div>
                         </div>
