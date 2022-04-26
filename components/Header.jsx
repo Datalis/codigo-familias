@@ -160,7 +160,7 @@ const SearchResults = ({ results, keyword }) => {
 
 const Header = ({ articles, keywords }) => {
     const viewport = useWindowSize();
-    const [anim, setAnim] = useState();
+    const [anim, setAnim] = useState(null);
 
     useEffect(() => {
         const loadAnim = async () => {
@@ -173,7 +173,8 @@ const Header = ({ articles, keywords }) => {
 
     const showAnim = useMemo(() => {
         return viewport.width > 768 ? (
-            <Lottie animationData={anim} play={true} rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }} />
+            !!anim ? (<Lottie animationData={anim} play={true} rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }} />)
+                : (<Image priority src={headerImg} layout="fill" objectFit='cover' height="100vh" width="100vw" alt='' />)
         ) : (
             <Image priority src={headerImg} layout="fill" objectFit='cover' height="100vh" width="100vw" alt='' />
         )

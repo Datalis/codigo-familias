@@ -12,6 +12,11 @@ import { Fragment } from 'react';
 import GuidedVisit from '../components/GuidedVisit';
 import staticData from '../data/static.json';
 
+const title = "Nuevo Código de las Familias en Cuba"
+const description = "Una herramienta para que explores el nuevo Código de las Familias, te informes y decidas tu voto."
+const url = "https://familias.eltoque.com/"
+const facebookImg = `${url}/images/facebook.jpg`;
+const twitterImg = `${url}/images/twitter.jpg`
 
 export default function Index({ articles, keywords, relatedPosts, audios }) {
   return (
@@ -19,23 +24,23 @@ export default function Index({ articles, keywords, relatedPosts, audios }) {
       <Head>
 
         {/* <!-- Primary Meta Tags --> */}
-        <title>Nuevo código de Familias</title>
-        <meta name="title" content="Nuevo código de Familias" />
-        <meta name="description" content="Una plataforma para informar tu voto" />
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
 
         {/* <!-- Open Graph / Facebook --> */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://codigo-de-familias.netlify.app/" />
-        <meta property="og:title" content="Nuevo código de Familias" />
-        <meta property="og:description" content="Una plataforma para informar tu voto" />
-        <meta property="og:image" content="https://codigo-de-familias.netlify.app/images/facebook.jpg" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={facebookImg} />
 
         {/*<!-- Twitter -->*/}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://codigo-de-familias.netlify.app/" />
-        <meta property="twitter:title" content="Nuevo código de Familias" />
-        <meta property="twitter:description" content="Una plataforma para informar tu voto" />
-        <meta property="twitter:image" content="https://codigo-de-familias.netlify.app/images/twitter.jpg" />
+        <meta property="twitter:url" content={url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={twitterImg} />
 
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
