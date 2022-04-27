@@ -34,6 +34,7 @@ export default function Index({ articles, keywords, relatedPosts, audios }) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={facebookImg} />
+        <meta property="og:site_name" content="elTOQUE" />
 
         {/*<!-- Twitter -->*/}
         <meta property="twitter:card" content="summary_large_image" />
