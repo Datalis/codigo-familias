@@ -1,10 +1,16 @@
 
 
+import { useMemo } from 'react';
 import StackedCarousel from './StackedCarousel';
 
 
 
 const GuidedVisit = ({ articles }) => {
+
+  const comments = useMemo(
+    () => articles.filter((e) => !!e.comentario),
+    [articles]
+  );
 
   return (
     <section className="guided-visit">
@@ -20,7 +26,7 @@ const GuidedVisit = ({ articles }) => {
             los principales cambios y aportes del texto.
             <br />
             <br />
-            Con esta herramienta podrás avanzar por 114 comentarios en los
+            Con esta herramienta podrás avanzar por {comments?.length || 116} comentarios en los
             cuales encontrarás elementos relevantes de la propuesta jurídica. Si
             te interesa buscar un artículo en específico, los puedes encontrar
             todos enumerados al inicio.
