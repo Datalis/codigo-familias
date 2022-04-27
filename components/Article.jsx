@@ -121,7 +121,7 @@ const Article = ({
                     {
                         !!comentario && (
                             <span className="article__comments_data">
-                                <em>Notas</em> <strong>{comentarioIndex + 1} / {comentarioTotal}</strong>
+                                <em>Comentario</em> <strong>{comentarioIndex + 1} / {comentarioTotal}</strong>
                             </span>
                         )
                     }
