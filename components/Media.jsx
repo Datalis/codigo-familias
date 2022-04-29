@@ -95,6 +95,7 @@ const Media = ({ audios }) => {
                     }
                     <motion.div style={{ opacity: 0 }} animate={{ opacity: currentAudio !== null ? 1 : 0 }} className="media__player">
                         <AudioPlayer
+                            showFilledProgress={true}
                             className='player'
                             ref={audioRef}
                             preload='auto'
