@@ -42,6 +42,22 @@
         {
             "source": "/audios/multiparentalidad.mp3",
             "cover": "/images/media/multiparentalidad.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_1_967c289d73.mp4",
+            "cover": "/images/media/audio1.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_2_b17acd1e92.mp4",
+            "cover": "/images/media/audio2.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/anteproyecto_5_413a3de039.mp3",
+            "cover": "/images/media/audio3.jpg"
+        },
+        {
+            "source": "https://api.eltoque.com/uploads/Anteproyecto_codigo_de_familia_4_d60f7a7078.mp4",
+            "cover": "/images/media/audio4.jpg"
         }
     ]
 }
