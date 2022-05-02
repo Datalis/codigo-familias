@@ -18,6 +18,13 @@
         right: -100px;
         mix-blend-mode: multiply;
 
+        &--preview {
+            //height: 100vh;
+            top: -100px !important;
+            bottom: -200px;
+            filter: blur(5px);
+        }
+
         @include screen-down(lg) {
             width: 100%;
             top: -200px;
