@@ -1,12 +1,7 @@
 import HeaderTitle from "../public/images/header_title.svg";
 import Logo from "../public/images/logo.svg";
 import { motion } from "framer-motion";
-import React, {
-    useRef,
-    useState,
-    useMemo,
-    useEffect,
-} from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import { DebounceInput } from "react-debounce-input";
 import Article from "./Article";
 import useLunr from "../hooks/useLunr";
@@ -21,7 +16,7 @@ import {
 import Lottie from "react-lottie-player/dist/LottiePlayerLight";
 import useWindowSize from "../hooks/useWindowSize";
 import Image from "next/image";
-import headerImg from "../public/images/header.png";
+import headerImg from "../public/images/header-2x.png";
 import headerImgPreview from "../public/images/header_preview.png";
 
 const SearchInput = ({ keywords, articles }) => {
@@ -188,8 +183,8 @@ const Header = ({ articles, keywords }) => {
 
     useEffect(() => {
         const loadAnim = async () => {
-            const anim = await import('../public/anim/header_no_bg.json');
-            setAnim(anim)
+            const anim = await import("../public/anim/header_no_bg.json");
+            setAnim(anim);
         };
         loadAnim();
     }, []);
@@ -305,9 +300,8 @@ const Header = ({ articles, keywords }) => {
                                 práctica este nuevo Código dependerá de las
                                 normas y leyes posteriores que lo acompañen.
                                 <br />
-                                <br />
-                                ¿Y tú?¿Te has informado sobre el contenido del
-                                anteproyecto antes de decidir?
+                                <br />Y tú ¿Te has informado sobre el contenido
+                                del anteproyecto antes de decidir?
                             </p>
                         </div>
                     </div>
