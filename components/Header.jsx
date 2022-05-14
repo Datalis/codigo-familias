@@ -189,19 +189,22 @@ const Header = ({ articles, keywords }) => {
         loadAnim();
     }, []);
 
-    const isSmallScreen = useMemo(() => viewport.width < 768, [viewport.width]);
+    const isSmallScreen = useMemo(() => viewport.width < 580, [viewport.width]);
 
     return (
         <header className="header">
             {isSmallScreen ? (
                 <div className="header__img">
                     <Image
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                        }}
                         priority
                         src={headerImg}
-                        layout="fill"
-                        objectFit="cover"
-                        height="100vh"
-                        width="100vw"
+                        layout="raw"
+                        width={viewport.width}
                         alt=""
                     />
                 </div>
@@ -214,8 +217,6 @@ const Header = ({ articles, keywords }) => {
                                 src={headerImgPreview}
                                 layout="fill"
                                 objectFit="contain"
-                                height={600}
-                                width={600}
                                 alt=""
                             />
                         </div>

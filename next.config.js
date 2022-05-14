@@ -1,20 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  compress: true,
+    reactStrictMode: false,
+    compress: true,
 
-  images: {
-    domains: ["api.eltoque.com"]
-  },
-  
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
+    experimental: {
+        images: {
+            layoutRaw: true,
+        },
+    },
 
-    return config;
-  }
-}
+    images: {
+        domains: ["api.eltoque.com"],
+    },
 
-module.exports = nextConfig
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ["@svgr/webpack"],
+        });
+
+        return config;
+    },
+};
+
+module.exports = nextConfig;
