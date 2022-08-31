@@ -65,7 +65,7 @@ const Footer = () => {
                             </dt>
                             <dd className="col-6-sm my-0">
                                 <h4 className="font-semi-bold my-1">
-                                    Wendy Valladares
+                                    Catao Studio
                                 </h4>
                             </dd>
                         </dl>
