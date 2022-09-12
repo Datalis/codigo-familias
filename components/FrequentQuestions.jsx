@@ -110,12 +110,12 @@ const FrequentQuestions = () => {
                                     Es probable que en otras normas ajenas al Código de las Familias que se promulguen en un futuro, como la ley de identidad o del Registro del Estado Civil, se establezcan otras limitaciones basadas en la edad que redundarán en restricciones a los menores de edad para el ejercicio de determinados derechos.
                                 </p>
                             </Collapsible>
-                            <Collapsible title={<span>¿Podré educar a mi hijo o hija con castigos corporales?</span>}>
+                            <Collapsible title={<span>¿Podré usar castigos físicos para disciplinar a mis hijos o hijas?</span>}>
                                 <p className="font-regular my-1">
                                     No. Las niñas, niños y adolescentes tienen derecho a recibir orientación y educación de las personas adultas responsables de su crianza sin que, en modo alguno, se autorice a estos el uso del castigo corporal en cualquiera de sus formas, el trato humillante o el empleo de cualquier otro tipo de violencia, abuso o formas inapropiadas de disciplina, incluida la negligencia y la desatención o todo hecho que les lesione o menoscabe física, moral o psíquicamente. (Artículo 146. Capítulo I. Sección Primera. Título V)
                                 </p>
                             </Collapsible>
-                            <Collapsible title={<span>¿Permite la nueva norma la adopción de menores?</span>}>
+                            <Collapsible title={<span>¿Permite la nueva norma la adopción de niñas, niños y adolescentes?</span>}>
                                 <p className="font-regular my-1">
                                     Sí. La adopción es una forma de integración familiar que tiene por objeto garantizar el derecho de niños, niñas y adolescentes a vivir en familia y asegurar su bienestar y desarrollo integral. Los menores adoptados tienen derecho a conocer su identidad biológica y origen, así como a acceder al expediente de adopción, una vez tengan plena capacidad jurídica. La adopción es indivisible e irrevocable, una vez que se autoriza judicialmente.
                                     <br />

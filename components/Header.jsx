@@ -281,13 +281,13 @@ const Header = ({ articles, keywords }) => {
                                 Una plataforma para informar tu voto
                             </h2>
                             <p className="intro__message font-medium mt-8">
-                                El proyecto del Código de las Familias ha dividido la opinión pública cubana, generando polémicos debates. Los que se oponen muestran preocupación por la posible «limitación» de los derechos de los padres sobre la crianza de hijos e hijas, por el reconocimiento del matrimonio como la unión entre dos personas, por el peligro de que el Código sirva como basamento legal para la represión política a activistas y opositores, o por que se utilice como «lavado de cara» de un Gobierno autocrático.
+                                El proyecto del Código de las Familias ha dividido la opinión pública cubana, generando múltiples debates. Las personas que se oponen muestran preocupación por la posible “limitación” de los derechos de madres, padres y tutores sobre la crianza de la niñez, el reconocimiento del matrimonio igualitario y el empleo de este Código como basamento legal para la represión política a activistas o a que se utilice como “lavado de cara” de un Gobierno autocrático.
                                 <br />
                                 <br />
-                                Sin embargo, para varios grupos de la sociedad civil, el proyecto reconoce los derechos de las familias plurales que existen hoy en Cuba. En cualquier caso, el impacto que tendrá en la práctica este nuevo Código dependerá de las normas y leyes posteriores que lo acompañen.
+                                Sin embargo, para varios grupos de la sociedad civil, el proyecto reconoce los derechos de las familias plurales que existen hoy en Cuba. En cualquier caso, el impacto que tendrá en la práctica esta nueva norma, dependerá de las leyes posteriores que lo acompañen.
 
                                 <br />
-                                <br />Y tú ¿Te has informado sobre el contenido del anteproyecto antes de decidir?
+                                <br />¿Y tú? ¿Te has informado sobre el contenido del anteproyecto antes de decidir?
                             </p>
                         </div>
                     </div>
