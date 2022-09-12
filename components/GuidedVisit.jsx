@@ -20,7 +20,7 @@ const GuidedVisit = ({ articles }) => {
             Visita guiada por el código de las familias
           </h3>
           <p className="font-medium center mx">
-            El proyecto del Código de las Familias cuenta con 471 artículos,
+            El proyecto del Código de las Familias cuenta con 474 artículos,
             segmentados en 11 títulos. Desde <em>elTOQUE</em> queremos
             contribuir a facilitar su comprensión con una visita comentada sobre
             los principales cambios y aportes del texto.
@@ -40,7 +40,7 @@ const GuidedVisit = ({ articles }) => {
           </StackedCarousel>
         </div>
         <div className="guided-visit__download">
-          <a className="button" href='https://api.eltoque.com/uploads/Proyecto_de_Codigo_de_Familia_9eaa77e1ee.pdf' download>Descargar PDF</a>
+          <a className="button" href='https://api.eltoque.com/uploads/goc_2022_o87_1_33f25e0c84.pdf' download>Descargar PDF</a>
         </div>
       </div>
     </section>

@@ -82,15 +82,15 @@ const FrequentQuestions = () => {
                 <div className="row mt-2">
                     <div className="col-7">
                         <div className="flex flex-column" id="questions">
-                            <Collapsible title={<span>¿La responsabilidad parental me quita derechos sobre mis hijos e hijas?</span>}>
+                            <Collapsible title={<span>¿La responsabilidad parental me quita derechos sobre mis hijas e hijos?</span>}>
                                 <p className="font-regular my-1">
-                                    La sustitución de la denominación «patria potestad» por «responsabilidad parental» en el anteproyecto del Código de las Familias implica más que un cambio de nombre. Implica que Cuba ha decidido asumir algunos de los compromisos internacionales derivados de su ratificación de la <a href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354792263&amp;usg=AOvVaw1w21cKqpnrBMyQohC6PT2E">Convención Internacional de los Derechos del Niño</a>
+                                    La sustitución de la denominación «patria potestad» por «responsabilidad parental» en el proyecto del Código de las Familias implica más que un cambio de nombre. Implica que Cuba ha decidido asumir algunos de los compromisos internacionales derivados de su ratificación de la <a href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354792263&amp;usg=AOvVaw1w21cKqpnrBMyQohC6PT2E">Convención Internacional de los Derechos del Niño</a>
                                     <br />
                                     <br />
-                                    La responsabilidad parental no defiende la obediencia indiscutible de los hijos a los padres y madres, sino que persigue la conformación de una relación paterno/materno filial que —sin eliminar la capacidad de contención de padres y madres sobre sus hijos— coloque en el centro la escucha y el reconocimiento del menor como un sujeto de derecho y no como alguien que solo está obligado a obedecer.
+                                    La responsabilidad parental no defiende la obediencia indiscutible de los hijos a los padres y madres, sino que persigue la conformación de una relación paterno/materno filial que —sin eliminar la capacidad de contención de padres y madres sobre sus hijos— coloque en el centro la escucha y el reconocimiento del menor de edad como un sujeto de derecho y no como alguien que solo está obligado a obedecer.
                                     <br />
                                     <br />
-                                    En ese sentido, al incluir el concepto de responsabilidad parental, el anteproyecto no elimina la capacidad disciplinaria o de contención de los progenitores o representantes legales sobre los menores. Más bien prohíbe que esa contención se exprese en forma de castigos corporales, de tratos humillantes o «cualquier otro tipo de violencia, abuso o formas inapropiadas de disciplina». Esta prohibición rompe con la lógica que ha sostenido el Código de Familia vigente en su artículo 86 en el cual establece que los «padres están facultados para reprender y corregir adecuada y moderadamente a los hijos bajo su patria potestad».
+                                    En ese sentido, al incluir el concepto de responsabilidad parental, el proyecto no elimina la capacidad disciplinaria o de contención de los progenitores o representantes legales sobre los hijos e hijas. Más bien prohíbe que esa contención se exprese en forma de castigos corporales, de tratos humillantes o «cualquier otro tipo de violencia, abuso o formas inapropiadas de disciplina». Esta prohibición rompe con la lógica que ha sostenido el Código de Familia vigente en su artículo 86 en el cual establece que los «padres están facultados para reprender y corregir adecuada y moderadamente a los hijos bajo su patria potestad».
                                 </p>
                             </Collapsible>
                             <Collapsible title={<span>¿El Código dice que los niños y niñas son libres de hacer lo que quieran sin contar con sus padres?</span>}>
@@ -98,13 +98,13 @@ const FrequentQuestions = () => {
                                     La autonomía progresiva es un principio que introdujo la <a href="https://www.google.com/url?q=https://www.un.org/es/events/childrenday/pdf/derechos.pdf&amp;sa=D&amp;source=editors&amp;ust=1650176354793294&amp;usg=AOvVaw0jk8VNdcm3dVg9TFk3TUrv">Convención sobre los Derechos del Niño</a> de la cual Cuba es signataria desde 1991.
                                     <br />
                                     <br />
-                                    Desde que el Código de Procesos entrara en vigor el primero de enero de 2021 y sin necesidad de que se apruebe el nuevo Código de las Familias, los niños cubanos tienen derecho a ser escuchados en un Tribunal de acuerdo con su capacidad/autonomía progresiva.
+                                    Desde que el Código de Procesos entrara en vigor el primero de enero de 2021 y sin necesidad de que se apruebe el nuevo Código de las Familias, las niñas y niños cubanos tienen derecho a ser escuchados en un Tribunal de acuerdo con su capacidad/autonomía progresiva.
                                     <br />
                                     <br />
                                     El Código de las Familias reconoce en nuestra normativa interna los derechos consagrados en la Convención, pero también establece el alcance y los límites para su ejercicio.
                                     <br />
                                     <br />
-                                    Por ejemplo, el anteproyecto del Código de las Familias establece en su artículo 108 que «la niña, el niño o adolescente, si tiene edad y grado de madurez suficiente», puede intervenir en el proceso de su adopción con la asistencia de un abogado. Regula también que los niños mayores de siete años o «que, por su grado de madurez, puedan expresar su voluntad [de manera inequívoca], sin tener que estar necesariamente asistidos por algún representante», podrán expresar el consentimiento sobre su adopción. O sea, reconoce que el consentimiento de los niños de más de siete años es indispensable para los casos en que se ventile su adopción. Pero establece además que esa regla puede romperse en el caso de niños menores de siete años que demuestren tener madurez suficiente para expresar su voluntad con claridad.
+                                    Por ejemplo, el proyecto del Código de las Familias establece en su artículo 110 que «la niña, el niño o adolescente, si tiene edad y grado de madurez suficiente», puede intervenir en el proceso de su adopción con la asistencia de un abogado.
                                     <br />
                                     <br />
                                     Es probable que en otras normas ajenas al Código de las Familias que se promulguen en un futuro, como la ley de identidad o del Registro del Estado Civil, se establezcan otras limitaciones basadas en la edad que redundarán en restricciones a los menores de edad para el ejercicio de determinados derechos.
@@ -112,7 +112,7 @@ const FrequentQuestions = () => {
                             </Collapsible>
                             <Collapsible title={<span>¿Podré educar a mi hijo o hija con castigos corporales?</span>}>
                                 <p className="font-regular my-1">
-                                    No. Las niñas, niños y adolescentes tienen derecho a recibir orientación y educación de las personas adultas responsables de su crianza sin que, en modo alguno, se autorice a estos el uso del castigo corporal en cualquiera de sus formas, el trato humillante o el empleo de cualquier otro tipo de violencia, abuso o formas inapropiadas de disciplina, incluida la negligencia y la desatención o todo hecho que les lesione o menoscabe física, moral o psíquicamente. (Artículo 142. Capítulo I. Sección Primera. Título V)
+                                    No. Las niñas, niños y adolescentes tienen derecho a recibir orientación y educación de las personas adultas responsables de su crianza sin que, en modo alguno, se autorice a estos el uso del castigo corporal en cualquiera de sus formas, el trato humillante o el empleo de cualquier otro tipo de violencia, abuso o formas inapropiadas de disciplina, incluida la negligencia y la desatención o todo hecho que les lesione o menoscabe física, moral o psíquicamente. (Artículo 146. Capítulo I. Sección Primera. Título V)
                                 </p>
                             </Collapsible>
                             <Collapsible title={<span>¿Permite la nueva norma la adopción de menores?</span>}>
@@ -156,7 +156,7 @@ const FrequentQuestions = () => {
                                         Se cometa delito contra la persona de la hija o hijo.
                                     </li>
                                     <li>
-                                        Se arriesgue gravemente la vida o la integridad psíquica y física de la hija o hijo. (Artículo 187. Capítulo V. Título V)
+                                        Se arriesgue gravemente la vida o la integridad psíquica y física de la hija o hijo. (Artículo 191. Capítulo V. Título V)
                                     </li>
                                 </ul>
                             </Collapsible>
