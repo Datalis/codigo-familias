@@ -96,7 +96,7 @@ const Footer = () => {
                         <dl className="my-0 credit-row">
                             <dt className="col-6-sm right my-0">
                                 <h4 className="font-semi-bold text-purple my-1">
-                                    Desarrollo web:
+                                    Desarrollo web: ALEJANDRO RODRÍGUEZ ZALDÍVAR &
                                 </h4>
                             </dt>
                             <dd className="col-6-sm my-0">
